@@ -10,8 +10,8 @@ public class Airport extends Terminal {
     int number_of_runways ;
      //====================================================================
 
-    Airport(boolean international_Airport , int number_of_runways , int build_price , String cityName , String terminalName , String address , int area , int number_of_vehicles){
-        super(build_price ,cityName ,terminalName ,address , area ,number_of_vehicles);
+    Airport(boolean international_Airport , int number_of_runways ,  String cityName , String terminalName , String address , int area , int number_of_vehicles){
+        super(1400 ,cityName ,terminalName ,address , area ,number_of_vehicles);
 
         this.international_Airport = international_Airport ;
         this.number_of_runways = number_of_runways ;
