@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Hotel {
     private String hotelName ;
-    private int buildCost = 600 ;
+    private int buildCost  ;
     private String address ;
     private int stars ;
     private int number_of_rooms ;
+    private int number_of_workers ;
 
     private ArrayList<Room> roomList = new ArrayList<Room>() ;
 
@@ -17,8 +18,10 @@ public class Hotel {
 
     //======================================================================
 
-    Hotel( String hotelName , String address , int stars , int number_of_rooms){
+    Hotel( String hotelName , String address , int stars , int number_of_rooms , int number_of_workers){
         this.hotelName = hotelName ;
+        this.buildCost =(number_of_rooms*150) + (number_of_workers*30 );
+        this.number_of_workers = number_of_workers ;
         this.address = address ;
         this.stars = stars ;
         this.number_of_rooms = number_of_rooms;
@@ -39,6 +42,9 @@ public class Hotel {
         return roomList;
     }
 
+    int getHotelPrice(){
+        return this.buildCost ;
+    }
 
 }
 

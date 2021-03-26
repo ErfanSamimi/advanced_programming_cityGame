@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 public class ShippingPort extends  Terminal {
     private static ArrayList<Shipping_vehicle> shipList = new ArrayList<Shipping_vehicle>() ;
+    private static ArrayList<ShippingPort> shippingPortsList = new ArrayList<ShippingPort>();
     private int number_of_waterfront ;
 
     //==========================================
-     ShippingPort ( int number_of_waterfront , String cityName , String terminalName , String address , int area , int number_of_vehicles){
-         super( 1000 , cityName , terminalName , address , area , number_of_vehicles);
+     public ShippingPort ( int number_of_waterfront , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_workers){
+         super( 1000 + number_of_workers*30 , cityName , terminalName , address , area , number_of_vehicles , number_of_workers);
          this.number_of_waterfront = number_of_waterfront ;
+         shippingPortsList.add(this);
      }
 
      //==========================================
@@ -20,7 +22,18 @@ public class ShippingPort extends  Terminal {
          shipList.add(vehicle);
     }
 
-    ArrayList<Shipping_vehicle> getShipList () {
+    public ArrayList<Shipping_vehicle> getShipList () {
          return shipList ;
+    }
+    public static ArrayList<ShippingPort> getShippingPortsList(){ return shippingPortsList; } ;
+
+    public void showInfo(){
+        System.out.println("runways " + number_of_waterfront);
+        System.out.println("city name " + cityName);
+        System.out.println("airport name : " + terminalName);
+        System.out.println("address " + address );
+        System.out.println("area " + area);
+        System.out.println("vehicles " + number_of_vehicles);
+        System.out.println("workers " + number_of_workers);
     }
 }

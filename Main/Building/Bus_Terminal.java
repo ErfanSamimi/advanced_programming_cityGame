@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 public class Bus_Terminal extends Terminal{
     private static ArrayList<Bus> busesList = new ArrayList<Bus>();
+    private static ArrayList<Bus_Terminal> bus_terminals_list = new ArrayList<Bus_Terminal>();
 
     //=======================================================================
 
-    Bus_Terminal( String cityName , String terminalName , String address , int area , int number_of_vehicles){
-        super(600, cityName ,terminalName ,address , area ,number_of_vehicles);
+    public Bus_Terminal(String cityName, String terminalName, String address, int area, int number_of_vehicles, int number_of_workers){
+        super(600 + number_of_workers*30, cityName ,terminalName ,address , area ,number_of_vehicles , number_of_workers);
+        bus_terminals_list.add(this) ;
     }
 
     //=======================================================================
@@ -21,6 +23,24 @@ public class Bus_Terminal extends Terminal{
 
     ArrayList<Bus> getBusesList(){
         return busesList ;
+    }
+
+    public static ArrayList<Bus_Terminal> getBus_terminals_list (){
+        return bus_terminals_list ;
+    }
+
+    int getBusTerminalPrice(){
+        return super.build_price ;
+    }
+
+    public void showInfo(){
+
+        System.out.println("city name " + cityName);
+        System.out.println("airport name : " + terminalName);
+        System.out.println("address " + address );
+        System.out.println("area " + area);
+        System.out.println("vehicles " + number_of_vehicles);
+        System.out.println("workers " + number_of_workers);
     }
 
 }
