@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Hotel {
     private String hotelName ;
-    private int buildCost ;
+    private int buildCost = 600 ;
     private String address ;
     private int stars ;
     private int number_of_rooms ;
@@ -17,9 +17,8 @@ public class Hotel {
 
     //======================================================================
 
-    Hotel( String hotelName , int buildCost , String address , int stars , int number_of_rooms){
+    Hotel( String hotelName , String address , int stars , int number_of_rooms){
         this.hotelName = hotelName ;
-        this.buildCost = buildCost ;
         this.address = address ;
         this.stars = stars ;
         this.number_of_rooms = number_of_rooms;
