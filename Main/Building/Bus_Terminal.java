@@ -9,8 +9,8 @@ public class Bus_Terminal extends Terminal{
 
     //=======================================================================
 
-    Bus_Terminal(int build_price , String cityName , String terminalName , String address , int area , int number_of_vehicles){
-        super(build_price , cityName ,terminalName ,address , area ,number_of_vehicles);
+    Bus_Terminal( String cityName , String terminalName , String address , int area , int number_of_vehicles){
+        super(600, cityName ,terminalName ,address , area ,number_of_vehicles);
     }
 
     //=======================================================================

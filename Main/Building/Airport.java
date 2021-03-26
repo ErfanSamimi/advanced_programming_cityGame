@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Airport extends Terminal {
     private static ArrayList <Air_transport_vehicle> airplaneList = new ArrayList <Air_transport_vehicle>();
-    boolean international_Airport ;
-    int number_of_runways ;
+    private boolean international_Airport ;
+    private int number_of_runways ;
      //====================================================================
 
     Airport(boolean international_Airport , int number_of_runways ,  String cityName , String terminalName , String address , int area , int number_of_vehicles){
