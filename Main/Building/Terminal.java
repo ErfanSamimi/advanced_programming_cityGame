@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 abstract public class Terminal {
     int build_price ;
-    String cityName ;
+     String cityName ;
     String terminalName ;
     String address ;
     int area ;
