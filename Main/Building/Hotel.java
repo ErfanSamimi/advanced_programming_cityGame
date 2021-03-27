@@ -8,9 +8,11 @@ public class Hotel {
     private String address ;
     private int stars ;
     private int number_of_rooms ;
+    private int buildedRooms = 0 ;
     private int number_of_workers ;
 
     private ArrayList<Room> roomList = new ArrayList<Room>() ;
+    private static ArrayList<Hotel> hotelsList = new ArrayList<Hotel>();
 
     enum Services {
         Breakfast , Lunch , Dinner , Pool ;
@@ -18,21 +20,24 @@ public class Hotel {
 
     //======================================================================
 
-    Hotel( String hotelName , String address , int stars , int number_of_rooms , int number_of_workers){
+    public Hotel(String hotelName, String address, int stars, int number_of_rooms, int number_of_workers){
         this.hotelName = hotelName ;
         this.buildCost =(number_of_rooms*150) + (number_of_workers*30 );
         this.number_of_workers = number_of_workers ;
         this.address = address ;
         this.stars = stars ;
         this.number_of_rooms = number_of_rooms;
+        hotelsList.add(this);
     }
 
     //=======================================================================
 
-    void addRoom( int roomNumber , int number_of_beds , int roomArea , int fee_per_night ){
+    public void addRoom( int roomNumber , int number_of_beds , int roomArea , int fee_per_night ){
         if (this.roomList.size() <= this.number_of_rooms){
 
             this.roomList.add( new Room(roomNumber , number_of_beds , roomArea ,fee_per_night )) ;
+            this.buildedRooms++;
+
         }
         else
             System.out.println("You add maximum number of rooms for this hotel");
@@ -42,9 +47,15 @@ public class Hotel {
         return roomList;
     }
 
+    public static ArrayList<Hotel> getHotelsList (){ return hotelsList; }
+
     int getHotelPrice(){
         return this.buildCost ;
     }
+
+    public int getNumber_of_rooms(){ return this.number_of_rooms; }
+
+    public int getBuildedRooms() { return this.buildedRooms; }
 
 }
 

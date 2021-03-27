@@ -1,9 +1,6 @@
 package Main;
 
-import Main.Building.Airport;
-import Main.Building.Bus_Terminal;
-import Main.Building.ShippingPort;
-import Main.Building.TrainStation;
+import Main.Building.*;
 import Main.Vehicles.*;
 
 import java.util.Random;
@@ -25,11 +22,11 @@ public class City {
         addPeople( 20 , "employee" , 30);
 
 
-        while (1==1){
-            engage();
-
-            System.out.println("++  " + total_money);
-        }
+//        while (1==1){
+//            engage();
+//
+//            System.out.println("++  " + total_money);
+//        }
 
 
 
@@ -37,6 +34,9 @@ public class City {
 
 //         buildTerminal();
 //        buyVehicles();
+        buildHotel();
+        build_Room_In_Hotel();
+        build_Room_In_Hotel();
 //
 //        for (Airport a : Airport.getAirportsList())
 //            a.showInfo();
@@ -51,7 +51,7 @@ public class City {
 //            a.showInfo();
 
 
-//        System.out.println("++++++++++  " + total_money);
+        System.out.println("++++++++++  " + total_money);
 
 
     }
@@ -392,7 +392,7 @@ public class City {
     }
 
     static void buyBoat(){
-        System.out.println("=== Buy Boat (300 $)");
+        System.out.println("=== Buy Boat (300 $) ===");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter maximum distance that boat can go : ");
@@ -452,7 +452,7 @@ public class City {
     }
 
     static void buyBus(){
-        System.out.println("=== Buy Bus (200 $)");
+        System.out.println("=== Buy Bus (200 $) ===");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter type of bus class (business , economy ) : ");
@@ -517,7 +517,7 @@ public class City {
     }
 
     static void buyCargoPlane(){
-        System.out.println("=== Buy Cargo Plane (700 $)");
+        System.out.println("=== Buy Cargo Plane (700 $) ===");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter total weight this plane can transport : ");
@@ -583,7 +583,7 @@ public class City {
     }
 
     static void buyPassengerAirplane(){
-        System.out.println("=== Buy Passenger Airplane (800 $)");
+        System.out.println("=== Buy Passenger Airplane (800 $) ===");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter number of flight attendants: ");
@@ -650,7 +650,7 @@ public class City {
     }
 
     static void buyShip(){
-        System.out.println("=== Buy Ship (600 $)");
+        System.out.println("=== Buy Ship (600 $) ===");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter type of ship class (business , economy ) : ");
@@ -715,7 +715,7 @@ public class City {
     }
 
     static void buyTrain(){
-        System.out.println("=== Buy Train (500 $)");
+        System.out.println("=== Buy Train (500 $) ===");
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter number of wagons : ");
@@ -830,7 +830,108 @@ public class City {
 
     //==============================================================
 
+    static void buildHotel(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Build Hotel ===\n");
 
+        System.out.print("Enter hotel name : ");
+        String hotelName = sc.nextLine();
+        System.out.println("++++  " + hotelName);
+        System.out.println();
+
+        System.out.print("Enter address of this hotel : ");
+        String address = sc.nextLine();
+        System.out.println("++++  " + address);
+
+        System.out.println();
+
+        System.out.print("Enter number of stars : ");
+        int stars = sc.nextInt();
+        System.out.println("++++  " + stars);
+        System.out.println();
+
+        System.out.print("Enter number of rooms (each room = 150 $) : ");
+        int rooms = sc.nextInt() ;
+        System.out.println("++++  " + rooms);
+        System.out.println();
+
+        System.out.print("Enter number of workers (each worker = 30 $) :  ");
+        int workers = sc.nextInt() ;
+        System.out.println();
+
+        int finalPrice = (rooms * 150) + (workers * 30)  ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Build this Hotel costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Build this hotel ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,workers );
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+
+
+    }
+
+    static void build_Room_In_Hotel(){
+        Scanner sc  = new Scanner(System.in);
+        System.out.println("\n\n=== Build rooms in hotel ===");
+        int counter = 1 ;
+        System.out.println("number of hotel \t max number of rooms \t number of builded rooms");
+        for (Hotel a : Hotel.getHotelsList()){
+            System.out.println(counter + "\t\t\t\t\t\t" + a.getNumber_of_rooms() + "\t\t\t\t\t\t" + a.getBuildedRooms() );
+            counter++;
+        }
+
+        System.out.print("Enter number of hotel : ");
+        int numHotel = sc.nextInt();
+        System.out.println("\n +++ Build a room for hotel " + numHotel + " +++");
+
+        System.out.print("Enter room number : ");
+        int roomNumber = sc.nextInt();
+        System.out.println();
+
+        System.out.print("Enter number of beds : ");
+        int beds = sc.nextInt();
+        System.out.println();
+
+        System.out.print("Enter room area : ");
+        int roomArea = sc.nextInt();
+        System.out.println();
+
+        System.out.print("Enter fee for one night : ");
+        int fee = sc.nextInt();
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Are you sure to build this room ? (y/n) : ");
+        String confirm = sc.nextLine();
+        System.out.println();
+
+
+        if (confirm.equals("y")){
+            Hotel.getHotelsList().get(numHotel-1).addRoom(roomNumber , beds , roomArea , fee);
+            System.out.println("\nDone");
+        }
+        else
+            System.out.println("\nCanceled");
+
+
+
+
+    }
 
 
 }
