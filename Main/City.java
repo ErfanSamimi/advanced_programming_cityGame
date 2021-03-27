@@ -6,34 +6,70 @@ import Main.Building.ShippingPort;
 import Main.Building.TrainStation;
 import Main.Vehicles.*;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class City {
     static int total_money = 10000 ;
     public static void main (String [] args){
 
+        addPeople(2 , "pilot" , 70);
+        addPeople(3 , "pilot" , 80);
+        addPeople( 4 , "driver" , 50);
+        addPeople( 4 , "driver" , 55);
+        addPeople(6 , "sailor" , 70);
+        addPeople(2 , "sailor" , 74);
+        addPeople(3 , "locomotive driver" , 70);
+        addPeople(3 , "flight attendant" , 35);
+        addPeople(2 , "flight attendant" , 40);
+        addPeople( 20 , "employee" , 30);
+
+
+        while (1==1){
+            engage();
+
+            System.out.println("++  " + total_money);
+        }
+
+
+
+
 
 //         buildTerminal();
-        buyVehicles();
+//        buyVehicles();
+//
+//        for (Airport a : Airport.getAirportsList())
+//            a.showInfo();
 
-        for (Airport a : Airport.getAirportsList())
-            a.showInfo();
-
-        for(Bus_Terminal a : Bus_Terminal.getBus_terminals_list())
-            a.showInfo();
-
-        for (ShippingPort a : ShippingPort.getShippingPortsList())
-            a.showInfo();
-
-        for(Boat a : Boat.getBoatsList())
-            a.showInfo();
+//        for(Bus_Terminal a : Bus_Terminal.getBus_terminals_list())
+//            a.showInfo();
+//
+//        for (ShippingPort a : ShippingPort.getShippingPortsList())
+//            a.showInfo();
+//
+//        for(Boat a : Boat.getBoatsList())
+//            a.showInfo();
 
 
-        System.out.println("++++++++++  " + total_money);
+//        System.out.println("++++++++++  " + total_money);
 
 
     }
 
+    static void addPeople(int number_of_people , String job , int salary ){
+
+        for (int i=0 ; i< number_of_people ; i++){
+
+            Random rand = new Random();
+            int ID = rand.nextInt(701);
+            while (!Person.uniqID(ID)) {
+                ID = rand.nextInt();
+            }
+            Person newPerson = new Person(job, salary, ID);
+        }
+    }
+
+    //=======================================================================================
 
     static void buildTerminal(){
         System.out.println("====== Build Terminal ======");
@@ -550,9 +586,9 @@ public class City {
         System.out.println("=== Buy Passenger Airplane (800 $)");
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter number of stewardess: ");
-        int stewardess = sc.nextInt();
-        System.out.println("+++++  " + stewardess);
+        System.out.print("Enter number of flight attendants: ");
+        int flightAttendant = sc.nextInt();
+        System.out.println("+++++  " + flightAttendant);
         System.out.println();
 
         sc.nextLine();
@@ -601,7 +637,7 @@ public class City {
 
 
             if (choice2.equals("y")) {
-                Passenger_airplane newPassengerAirplane = new Passenger_airplane(stewardess , classType , height , runway , capacity , ID ,company) ;
+                Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant , classType , height , runway , capacity , ID ,company) ;
                 total_money -= finalPrice ;
                 System.out.println("Done");
             }
@@ -749,6 +785,52 @@ public class City {
 
 
     }
+
+    //==============================================================
+
+    static void engage(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 1-pilot \n 2-driver \n 3-sailor \n 4-locomotive driver \n 5-flight attendant");
+        System.out.print("\nEnter your choice : ");
+        int choice = sc.nextInt();
+        String final_choice ="";
+        if (choice == 1)
+            final_choice = "pilot";
+
+        if (choice == 2)
+            final_choice = "driver";
+
+        if (choice == 3)
+            final_choice = "sailor";
+
+        if (choice == 4)
+            final_choice = "locomotive driver";
+
+        if (choice == 5)
+            final_choice = "flight attendant";
+
+
+        System.out.println("*** " + final_choice + " list ***");
+        System.out.println("ID : \t Salary:");
+
+        for (Person ap : Person.getPeopleList()){
+            if(ap.getJob().equals(final_choice) && ap.getHired() == false){
+                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            }
+        }
+        System.out.println("** Completed\n");
+        System.out.print("Enter ID of your choice : ");
+        int ID = sc.nextInt();
+
+        Person.engage(ID);
+        total_money -= Person.find_Person_from_ID( ID ).getSalary();
+
+
+    }
+
+    //==============================================================
+
+
 
 
 }
