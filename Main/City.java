@@ -4,7 +4,7 @@ import Main.Building.Airport;
 import Main.Building.Bus_Terminal;
 import Main.Building.ShippingPort;
 import Main.Building.TrainStation;
-import Main.Vehicles.Air_transport_vehicle;
+import Main.Vehicles.*;
 
 import java.util.Scanner;
 
@@ -13,8 +13,8 @@ public class City {
     public static void main (String [] args){
 
 
-         buildTerminal();
-
+//         buildTerminal();
+        buyVehicles();
 
         for (Airport a : Airport.getAirportsList())
             a.showInfo();
@@ -25,6 +25,9 @@ public class City {
         for (ShippingPort a : ShippingPort.getShippingPortsList())
             a.showInfo();
 
+        for(Boat a : Boat.getBoatsList())
+            a.showInfo();
+
 
         System.out.println("++++++++++  " + total_money);
 
@@ -33,8 +36,9 @@ public class City {
 
 
     static void buildTerminal(){
+        System.out.println("====== Build Terminal ======");
         System.out.println(" 1-Airport \n 2-Bus Terminal \n 3-Shipping port \n 4-Train station ");
-        System.out.print("Enter your choice : ");
+        System.out.print("\nEnter your choice : ");
         Scanner sc = new Scanner(System.in) ;
         int choice = sc.nextInt();
         if (choice == 1){
@@ -319,4 +323,433 @@ public class City {
         else
             System.out.println("You dont have enough money ");
     }
+
+    //==========================================================================================
+
+    static void buyVehicles(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("====== Buy vehicles ======");
+        System.out.println(" 1-boat \n 2-bus \n 3-cargo plane \n 4-passenger airplane \n 5-ship \n 6-train ");
+        System.out.print("\nEnter your choice : ");
+        int choice = sc.nextInt() ;
+
+        if(choice == 1)
+            buyBoat() ;
+
+        if(choice == 2)
+            buyBus() ;
+
+        if(choice == 3)
+            buyCargoPlane() ;
+
+        if(choice == 4)
+            buyPassengerAirplane() ;
+
+        if(choice == 5)
+            buyShip() ;
+
+        if(choice == 6)
+            buyTrain() ;
+
+
+    }
+
+    static void buyBoat(){
+        System.out.println("=== Buy Boat (300 $)");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter maximum distance that boat can go : ");
+        int distance = sc.nextInt() ;
+//        System.out.println("+++++  " + distance);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter fuel type : ");
+        String fuel_type = sc.nextLine();
+//        System.out.println("+++++  " + fuel_type);
+        System.out.println();
+
+        System.out.print("Enter minimum water depth for boat : ");
+        int min_depth = sc.nextInt();
+//        System.out.println("+++++  " + min_depth);
+        System.out.println();
+
+        System.out.print("Enter capacity of boat : ");
+        int capacity = sc.nextInt();
+//        System.out.println("+++++  " + capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter ID of boat : ");
+        String ID = sc.nextLine() ;
+//        System.out.println("+++++  " + ID);
+        System.out.println();
+
+        System.out.print("Enter name of boat company : ");
+        String company = sc.nextLine();
+        System.out.println("+++++  " + company);
+        System.out.println();
+
+        int finalPrice = 300 ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Buy this boat costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Buy this boat ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                Boat newBoat = new Boat(distance , fuel_type , min_depth ,capacity ,ID ,company);
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+    }
+
+    static void buyBus(){
+        System.out.println("=== Buy Bus (200 $)");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter type of bus class (business , economy ) : ");
+        String classType = sc.nextLine();
+        System.out.println("+++++  " + classType);
+        System.out.println();
+
+        System.out.println("Enter kilometer per liter : ");
+        int kpl = sc.nextInt() ;
+        System.out.println("+++++  " + kpl);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter fuel type : ");
+        String fuel_type = sc.nextLine();
+        System.out.println("+++++  " + fuel_type);
+        System.out.println();
+
+        System.out.print("Enter max speed of this bus : ");
+        int speed = sc.nextInt() ;
+        System.out.println("+++++  " + speed);
+        System.out.println();
+
+        System.out.print("Enter passenger capacity of bus : ");
+        int capacity = sc.nextInt();
+        System.out.println("+++++  " + capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter ID of bus : ");
+        String ID = sc.nextLine() ;
+        System.out.println("+++++  " + ID);
+        System.out.println();
+
+        System.out.print("Enter name of bus company : ");
+        String company = sc.nextLine();
+        System.out.println("+++++  " + company);
+        System.out.println();
+
+        int finalPrice = 200 ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Buy this bus costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Buy this bus ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                Bus newBus = new Bus(classType , kpl , capacity , fuel_type , speed , capacity , company , ID );
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+    }
+
+    static void buyCargoPlane(){
+        System.out.println("=== Buy Cargo Plane (700 $)");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter total weight this plane can transport : ");
+        int weight = sc.nextInt();
+        System.out.println("+++++  " + weight);
+        System.out.println();
+
+        System.out.print("Enter maximum height of flight : ");
+        int height = sc.nextInt() ;
+        System.out.println("+++++  " + height);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter runway length : ");
+        int runway = sc.nextInt() ;
+        System.out.println("+++++  " + runway);
+        System.out.println();
+
+
+        System.out.print("Enter passenger capacity of this plane ( max = 5 ) : ");
+        int capacity = sc.nextInt();
+        while (capacity>5){
+            System.out.println("\nmaximum passenger capacity of plane is 5 , you entered : " + capacity);
+            System.out.print("Enter passenger capacity of this plane ( max = 5 ) : ");
+            capacity = sc.nextInt();
+        }
+        System.out.println("+++++  " + capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter ID of cargo plane : ");
+        String ID = sc.nextLine() ;
+        System.out.println("+++++  " + ID);
+        System.out.println();
+
+        System.out.print("Enter name of cargo plane company : ");
+        String company = sc.nextLine();
+        System.out.println("+++++  " + company);
+        System.out.println();
+
+        int finalPrice = 700 ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Buy this cargo plane costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Buy this cargo plane ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                CargoPlane newCargoPlane = new CargoPlane(weight , height , runway , capacity , ID , company );
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+    }
+
+    static void buyPassengerAirplane(){
+        System.out.println("=== Buy Passenger Airplane (800 $)");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of stewardess: ");
+        int stewardess = sc.nextInt();
+        System.out.println("+++++  " + stewardess);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter type of airplane class (business , economy ) : ");
+        String classType = sc.nextLine();
+        System.out.println("+++++  " + classType);
+        System.out.println();
+
+        System.out.print("Enter maximum height of flight : ");
+        int height = sc.nextInt() ;
+        System.out.println("+++++  " + height);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter runway length : ");
+        int runway = sc.nextInt() ;
+        System.out.println("+++++  " + runway);
+        System.out.println();
+
+
+        System.out.print("Enter passenger capacity of this plane : ");
+        int capacity = sc.nextInt();
+        System.out.println("+++++  " + capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter ID of passenger airplane : ");
+        String ID = sc.nextLine() ;
+        System.out.println("+++++  " + ID);
+        System.out.println();
+
+        System.out.print("Enter name of cargo plane company : ");
+        String company = sc.nextLine();
+        System.out.println("+++++  " + company);
+        System.out.println();
+
+        int finalPrice = 800 ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Buy this passenger airplane costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Buy this passenger airplane ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                Passenger_airplane newPassengerAirplane = new Passenger_airplane(stewardess , classType , height , runway , capacity , ID ,company) ;
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+    }
+
+    static void buyShip(){
+        System.out.println("=== Buy Ship (600 $)");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter type of ship class (business , economy ) : ");
+        String classType = sc.nextLine();
+        System.out.println("+++++  " + classType);
+        System.out.println();
+
+        System.out.print("Enter length of this ship : ");
+        int length = sc.nextInt();
+        System.out.println("+++++  " + length);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter fuel type : ");
+        String fuel_type = sc.nextLine();
+        System.out.println("+++++  " + fuel_type);
+        System.out.println();
+
+        System.out.print("Enter minimum water depth for ship : ");
+        int min_depth = sc.nextInt();
+        System.out.println("+++++  " + min_depth);
+        System.out.println();
+
+        System.out.print("Enter capacity of ship : ");
+        int capacity = sc.nextInt();
+        System.out.println("+++++  " + capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter ID of ship : ");
+        String ID = sc.nextLine() ;
+        System.out.println("+++++  " + ID);
+        System.out.println();
+
+        System.out.print("Enter name of ship company : ");
+        String company = sc.nextLine();
+        System.out.println("+++++  " + company);
+        System.out.println();
+
+        int finalPrice = 600 ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Buy this ship costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Buy this ship ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                Ship newShip = new Ship(classType , length , fuel_type , min_depth , capacity , ID , company ) ;
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+    }
+
+    static void buyTrain(){
+        System.out.println("=== Buy Train (500 $)");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of wagons : ");
+        int wagons = sc.nextInt();
+        System.out.println("+++++  " + wagons);
+        System.out.println();
+
+        System.out.print("Enter number of stars for this train : ");
+        int stars = sc.nextInt();
+        System.out.println("+++++  " + stars);
+        System.out.println();
+
+        System.out.print("Enter fuel capacity  : ");
+        int fuel_capacity = sc.nextInt();
+        System.out.println("+++++  " + fuel_capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter fuel type : ");
+        String fuel_type = sc.nextLine();
+        System.out.println("+++++  " + fuel_type);
+        System.out.println();
+
+        System.out.print("Enter max speed of this train : ");
+        int speed = sc.nextInt() ;
+        System.out.println("+++++  " + speed);
+        System.out.println();
+
+        System.out.print("Enter passenger capacity of train : ");
+        int capacity = sc.nextInt();
+        System.out.println("+++++  " + capacity);
+        System.out.println();
+
+        sc.nextLine();
+        System.out.print("Enter ID of train : ");
+        String ID = sc.nextLine() ;
+        System.out.println("+++++  " + ID);
+        System.out.println();
+
+        System.out.print("Enter name of train company : ");
+        String company = sc.nextLine();
+        System.out.println("+++++  " + company);
+        System.out.println();
+
+        int finalPrice = 500 ;
+
+        if(finalPrice <= total_money ){
+            System.out.println("Buy this train costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+
+            System.out.print("Buy this train ? (y/n) : ");
+//            sc.next();
+            String choice2 = sc.next() ;
+//            System.out.println("**  " + choice2);
+
+
+            if (choice2.equals("y")) {
+                Train newTrain = new Train(wagons , stars , fuel_capacity , fuel_type , speed , capacity , company , ID) ;
+                total_money -= finalPrice ;
+                System.out.println("Done");
+            }
+            else{
+                System.out.println("Canceled !");
+            }
+        }
+        else
+            System.out.println("You dont have enough money ");
+
+
+    }
+
+
 }
+
