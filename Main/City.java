@@ -410,13 +410,13 @@ public class City {
         int number_airplane = sc.nextInt();
         System.out.println();
 
-        System.out.print("Enter number of workers (30 $ for each worker): ");
+        System.out.print("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
-        int number_workers = sc.nextInt();
+        int number_employees = sc.nextInt();
         System.out.println();
 
 
-        int finalPrice = 1400 + number_workers*30 ;
+        int finalPrice = 1400 + number_employees*30 ;
 
         if(finalPrice <= total_money ){
             System.out.println("Build this airport costs : " + finalPrice + " $\nand now you have " + total_money + "$");
@@ -428,7 +428,7 @@ public class City {
 
 
             if (choice2.equals("y")) {
-                Airport newAirport = new Airport(international, runways, cityName, airportName, address, area, number_airplane, number_workers);
+                Airport newAirport = new Airport(international, runways, cityName, airportName, address, area, number_airplane, number_employees);
                 total_money -= finalPrice ;
                 System.out.println("Done");
                 showMoney();
@@ -475,13 +475,13 @@ public class City {
          int number_buses = sc.nextInt();
          System.out.println();
 
-         System.out.println("Enter number of workers (30 $ for each worker): ");
+         System.out.println("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
-         int number_workers = sc.nextInt();
+         int number_employees = sc.nextInt();
          System.out.println();
 
 
-         int finalPrice = 600 + number_workers*30 ;
+         int finalPrice = 600 + number_employees*30 ;
 
         if(finalPrice <= total_money ){
             System.out.println("Build this Bus terminal costs : " + finalPrice + " $\nand now you have " + total_money + "$");
@@ -493,7 +493,7 @@ public class City {
 
 
             if (choice2.equals("y")) {
-                Bus_Terminal newBusTerminal = new Bus_Terminal( cityName, busTerminalName , address, area, number_buses , number_workers);
+                Bus_Terminal newBusTerminal = new Bus_Terminal( cityName, busTerminalName , address, area, number_buses , number_employees);
                 total_money -= finalPrice ;
                 System.out.println("Done");
                 showMoney();
@@ -543,13 +543,13 @@ public class City {
         int number_ships = sc.nextInt();
         System.out.println();
 
-        System.out.println("Enter number of workers (30 $ for each worker): ");
+        System.out.println("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
-        int number_workers = sc.nextInt();
+        int number_employees = sc.nextInt();
         System.out.println();
 
 
-        int finalPrice = 1000 + number_workers*30 ;
+        int finalPrice = 1000 + number_employees*30 ;
 
         if(finalPrice <= total_money ){
             System.out.println("Build this shipping port costs : " + finalPrice + " $\nand now you have " + total_money + "$");
@@ -561,7 +561,7 @@ public class City {
 
 
             if (choice2.equals("y")) {
-                ShippingPort newShippingPort = new ShippingPort( waterfronts , cityName, shippingPortName , address, area, number_ships , number_workers);
+                ShippingPort newShippingPort = new ShippingPort( waterfronts , cityName, shippingPortName , address, area, number_ships , number_employees);
                 total_money -= finalPrice ;
                 System.out.println("Done");
                 showMoney();
@@ -615,13 +615,13 @@ public class City {
         int number_trains = sc.nextInt();
         System.out.println();
 
-        System.out.println("Enter number of workers (30 $ for each worker): ");
+        System.out.println("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
-        int number_workers = sc.nextInt();
+        int number_employees = sc.nextInt();
         System.out.println();
 
 
-        int finalPrice = 1100 + number_workers*30 ;
+        int finalPrice = 1100 + number_employees*30 ;
 
         if(finalPrice <= total_money ){
             System.out.println("Build this train station costs : " + finalPrice + " $\nand now you have " + total_money + "$");
@@ -633,7 +633,7 @@ public class City {
 
 
             if (choice2.equals("y")) {
-                TrainStation newTrainStation = new TrainStation( inputRails , outputRails , cityName , trainStationName , address, area, number_trains , number_workers);
+                TrainStation newTrainStation = new TrainStation( inputRails , outputRails , cityName , trainStationName , address, area, number_trains , number_employees);
                 total_money -= finalPrice ;
                 System.out.println("Done");
                 showMoney();
@@ -1620,11 +1620,11 @@ public class City {
         System.out.println("++++  " + rooms);
         System.out.println();
 
-        System.out.print("Enter number of workers (each worker = 30 $) :  ");
-        int workers = sc.nextInt() ;
+        System.out.print("Enter number of employees (each employee = 30 $) :  ");
+        int employees = sc.nextInt() ;
         System.out.println();
 
-        int finalPrice = (rooms * 150) + (workers * 30)  ;
+        int finalPrice = (rooms * 150) + (employees * 30)  ;
 
         if(finalPrice <= total_money ){
             System.out.println("Build this Hotel costs : " + finalPrice + " $\nand now you have " + total_money + "$");
@@ -1636,7 +1636,7 @@ public class City {
 
 
             if (choice2.equals("y")) {
-                Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,workers );
+                Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,employees );
                 total_money -= finalPrice ;
                 System.out.println("Done");
                 showMoney();

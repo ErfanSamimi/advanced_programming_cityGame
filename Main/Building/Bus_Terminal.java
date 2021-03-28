@@ -16,8 +16,8 @@ public class Bus_Terminal extends Terminal{
 
     //=======================================================================
 
-    public Bus_Terminal(String cityName, String terminalName, String address, int area, int number_of_vehicles, int number_of_workers){
-        super(600 + number_of_workers*30, cityName ,terminalName ,address , area ,number_of_vehicles , number_of_workers);
+    public Bus_Terminal(String cityName, String terminalName, String address, int area, int number_of_vehicles, int number_of_employees){
+        super(600 + number_of_employees*30, cityName ,terminalName ,address , area ,number_of_vehicles , number_of_employees);
         bus_terminals_list.add(this) ;
     }
 
@@ -66,7 +66,7 @@ public class Bus_Terminal extends Terminal{
     }
 
     public int getNumber_of_employees(){
-        return number_of_workers;
+        return number_of_employees;
     }
 
     public int getNumber_of_hired_employees(){
@@ -81,7 +81,7 @@ public class Bus_Terminal extends Terminal{
         System.out.println("Area : " + area);
         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
         System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
-        System.out.println("Max number of  employees : " + number_of_workers);
+        System.out.println("Max number of  employees : " + number_of_employees);
         System.out.println("Number of hired employees : " + super.getEmployees().size());
         System.out.println("Number of drivers : " + drivers.size());
 

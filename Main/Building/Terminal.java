@@ -11,14 +11,14 @@ abstract public class Terminal {
     String address ;
     int area ;
     int number_of_vehicles ;
-    int number_of_workers ;
+    int number_of_employees ;
     private static ArrayList<Person> employees = new ArrayList<Person>();
 
     //=============================================================================================
 
-    Terminal(int build_price , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_workers){
+    Terminal(int build_price , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
         this.build_price = build_price ;
-        this.number_of_workers = number_of_workers ;
+        this.number_of_employees = number_of_employees ;
         this.cityName = cityName ;
         this.terminalName = terminalName ;
         this.address = address ;

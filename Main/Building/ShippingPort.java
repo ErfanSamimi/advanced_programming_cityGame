@@ -15,8 +15,8 @@ public class ShippingPort extends  Terminal {
     private int number_of_bought_vehicles = 0;
 
     //==========================================
-     public ShippingPort ( int number_of_waterfront , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_workers){
-         super( 1000 + number_of_workers*30 , cityName , terminalName , address , area , number_of_vehicles , number_of_workers);
+     public ShippingPort ( int number_of_waterfront , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
+         super( 1000 + number_of_employees*30 , cityName , terminalName , address , area , number_of_vehicles , number_of_employees);
          this.number_of_waterfront = number_of_waterfront ;
          shippingPortsList.add(this);
      }
@@ -70,7 +70,7 @@ public class ShippingPort extends  Terminal {
     }
 
     public int getNumber_of_employees(){
-        return number_of_workers;
+        return number_of_employees;
     }
 
     public int getNumber_of_hired_employees(){
@@ -87,7 +87,7 @@ public class ShippingPort extends  Terminal {
          System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
          System.out.println("Number of ships : " + shipList.size());
          System.out.println("Number of boats : " + boatsList.size());
-         System.out.println("Maximum number of  employees : " + number_of_workers);
+         System.out.println("Maximum number of  employees : " + number_of_employees);
          System.out.println("Number of hired employees : " + super.getEmployees().size());
          System.out.println("Number of sailors : " + sailors.size());
 
