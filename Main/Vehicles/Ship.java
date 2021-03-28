@@ -13,4 +13,8 @@ public class Ship extends Shipping_vehicle {
         this.shipLength = shipLength;
         shipsList.add(this);
     }
+
+    public static ArrayList<Ship> getShipsList(){
+        return shipsList;
+    }
 }

@@ -13,4 +13,8 @@ public class Bus extends Land_transport_vehicle{
         this.KPL = KPL ;
         busesList.add(this);
     }
+
+    public static ArrayList<Bus> getBusesList(){
+        return busesList;
+    }
 }

@@ -17,6 +17,10 @@ public class Train extends Land_transport_vehicle{
         this.stars = stars ;
         trainsList.add(this);
     }
+
+    public static ArrayList<Train> getTrainsList(){
+        return trainsList;
+    }
 }
 
 

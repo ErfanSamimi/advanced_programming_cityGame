@@ -51,8 +51,113 @@ public class City {
         if(choice == 5)
             build_Room_In_Hotel();
 
-//        if (choice == 6)
-//            showStatus();
+        if (choice == 6)
+            showStatus();
+    }
+
+    static void showStatus(){
+        System.out.println("\n\n=== Show Status === \n");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("****** population : \n");
+        System.out.println("Your city population : " + Person.getPeopleList().size());
+        System.out.println("Your city has " + Person.number_of_jobs("pilot") + " pilot(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("driver") + " driver(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("sailor") + " sailor(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("locomotive driver") + " locomotive driver(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("flight attendant") + " flight attendant(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("employee") + " employee(s)");
+
+
+
+        System.out.println("\n\n****** Places : \n");
+        System.out.println("You have " + Airport.getAirportsList().size() + " Airport(s)");
+        System.out.println("You have " + Bus_Terminal.getBus_terminals_list().size() + " Bus Terminal(s)");
+        System.out.println("You have " + Hotel.getHotelsList().size() + " Hotel(s)");
+        System.out.println("You have " + ShippingPort.getShippingPortsList().size() + " Shipping Port(s)");
+        System.out.println("You have " + TrainStation.getTrainStationsList().size() + " Train Station(s)");
+
+        System.out.println("\n\n****** Vehicles : \n");
+        System.out.println("You have " + Boat.getBoatsList().size() + " Boat(s)");
+        System.out.println("You have " + Bus.getBusesList().size() + " Bus(es)");
+        System.out.println("You have " + CargoPlane.getCargoPlanesList().size() + " Cargo Plane(s)");
+        System.out.println("You have " + Passenger_airplane.getPassenger_airplanesList().size() + " Passenger Airplane(s)");
+        System.out.println("You have " + Ship.getShipsList().size() + " Ship(s)");
+        System.out.println("You have " + Train.getTrainsList().size() + " Train(s)");
+
+
+
+        //=====================================================================================================================================
+
+        System.out.print("\n\nDo you want to show more information ? (y/n) : ");
+        String moreInfo = sc.nextLine();
+
+        if (moreInfo.equals("y")){
+            System.out.println("\n\n****** Show More Information ******\n");
+            System.out.println(" 1-Airport(s) more info \n 2-Bus Terminal(s) more info \n 3-Hotel(s) more info \n 4-Shipping Port(s) more info \n 5-Train Station(s) more info ");
+            System.out.print("\nEnter number of your choice : ");
+            int choice = sc.nextInt();
+
+            if (choice == 1)
+                airportsInfo();
+
+//            if (choice == 2)
+//                busTerminalsInfo();
+
+//            if (choice == 3)
+//                hotelsInfo();
+//
+//            if (choice == 4)
+//                shippingPortsInfo();
+//
+//            if (choice == 5)
+//                trainStationsInfo();
+
+
+        }
+        else
+            mainMenu();
+
+    }
+
+    static void airportsInfo(){
+        System.out.println("\n\n=== Show More Information About Airplane(s) ===\n");
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 1-Show information of all airports \n 2-Show information of a selected airport : ");
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        if (choice == 1){
+            System.out.println("\n\n++++++ Show Information Of All Airports ++++++\n");
+
+            for (Airport a : Airport.getAirportsList())
+                a.showInfo();
+
+            System.out.println("\n\n Finished ");
+            mainMenu();
+        }
+
+        else if (choice == 2 ){
+            int counter = 1 ;
+
+            System.out.println("Number : \t Airport name " );
+            for (Airport a : Airport.getAirportsList()){
+                System.out.println(counter + "\t\t\t\t" + a.getName());
+                counter++;
+            }
+
+            System.out.print("\nEnter number of airport : ");
+            int numberAirport = sc.nextInt();
+            System.out.println("\n\n");
+
+            Airport.getAirportsList().get(numberAirport-1).showInfo();
+
+            mainMenu();
+
+        }
+
+        else
+            mainMenu();
     }
 
     static void showMoney(){
@@ -109,6 +214,8 @@ public class City {
         else
             international = false ;
 
+        System.out.println();
+
         System.out.print("Enter number of runways : ");
         int runways = sc.nextInt();
         System.out.println();
@@ -138,7 +245,7 @@ public class City {
         int number_airplane = sc.nextInt();
         System.out.println();
 
-        System.out.println("Enter number of workers (30 $ for each worker): ");
+        System.out.print("Enter number of workers (30 $ for each worker): ");
 //        sc.nextLine();
         int number_workers = sc.nextInt();
         System.out.println();

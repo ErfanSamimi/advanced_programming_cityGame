@@ -86,4 +86,14 @@ public class Person {
 
 
     }
+
+    public static int number_of_jobs( String job){
+        int counter = 0 ;
+        for (Person a : peopleList){
+            if (a.job == job)
+                counter ++;
+        }
+        return counter ;
+    }
+
 }

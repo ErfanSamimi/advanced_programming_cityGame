@@ -11,4 +11,8 @@ public class CargoPlane extends Air_transport_vehicle {
         this.total_weight = total_weight ;
         cargoPlanesList.add(this) ;
     }
+
+    public static ArrayList<CargoPlane> getCargoPlanesList(){
+        return cargoPlanesList;
+    }
 }
