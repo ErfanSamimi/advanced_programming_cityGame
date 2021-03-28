@@ -110,9 +110,9 @@ public class City {
 
             if (choice == 4)
                 shippingPortsInfo();
-//
-//            if (choice == 5)
-//                trainStationsInfo();
+
+            if (choice == 5)
+                trainStationsInfo();
 
 
         }
@@ -272,6 +272,46 @@ public class City {
             System.out.println("\n\n");
 
             ShippingPort.getShippingPortsList().get(numberShippingPort-1).showInfo();
+
+            mainMenu();
+
+        }
+
+        else
+            mainMenu();
+    }
+
+    static void trainStationsInfo(){
+        System.out.println("\n\n=== Show More Information About Train Station(s) ===\n");
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 1-Show information of all train stations \n 2-Show information of a selected train station : ");
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        if (choice == 1){
+            System.out.println("\n\n++++++ Show Information Of All Train Stations ++++++\n");
+
+            for (TrainStation a : TrainStation.getTrainStationsList())
+                a.showInfo();
+
+            System.out.println("\n\n Finished ");
+            mainMenu();
+        }
+
+        else if (choice == 2 ){
+            int counter = 1 ;
+
+            System.out.println("Number : \t Train station name " );
+            for (TrainStation a : TrainStation.getTrainStationsList()){
+                System.out.println(counter + "\t\t\t\t\t" + a.getName());
+                counter++;
+            }
+
+            System.out.print("\nEnter number of train station : ");
+            int numberTrainStation = sc.nextInt();
+            System.out.println("\n\n");
+
+            TrainStation.getTrainStationsList().get(numberTrainStation-1).showInfo();
 
             mainMenu();
 

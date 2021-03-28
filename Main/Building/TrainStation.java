@@ -53,15 +53,25 @@ public class TrainStation extends Terminal{
         locomotiveDrivers.add(driver);
     }
 
+    public String getName(){
+        return terminalName ;
+    }
+
     public void showInfo(){
-        System.out.println("input rails " + inputRails);
-        System.out.println("output rails " + outputRails);
-        System.out.println("city name " + cityName);
-        System.out.println("airport name : " + terminalName);
-        System.out.println("address " + address );
-        System.out.println("area " + area);
-        System.out.println("vehicles " + number_of_vehicles);
-        System.out.println("workers " + number_of_workers);
+        System.out.println("Input rails " + inputRails);
+        System.out.println("Output rails " + outputRails);
+        System.out.println("City name : " + cityName);
+        System.out.println("Airport name : " + terminalName);
+        System.out.println("Address : " + address );
+        System.out.println("Area : " + area);
+        System.out.println("Maximum number of vehicles : " + number_of_vehicles);
+        System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
+        System.out.println("Maximum number of  employees : " + number_of_workers);
+        System.out.println("Number of hired employees : " + super.getEmployees().size());
+        System.out.println("Number of locomotive drivers : " + locomotiveDrivers.size());
+
+
+        System.out.println("\n===================================================================\n");
     }
 
 }
