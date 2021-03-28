@@ -11,6 +11,8 @@ public class TrainStation extends Terminal{
     private ArrayList<Person> locomotiveDrivers = new ArrayList<Person>();
     private int inputRails ;
     private int outputRails ;
+    private int number_of_bought_vehicles = 0;
+
 
     //===============================================================
 
@@ -23,8 +25,18 @@ public class TrainStation extends Terminal{
 
     //================================================================
 
-    void setTrainList(Train train){
+    public void addTrain(Train train){
         trainList.add(train) ;
+        System.out.println("\nA Train added to " + this.terminalName + " Train Station . ");
+        number_of_bought_vehicles ++ ;
+    }
+
+    public int max_number_of_vehicle (){
+        return this.number_of_vehicles;
+    }
+
+    public int getNumber_of_bought_vehicles(){
+        return this.number_of_bought_vehicles ;
     }
 
     ArrayList<Train> getTrainList (){

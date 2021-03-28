@@ -9,6 +9,8 @@ public class Bus_Terminal extends Terminal{
     private static ArrayList<Bus> busesList = new ArrayList<Bus>();
     private static ArrayList<Bus_Terminal> bus_terminals_list = new ArrayList<Bus_Terminal>();
     private ArrayList<Person> drivers = new ArrayList<Person>();
+    private int number_of_bought_vehicles = 0;
+
 
     //=======================================================================
 
@@ -19,8 +21,18 @@ public class Bus_Terminal extends Terminal{
 
     //=======================================================================
 
-    void setBusesList(Bus bus){
+    public void addBus(Bus bus){
         busesList.add(bus);
+        System.out.println("\nA bus added to " + this.terminalName + " Bus terminal . ");
+        number_of_bought_vehicles ++;
+    }
+
+    public int max_number_of_vehicle (){
+        return this.number_of_vehicles;
+    }
+
+    public int getNumber_of_bought_vehicles(){
+        return this.number_of_bought_vehicles ;
     }
 
     ArrayList<Bus> getBusesList(){

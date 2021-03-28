@@ -6,14 +6,17 @@ import Main.Vehicles.Air_transport_vehicle;
 import java.util.ArrayList;
 
 public class Airport extends Terminal {
-    private static ArrayList <Air_transport_vehicle> airplaneList = new ArrayList <Air_transport_vehicle>();
+    private static ArrayList <Air_transport_vehicle> passngerAirplaneList = new ArrayList <Air_transport_vehicle>();
+    private static ArrayList <Air_transport_vehicle> cargoAirplaneList = new ArrayList <Air_transport_vehicle>();
     private static ArrayList <Airport> airportsList = new ArrayList<Airport>();
     private  ArrayList<Person> pilots = new ArrayList<Person>();
     private ArrayList<Person> flightAttendants = new ArrayList<Person>();
     private boolean international_Airport ;
     private int number_of_runways ;
+    private int number_of_bought_vehicles = 0;
 
-     //====================================================================
+
+    //====================================================================
 
     public Airport(boolean international_Airport, int number_of_runways, String cityName, String terminalName, String address, int area, int number_of_vehicles, int number_of_workers){
         super(1400 + number_of_workers*30 ,cityName ,terminalName ,address , area ,number_of_vehicles, number_of_workers);
@@ -24,12 +27,32 @@ public class Airport extends Terminal {
 
     //======================================================================
 
-    void setAirplaneList(Air_transport_vehicle vehicle){
-        airplaneList.add(vehicle) ;
+    public void addPassengerAirplane(Air_transport_vehicle vehicle){
+        passngerAirplaneList.add(vehicle) ;
+        System.out.println("\nA passenger airplane  added to " + this.terminalName + " Airport . ");
+        number_of_bought_vehicles++;
     }
 
-    public static ArrayList <Air_transport_vehicle> getAirplaneList(){
-        return airplaneList;
+    public static ArrayList <Air_transport_vehicle> getPassngerAirplaneList(){
+        return passngerAirplaneList;
+    }
+
+    public void addCargoAirplane(Air_transport_vehicle vehicle){
+        cargoAirplaneList.add(vehicle) ;
+        System.out.println("\nA cargo airplane  added to " + this.terminalName + " Airport . ");
+        number_of_bought_vehicles++;
+    }
+
+    public int max_number_of_vehicle (){
+        return this.number_of_vehicles;
+    }
+
+    public int getNumber_of_bought_vehicles(){
+        return this.number_of_bought_vehicles ;
+    }
+
+    public static ArrayList <Air_transport_vehicle> getCargoAirplaneList(){
+        return cargoAirplaneList;
     }
 
     int getAirportPrice(){

@@ -1,15 +1,18 @@
 package Main.Building;
 
 import Main.Person;
+import Main.Vehicles.Boat;
 import Main.Vehicles.Shipping_vehicle;
 
 import java.util.ArrayList;
 
 public class ShippingPort extends  Terminal {
-    private static ArrayList<Shipping_vehicle> shipList = new ArrayList<Shipping_vehicle>() ;
+    private ArrayList<Shipping_vehicle> shipList = new ArrayList<Shipping_vehicle>() ;
+    private ArrayList<Boat> boatsList = new ArrayList<Boat>();
     private static ArrayList<ShippingPort> shippingPortsList = new ArrayList<ShippingPort>();
     private ArrayList<Person> sailors = new ArrayList<Person>();
     private int number_of_waterfront ;
+    private int number_of_bought_vehicles = 0;
 
     //==========================================
      public ShippingPort ( int number_of_waterfront , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_workers){
@@ -20,11 +23,16 @@ public class ShippingPort extends  Terminal {
 
      //==========================================
 
-    void setShipList( Shipping_vehicle vehicle){
+    public void addShip( Shipping_vehicle vehicle){
+
          shipList.add(vehicle);
+         System.out.println("\nA ship added to " + this.terminalName + " Shipping Port . ");
+         number_of_bought_vehicles++;
+
+
     }
 
-    public ArrayList<Shipping_vehicle> getShipList () {
+    public  ArrayList<Shipping_vehicle> getShipList () {
          return shipList ;
     }
 
@@ -37,6 +45,22 @@ public class ShippingPort extends  Terminal {
     public void addSailor(Person sailor){
         sailors.add(sailor);
     }
+
+    public void addBoat(Boat boat){
+
+        this.boatsList.add(boat);
+        System.out.println("\nA boat added to " + this.terminalName + " Shipping Port . ");
+        number_of_bought_vehicles ++;
+    }
+
+    public int max_number_of_vehicle (){
+        return this.number_of_vehicles;
+    }
+
+    public int getNumber_of_bought_vehicles(){
+        return this.number_of_bought_vehicles ;
+    }
+
 
      public void showInfo(){
         System.out.println("runways " + number_of_waterfront);

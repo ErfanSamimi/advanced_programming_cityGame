@@ -2,6 +2,7 @@ package Main.Vehicles;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Vehicle {
     private int price ;
@@ -12,21 +13,23 @@ public class Vehicle {
     //==================================================
 
     Vehicle(int price , int capacity , String ID , String name_builder_company){
+        Scanner sc = new Scanner(System.in);
         this.price = price ;
         this.capacity = capacity ;
         this.name_builder_company = name_builder_company ;
-        if(ID_list.contains(ID)){
-            System.out.println("This ID exists ! Please Set new ID for this vehicle .");
-            this.ID ="00000000";
+        while (ID_list.contains(ID)){
+            System.out.print("This ID exists ! Please Set new ID for this vehicle : ");
+            ID = sc.nextLine();
         }
-        else
-            this.ID =ID;
+
+        this.ID = ID;
+        ID_list.add(ID);
+
+
 
     }
 
-    void getID(String ID) {
-        this.ID = ID ;
-    }
+
 
 
 }
