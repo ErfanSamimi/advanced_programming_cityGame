@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.Person;
 import Main.Vehicles.Shipping_vehicle;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 public class ShippingPort extends  Terminal {
     private static ArrayList<Shipping_vehicle> shipList = new ArrayList<Shipping_vehicle>() ;
     private static ArrayList<ShippingPort> shippingPortsList = new ArrayList<ShippingPort>();
+    private ArrayList<Person> sailors = new ArrayList<Person>();
     private int number_of_waterfront ;
 
     //==========================================
@@ -25,9 +27,18 @@ public class ShippingPort extends  Terminal {
     public ArrayList<Shipping_vehicle> getShipList () {
          return shipList ;
     }
+
     public static ArrayList<ShippingPort> getShippingPortsList(){ return shippingPortsList; } ;
 
-    public void showInfo(){
+    public int numberOfHiredSailor(){
+        return sailors.size();
+    }
+
+    public void addSailor(Person sailor){
+        sailors.add(sailor);
+    }
+
+     public void showInfo(){
         System.out.println("runways " + number_of_waterfront);
         System.out.println("city name " + cityName);
         System.out.println("airport name : " + terminalName);

@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.Person;
 import Main.Vehicles.Bus;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 public class Bus_Terminal extends Terminal{
     private static ArrayList<Bus> busesList = new ArrayList<Bus>();
     private static ArrayList<Bus_Terminal> bus_terminals_list = new ArrayList<Bus_Terminal>();
+    private ArrayList<Person> drivers = new ArrayList<Person>();
 
     //=======================================================================
 
@@ -29,6 +31,13 @@ public class Bus_Terminal extends Terminal{
         return bus_terminals_list ;
     }
 
+    public int numberOfHiredDrivers(){
+        return drivers.size();
+    }
+
+    public void addDriver(Person driver){
+        drivers.add(driver);
+    }
     int getBusTerminalPrice(){
         return super.build_price ;
     }

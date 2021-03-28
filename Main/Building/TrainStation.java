@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.Person;
 import Main.Vehicles.Train;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 public class TrainStation extends Terminal{
     private static ArrayList<Train> trainList = new ArrayList<Train>() ;
     private static ArrayList<TrainStation> trainStationsList = new ArrayList<TrainStation>();
+    private ArrayList<Person> locomotiveDrivers = new ArrayList<Person>();
     private int inputRails ;
     private int outputRails ;
 
@@ -30,6 +32,14 @@ public class TrainStation extends Terminal{
     }
 
     public static ArrayList<TrainStation> getTrainStationsList (){ return trainStationsList ; }
+
+    public int numberOfHiredLocomotiveDriver(){
+        return locomotiveDrivers.size();
+    }
+
+    public void addLocomotiveDriver(Person driver){
+        locomotiveDrivers.add(driver);
+    }
 
     public void showInfo(){
         System.out.println("input rails " + inputRails);

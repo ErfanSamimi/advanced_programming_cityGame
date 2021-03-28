@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.Person;
 import Main.Vehicles.Air_transport_vehicle;
 
 import java.util.ArrayList;
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 public class Airport extends Terminal {
     private static ArrayList <Air_transport_vehicle> airplaneList = new ArrayList <Air_transport_vehicle>();
     private static ArrayList <Airport> airportsList = new ArrayList<Airport>();
+    private  ArrayList<Person> pilots = new ArrayList<Person>();
+    private ArrayList<Person> flightAttendants = new ArrayList<Person>();
     private boolean international_Airport ;
     private int number_of_runways ;
 
@@ -35,6 +38,22 @@ public class Airport extends Terminal {
 
     public static ArrayList<Airport> getAirportsList(){
         return airportsList ;
+    }
+
+    public int numberOfHiredPilots(){
+        return pilots.size();
+    }
+
+    public void addPilot(Person pilot){
+        pilots.add(pilot);
+    }
+
+    public int numberOfHiredFlightAttendants(){
+        return flightAttendants.size();
+    }
+
+    public void addFlightAttendant(Person flight_attendant){
+        flightAttendants.add(flight_attendant);
     }
 
     public void showInfo(){
