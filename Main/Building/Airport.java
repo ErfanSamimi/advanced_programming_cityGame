@@ -11,7 +11,6 @@ public class Airport extends Terminal {
     private static ArrayList <Airport> airportsList = new ArrayList<Airport>();
     private  ArrayList<Person> pilots = new ArrayList<Person>();
     private ArrayList<Person> flightAttendants = new ArrayList<Person>();
-    private ArrayList<Person> employees = new ArrayList<Person>();
     private boolean international_Airport ;
     private int number_of_runways ;
     private int number_of_bought_vehicles = 0;
@@ -94,7 +93,7 @@ public class Airport extends Terminal {
         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
         System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
         System.out.println("Max number of  employees : " + number_of_workers);
-        System.out.println("Number of hired employees : " + employees.size());
+        System.out.println("Number of hired employees : " + super.getEmployees().size());
         System.out.println("Number of pilots : " + pilots.size());
         System.out.println("Number of flight attendants : " + flightAttendants.size());
 

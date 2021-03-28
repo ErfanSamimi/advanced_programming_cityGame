@@ -101,12 +101,12 @@ public class City {
             if (choice == 1)
                 airportsInfo();
 
-//            if (choice == 2)
-//                busTerminalsInfo();
+            if (choice == 2)
+                busTerminalsInfo();
 
-//            if (choice == 3)
-//                hotelsInfo();
-//
+            if (choice == 3)
+                hotelsInfo();
+
 //            if (choice == 4)
 //                shippingPortsInfo();
 //
@@ -151,6 +151,86 @@ public class City {
             System.out.println("\n\n");
 
             Airport.getAirportsList().get(numberAirport-1).showInfo();
+
+            mainMenu();
+
+        }
+
+        else
+            mainMenu();
+    }
+
+    static void busTerminalsInfo(){
+        System.out.println("\n\n=== Show More Information About Bus Terminal(s) ===\n");
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 1-Show information of all bus terminals \n 2-Show information of a selected bus terminal : ");
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        if (choice == 1){
+            System.out.println("\n\n++++++ Show Information Of All Bus Terminals ++++++\n");
+
+            for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list())
+                a.showInfo();
+
+            System.out.println("\n\n Finished ");
+            mainMenu();
+        }
+
+        else if (choice == 2 ){
+            int counter = 1 ;
+
+            System.out.println("Number : \t Bus terminal name " );
+            for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
+                System.out.println(counter + "\t\t\t\t\t" + a.getName());
+                counter++;
+            }
+
+            System.out.print("\nEnter number of bus terminal : ");
+            int numberBusTerminal = sc.nextInt();
+            System.out.println("\n\n");
+
+            Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).showInfo();
+
+            mainMenu();
+
+        }
+
+        else
+            mainMenu();
+    }
+
+    static void hotelsInfo(){
+        System.out.println("\n\n=== Show More Information About Hotel(s) ===\n");
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 1-Show information of all hotels \n 2-Show information of a selected hotel : ");
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        if (choice == 1){
+            System.out.println("\n\n++++++ Show Information Of All Hotels ++++++\n");
+
+            for (Hotel a : Hotel.getHotelsList())
+                a.showInfo();
+
+            System.out.println("\n\n Finished ");
+            mainMenu();
+        }
+
+        else if (choice == 2 ){
+            int counter = 1 ;
+
+            System.out.println("Number : \t Hotel name " );
+            for (Hotel a : Hotel.getHotelsList()){
+                System.out.println(counter + "\t\t\t\t" + a.getHotelName());
+                counter++;
+            }
+
+            System.out.print("\nEnter number of hotel : ");
+            int numberHotel = sc.nextInt();
+            System.out.println("\n\n");
+
+            Hotel.getHotelsList().get(numberHotel-1).showInfo();
 
             mainMenu();
 

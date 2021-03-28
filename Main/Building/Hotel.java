@@ -1,5 +1,7 @@
 package Main.Building;
 
+import Main.Person;
+
 import java.util.ArrayList;
 
 public class Hotel {
@@ -8,11 +10,12 @@ public class Hotel {
     private String address ;
     private int stars ;
     private int number_of_rooms ;
-    private int buildedRooms = 0 ;
+    private int builtRooms = 0 ;
     private int number_of_workers ;
 
     private ArrayList<Room> roomList = new ArrayList<Room>() ;
     private static ArrayList<Hotel> hotelsList = new ArrayList<Hotel>();
+    private ArrayList<Person> employees = new ArrayList<Person>();
 
     enum Services {
         Breakfast , Lunch , Dinner , Pool ;
@@ -36,7 +39,7 @@ public class Hotel {
         if (this.roomList.size() <= this.number_of_rooms){
 
             this.roomList.add( new Room(roomNumber , number_of_beds , roomArea ,fee_per_night )) ;
-            this.buildedRooms++;
+            this.builtRooms++;
 
         }
         else
@@ -55,7 +58,23 @@ public class Hotel {
 
     public int getNumber_of_rooms(){ return this.number_of_rooms; }
 
-    public int getBuildedRooms() { return this.buildedRooms; }
+    public int getBuildedRooms() { return this.builtRooms; }
+
+    public String getHotelName(){
+        return this.hotelName;
+    }
+
+    public void showInfo(){
+        System.out.println("Hotel name : " + hotelName);
+        System.out.println("Address : " + address);
+        System.out.println("Number of stars : " + stars);
+        System.out.println("Maximum number of hotel rooms : " + number_of_rooms);
+        System.out.println("Number of built rooms : " + builtRooms);
+        System.out.println("Maximum number of employees : " + number_of_workers);
+        System.out.println("Number of hired employees : " + employees.size());
+
+        System.out.println("\n===================================================================\n");
+    }
 
 }
 
