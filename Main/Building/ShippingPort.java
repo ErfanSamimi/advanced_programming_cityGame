@@ -61,14 +61,25 @@ public class ShippingPort extends  Terminal {
         return this.number_of_bought_vehicles ;
     }
 
+    public String getName(){
+        return terminalName;
+    }
 
      public void showInfo(){
-        System.out.println("runways " + number_of_waterfront);
-        System.out.println("city name " + cityName);
-        System.out.println("airport name : " + terminalName);
-        System.out.println("address " + address );
-        System.out.println("area " + area);
-        System.out.println("vehicles " + number_of_vehicles);
-        System.out.println("workers " + number_of_workers);
-    }
+         System.out.println("Number of waterfronts :  " + number_of_waterfront);
+         System.out.println("City name : " + cityName);
+         System.out.println("Airport name : " + terminalName);
+         System.out.println("Address : " + address );
+         System.out.println("Area : " + area);
+         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
+         System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
+         System.out.println("Number of ships : " + shipList.size());
+         System.out.println("Number of boats : " + boatsList.size());
+         System.out.println("Maximum number of  employees : " + number_of_workers);
+         System.out.println("Number of hired employees : " + super.getEmployees().size());
+         System.out.println("Number of sailors : " + sailors.size());
+
+         System.out.println("\n===================================================================\n");
+
+     }
 }

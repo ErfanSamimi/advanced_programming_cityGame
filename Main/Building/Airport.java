@@ -92,7 +92,7 @@ public class Airport extends Terminal {
         System.out.println("Area : " + area);
         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
         System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
-        System.out.println("Max number of  employees : " + number_of_workers);
+        System.out.println("Maximum number of  employees : " + number_of_workers);
         System.out.println("Number of hired employees : " + super.getEmployees().size());
         System.out.println("Number of pilots : " + pilots.size());
         System.out.println("Number of flight attendants : " + flightAttendants.size());

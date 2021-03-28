@@ -30,6 +30,7 @@ public class City {
 
 
     }
+
     static void mainMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Show Status ");
@@ -107,8 +108,8 @@ public class City {
             if (choice == 3)
                 hotelsInfo();
 
-//            if (choice == 4)
-//                shippingPortsInfo();
+            if (choice == 4)
+                shippingPortsInfo();
 //
 //            if (choice == 5)
 //                trainStationsInfo();
@@ -231,6 +232,46 @@ public class City {
             System.out.println("\n\n");
 
             Hotel.getHotelsList().get(numberHotel-1).showInfo();
+
+            mainMenu();
+
+        }
+
+        else
+            mainMenu();
+    }
+
+    static void shippingPortsInfo(){
+        System.out.println("\n\n=== Show More Information About Shipping Port(s) ===\n");
+        Scanner sc = new Scanner(System.in);
+        System.out.println(" 1-Show information of all shipping ports \n 2-Show information of a selected shipping port : ");
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        if (choice == 1){
+            System.out.println("\n\n++++++ Show Information Of All Shipping Ports ++++++\n");
+
+            for (ShippingPort a : ShippingPort.getShippingPortsList())
+                a.showInfo();
+
+            System.out.println("\n\n Finished ");
+            mainMenu();
+        }
+
+        else if (choice == 2 ){
+            int counter = 1 ;
+
+            System.out.println("Number : \t Shipping port name " );
+            for (ShippingPort a : ShippingPort.getShippingPortsList()){
+                System.out.println(counter + "\t\t\t\t\t" + a.getName());
+                counter++;
+            }
+
+            System.out.print("\nEnter number of shipping port : ");
+            int numberShippingPort = sc.nextInt();
+            System.out.println("\n\n");
+
+            ShippingPort.getShippingPortsList().get(numberShippingPort-1).showInfo();
 
             mainMenu();
 
