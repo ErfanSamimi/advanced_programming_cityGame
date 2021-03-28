@@ -21,6 +21,7 @@ public class TrainStation extends Terminal{
 
         this.inputRails = inputRails ;
         this.outputRails = outputRails ;
+        trainStationsList.add(this);
     }
 
     //================================================================

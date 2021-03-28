@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class City {
-    static int total_money = 10000 ;
+    static int total_money = 1000000000 ;
     public static void main (String [] args){
 
         addPeople(2 , "pilot" , 70);
@@ -34,7 +34,9 @@ public class City {
 
     static void mainMenu(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("\n===============================================");
         System.out.println("\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Show Status ");
+        System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
         int choice = sc.nextInt();
 
@@ -77,7 +79,7 @@ public class City {
     //========================================================================================
 
     static void showStatus(){
-        System.out.println("\n\n=== Show Status === \n");
+        System.out.println("\n\n\t\t\t\t\t=== Show Status === \n");
         Scanner sc = new Scanner(System.in);
 
         System.out.println("****** population : \n");
@@ -118,6 +120,7 @@ public class City {
             System.out.println(" 1-Airport(s) more info \n 2-Bus Terminal(s) more info \n 3-Hotel(s) more info \n 4-Shipping Port(s) more info \n 5-Train Station(s) more info ");
             System.out.print("\nEnter number of your choice : ");
             int choice = sc.nextInt();
+            System.out.println("\n===============================================");
 
             if (choice == 1)
                 airportsInfo();
@@ -142,7 +145,7 @@ public class City {
     }
 
     static void airportsInfo(){
-        System.out.println("\n\n=== Show More Information About Airplane(s) ===\n");
+        System.out.println("\n\n\t\t\t\t\t=== Show More Information About Airplane(s) ===\n");
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1-Show information of all airports \n 2-Show information of a selected airport : ");
         System.out.print("\nEnter number of your choice : ");
@@ -154,7 +157,7 @@ public class City {
             for (Airport a : Airport.getAirportsList())
                 a.showInfo();
 
-            System.out.println("\n\n Finished ");
+            System.out.println("\n\n ****** Finished ");
             mainMenu();
         }
 
@@ -182,7 +185,7 @@ public class City {
     }
 
     static void busTerminalsInfo(){
-        System.out.println("\n\n=== Show More Information About Bus Terminal(s) ===\n");
+        System.out.println("\n\n\t\t\t\t\t=== Show More Information About Bus Terminal(s) ===\n");
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1-Show information of all bus terminals \n 2-Show information of a selected bus terminal : ");
         System.out.print("\nEnter number of your choice : ");
@@ -194,7 +197,7 @@ public class City {
             for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list())
                 a.showInfo();
 
-            System.out.println("\n\n Finished ");
+            System.out.println("\n\n ****** Finished ");
             mainMenu();
         }
 
@@ -222,7 +225,7 @@ public class City {
     }
 
     static void hotelsInfo(){
-        System.out.println("\n\n=== Show More Information About Hotel(s) ===\n");
+        System.out.println("\n\n\t\t\t\t\t=== Show More Information About Hotel(s) ===\n");
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1-Show information of all hotels \n 2-Show information of a selected hotel : ");
         System.out.print("\nEnter number of your choice : ");
@@ -234,14 +237,14 @@ public class City {
             for (Hotel a : Hotel.getHotelsList())
                 a.showInfo();
 
-            System.out.println("\n\n Finished ");
+            System.out.println("\n\n ****** Finished ");
             mainMenu();
         }
 
         else if (choice == 2 ){
             int counter = 1 ;
 
-            System.out.println("Number : \t Hotel name " );
+            System.out.println("Number : \t     Hotel name : " );
             for (Hotel a : Hotel.getHotelsList()){
                 System.out.println(counter + "\t\t\t\t" + a.getHotelName());
                 counter++;
@@ -262,7 +265,7 @@ public class City {
     }
 
     static void shippingPortsInfo(){
-        System.out.println("\n\n=== Show More Information About Shipping Port(s) ===\n");
+        System.out.println("\n\n\t\t\t\t\t=== Show More Information About Shipping Port(s) ===\n");
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1-Show information of all shipping ports \n 2-Show information of a selected shipping port : ");
         System.out.print("\nEnter number of your choice : ");
@@ -274,14 +277,14 @@ public class City {
             for (ShippingPort a : ShippingPort.getShippingPortsList())
                 a.showInfo();
 
-            System.out.println("\n\n Finished ");
+            System.out.println("\n\n ****** Finished ");
             mainMenu();
         }
 
         else if (choice == 2 ){
             int counter = 1 ;
 
-            System.out.println("Number : \t Shipping port name " );
+            System.out.println("Number : \t Shipping port name : " );
             for (ShippingPort a : ShippingPort.getShippingPortsList()){
                 System.out.println(counter + "\t\t\t\t\t" + a.getName());
                 counter++;
@@ -302,7 +305,7 @@ public class City {
     }
 
     static void trainStationsInfo(){
-        System.out.println("\n\n=== Show More Information About Train Station(s) ===\n");
+        System.out.println("\n\n\t\t\t\t\t=== Show More Information About Train Station(s) ===\n");
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1-Show information of all train stations \n 2-Show information of a selected train station : ");
         System.out.print("\nEnter number of your choice : ");
@@ -314,7 +317,7 @@ public class City {
             for (TrainStation a : TrainStation.getTrainStationsList())
                 a.showInfo();
 
-            System.out.println("\n\n Finished ");
+            System.out.println("\n\n ****** Finished ");
             mainMenu();
         }
 
@@ -345,7 +348,7 @@ public class City {
     //=======================================================================================
 
     static void buildTerminal(){
-        System.out.println("\n\n====== Build Terminal ======");
+        System.out.println("\n\n\t\t\t\t\t====== Build Terminal ======\n\n");
         System.out.println(" 1-Airport \n 2-Bus Terminal \n 3-Shipping port \n 4-Train station ");
         System.out.print("\nEnter your choice : ");
         Scanner sc = new Scanner(System.in) ;
@@ -370,7 +373,7 @@ public class City {
     static void buildAirport(){
         Scanner sc = new Scanner(System.in) ;
 
-        System.out.println("\n\n=== Building Airport (1400 $)===\n\n" );
+        System.out.println("\n\n\t\t\t\t\t=== Building Airport (1400 $)===\n\n" );
         System.out.print("Is it a International Airport ? (y/n) : ");
         String choice = sc.nextLine();
         boolean international ;
@@ -430,7 +433,10 @@ public class City {
             if (choice2.equals("y")) {
                 Airport newAirport = new Airport(international, runways, cityName, airportName, address, area, number_airplane, number_employees);
                 total_money -= finalPrice ;
+                System.out.println("-----");
                 System.out.println("Done");
+                System.out.println("-----");
+
                 showMoney();
             }
             else{
@@ -447,7 +453,7 @@ public class City {
     static  void buildBusTerminal(){
          Scanner sc = new Scanner(System.in) ;
 
-         System.out.println("\n\n=== Bus Terminal (600 $)===\n\n" );
+         System.out.println("\n\n\t\t\t\t\t=== Bus Terminal (600 $)===\n\n" );
 
 
          System.out.print("Enter name of city : ");
@@ -495,7 +501,9 @@ public class City {
             if (choice2.equals("y")) {
                 Bus_Terminal newBusTerminal = new Bus_Terminal( cityName, busTerminalName , address, area, number_buses , number_employees);
                 total_money -= finalPrice ;
+                System.out.println("-----");
                 System.out.println("Done");
+                System.out.println("-----");
                 showMoney();
             }
             else{
@@ -512,7 +520,7 @@ public class City {
     static void buildShippingPort(){
         Scanner sc = new Scanner(System.in) ;
 
-        System.out.print("\n\n=== Shipping port (1000 $)===\n\n" );
+        System.out.print("\n\n\t\t\t\t\t=== Shipping port (1000 $)===\n\n" );
 
         System.out.print("Enter number of waterfronts : ");
         int waterfronts = sc.nextInt();
@@ -563,7 +571,9 @@ public class City {
             if (choice2.equals("y")) {
                 ShippingPort newShippingPort = new ShippingPort( waterfronts , cityName, shippingPortName , address, area, number_ships , number_employees);
                 total_money -= finalPrice ;
+                System.out.println("-----");
                 System.out.println("Done");
+                System.out.println("-----");
                 showMoney();
             }
             else{
@@ -580,7 +590,7 @@ public class City {
     static void buildTrainStation(){
         Scanner sc = new Scanner(System.in) ;
 
-        System.out.print("\n\n=== Shipping port (1100 $)===\n\n" );
+        System.out.print("\n\n\t\t\t\t\t=== Shipping port (1100 $)===\n\n" );
 
         System.out.print("Enter number of input rails : ");
         int inputRails = sc.nextInt();
@@ -635,7 +645,9 @@ public class City {
             if (choice2.equals("y")) {
                 TrainStation newTrainStation = new TrainStation( inputRails , outputRails , cityName , trainStationName , address, area, number_trains , number_employees);
                 total_money -= finalPrice ;
+                System.out.println("-----");
                 System.out.println("Done");
+                System.out.println("-----");
                 showMoney();
             }
             else{
@@ -653,7 +665,7 @@ public class City {
     static void buyVehicles(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("\n\n====== Buy vehicles ======");
+        System.out.println("\n\n\t\t\t\t\t====== Buy vehicles ======");
         System.out.println(" 1-boat \n 2-bus \n 3-cargo plane \n 4-passenger airplane \n 5-ship \n 6-train ");
         System.out.print("\nEnter your choice : ");
         int choice = sc.nextInt() ;
@@ -682,7 +694,7 @@ public class City {
     }
 
     static void buyBoat(){
-        System.out.println("\n\n=== Buy Boat (300 $) ===");
+        System.out.println("\n\n\t\t\t\t\t=== Buy Boat (300 $) ===");
         Scanner sc = new Scanner(System.in);
 
         if (ShippingPort.getShippingPortsList().size() == 0){
@@ -691,14 +703,14 @@ public class City {
         }
         else {
 
-            System.out.println("number : \t maximum number of vehicles : \t number of bought vehicles : ");
+            System.out.println("Number : \t Shipping port name : \t Maximum number of vehicles : \t Number of bought vehicles : ");
             int counter = 1;
             for (ShippingPort a : ShippingPort.getShippingPortsList()) {
-                System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
+                System.out.println(counter + "\t\t\t\t\t" + a.getName() +"\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter ++ ;
             }
-            System.out.println("\n *** Completed ");
-            System.out.print("\nEnter number of Shipping port that you want to buy a boat for it : ");
+//            System.out.println("\n *** Completed ");
+            System.out.print("\n\nEnter number of Shipping port that you want to buy a boat for it : ");
             int number_shippingPort = sc.nextInt();
             System.out.println();
 
@@ -758,7 +770,9 @@ public class City {
                     Boat newBoat = new Boat(distance, fuel_type, min_depth, capacity, ID, company);
                     ShippingPort.getShippingPortsList().get(number_shippingPort - 1).addBoat(newBoat);
                     total_money -= finalPrice;
+                    System.out.println("-----");
                     System.out.println("Done");
+                    System.out.println("-----");
                     showMoney();
                 } else {
                     System.out.println("Canceled !");
@@ -771,7 +785,7 @@ public class City {
     }
 
     static void buyBus(){
-        System.out.println("\n\n=== Buy Bus (200 $) ===");
+        System.out.println("\n\n\t\t\t\t\t=== Buy Bus (200 $) ===");
         Scanner sc = new Scanner(System.in);
 
         if (Bus_Terminal.getBus_terminals_list().size() == 0){
@@ -786,8 +800,8 @@ public class City {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter ++ ;
             }
-            System.out.println("\n *** Completed ");
-            System.out.print("\nEnter number of bus terminal that you want to buy a bus for it : ");
+//            System.out.println("\n *** Completed ");
+            System.out.print("\n\nEnter number of bus terminal that you want to buy a bus for it : ");
             int number_busTerminal = sc.nextInt();
             System.out.println();
 
@@ -797,42 +811,42 @@ public class City {
             }
 
             //===========================================================================================================================
-
+            sc.nextLine();
             System.out.print("Enter type of bus class (business , economy ) : ");
             String classType = sc.nextLine();
-            System.out.println("+++++  " + classType);
+//            System.out.println("+++++  " + classType);
             System.out.println();
 
-            System.out.println("Enter kilometer per liter : ");
+            System.out.print("Enter kilometer per liter : ");
             int kpl = sc.nextInt();
-            System.out.println("+++++  " + kpl);
+//            System.out.println("+++++  " + kpl);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter fuel type : ");
             String fuel_type = sc.nextLine();
-            System.out.println("+++++  " + fuel_type);
+//            System.out.println("+++++  " + fuel_type);
             System.out.println();
 
             System.out.print("Enter max speed of this bus : ");
             int speed = sc.nextInt();
-            System.out.println("+++++  " + speed);
+//            System.out.println("+++++  " + speed);
             System.out.println();
 
             System.out.print("Enter passenger capacity of bus : ");
             int capacity = sc.nextInt();
-            System.out.println("+++++  " + capacity);
+//            System.out.println("+++++  " + capacity);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter ID of bus : ");
             String ID = sc.nextLine();
-            System.out.println("+++++  " + ID);
+//            System.out.println("+++++  " + ID);
             System.out.println();
 
             System.out.print("Enter name of bus company : ");
             String company = sc.nextLine();
-            System.out.println("+++++  " + company);
+//            System.out.println("+++++  " + company);
             System.out.println();
 
             int finalPrice = 200;
@@ -850,7 +864,9 @@ public class City {
                     Bus newBus = new Bus(classType, kpl, capacity, fuel_type, speed, capacity, company, ID);
                     Bus_Terminal.getBus_terminals_list().get(number_busTerminal-1).addBus(newBus);
                     total_money -= finalPrice;
+                    System.out.println("-----");
                     System.out.println("Done");
+                    System.out.println("-----");
                     showMoney();
                 } else {
                     System.out.println("Canceled !");
@@ -863,7 +879,7 @@ public class City {
     }
 
     static void buyCargoPlane(){
-        System.out.println("\n\n=== Buy Cargo Plane (700 $) ===");
+        System.out.println("\n\n\t\t\t\t\t=== Buy Cargo Plane (700 $) ===");
         Scanner sc = new Scanner(System.in);
 
         if (Airport.getAirportsList().size() == 0){
@@ -878,8 +894,8 @@ public class City {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter++;
             }
-            System.out.println("\n *** Completed ");
-            System.out.print("\nEnter number of Airport that you want to buy a Cargo plane for it : ");
+//            System.out.println("\n *** Completed ");
+            System.out.print("\n\nEnter number of Airport that you want to buy a Cargo plane for it : ");
             int number_airport = sc.nextInt();
             System.out.println();
 
@@ -892,18 +908,18 @@ public class City {
 
             System.out.print("Enter total weight this plane can transport : ");
             int weight = sc.nextInt();
-            System.out.println("+++++  " + weight);
+//            System.out.println("+++++  " + weight);
             System.out.println();
 
             System.out.print("Enter maximum height of flight : ");
             int height = sc.nextInt();
-            System.out.println("+++++  " + height);
+//            System.out.println("+++++  " + height);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter runway length : ");
             int runway = sc.nextInt();
-            System.out.println("+++++  " + runway);
+//            System.out.println("+++++  " + runway);
             System.out.println();
 
 
@@ -943,7 +959,9 @@ public class City {
                     CargoPlane newCargoPlane = new CargoPlane(weight, height, runway, capacity, ID, company);
                     Airport.getAirportsList().get(number_airport-1).addCargoAirplane(newCargoPlane);
                     total_money -= finalPrice;
+                    System.out.println("-----");
                     System.out.println("Done");
+                    System.out.println("-----");
                     showMoney();
                 } else {
                     System.out.println("Canceled !");
@@ -956,7 +974,7 @@ public class City {
     }
 
     static void buyPassengerAirplane(){
-        System.out.println("\n\n=== Buy Passenger Airplane (800 $) ===");
+        System.out.println("\n\n\t\t\t\t\t=== Buy Passenger Airplane (800 $) ===");
         Scanner sc = new Scanner(System.in);
 
         if (Airport.getAirportsList().size() == 0){
@@ -971,8 +989,8 @@ public class City {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter++;
             }
-            System.out.println("\n *** Completed ");
-            System.out.print("\nEnter number of Airport that you want to buy a passenger airplane for it : ");
+//            System.out.println("\n *** Completed ");
+            System.out.print("\n\nEnter number of Airport that you want to buy a passenger airplane for it : ");
             int number_airport = sc.nextInt();
             System.out.println();
 
@@ -985,41 +1003,41 @@ public class City {
 
             System.out.print("Enter number of flight attendants: ");
             int flightAttendant = sc.nextInt();
-            System.out.println("+++++  " + flightAttendant);
+//            System.out.println("+++++  " + flightAttendant);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter type of airplane class (business , economy ) : ");
             String classType = sc.nextLine();
-            System.out.println("+++++  " + classType);
+//            System.out.println("+++++  " + classType);
             System.out.println();
 
             System.out.print("Enter maximum height of flight : ");
             int height = sc.nextInt();
-            System.out.println("+++++  " + height);
+//            System.out.println("+++++  " + height);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter runway length : ");
             int runway = sc.nextInt();
-            System.out.println("+++++  " + runway);
+//            System.out.println("+++++  " + runway);
             System.out.println();
 
 
             System.out.print("Enter passenger capacity of this plane : ");
             int capacity = sc.nextInt();
-            System.out.println("+++++  " + capacity);
+//            System.out.println("+++++  " + capacity);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter ID of passenger airplane : ");
             String ID = sc.nextLine();
-            System.out.println("+++++  " + ID);
+//            System.out.println("+++++  " + ID);
             System.out.println();
 
             System.out.print("Enter name of cargo plane company : ");
             String company = sc.nextLine();
-            System.out.println("+++++  " + company);
+//            System.out.println("+++++  " + company);
             System.out.println();
 
             int finalPrice = 800;
@@ -1037,7 +1055,9 @@ public class City {
                     Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, classType, height, runway, capacity, ID, company);
                     Airport.getAirportsList().get(number_airport-1).addPassengerAirplane(newPassengerAirplane);
                     total_money -= finalPrice;
+                    System.out.println("-----");
                     System.out.println("Done");
+                    System.out.println("-----");
                     showMoney();
                 } else {
                     System.out.println("Canceled !");
@@ -1050,7 +1070,7 @@ public class City {
     }
 
     static void buyShip(){
-        System.out.println("\n\n=== Buy Ship (600 $) ===");
+        System.out.println("\n\n\t\t\t\t\t=== Buy Ship (600 $) ===");
         Scanner sc = new Scanner(System.in);
 
         if (ShippingPort.getShippingPortsList().size() == 0){
@@ -1065,8 +1085,8 @@ public class City {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter++;
             }
-            System.out.println("\n *** Completed ");
-            System.out.print("\nEnter number of Shipping port that you want to buy a ship for it : ");
+//            System.out.println("\n *** Completed ");
+            System.out.print("\n\nEnter number of Shipping port that you want to buy a ship for it : ");
             int number_shippingPort = sc.nextInt();
             System.out.println();
 
@@ -1077,42 +1097,42 @@ public class City {
             }
 
             //===========================================================================================================================
-
+            sc.nextLine();
             System.out.print("Enter type of ship class (business , economy ) : ");
             String classType = sc.nextLine();
-            System.out.println("+++++  " + classType);
+//            System.out.println("+++++  " + classType);
             System.out.println();
 
             System.out.print("Enter length of this ship : ");
             int length = sc.nextInt();
-            System.out.println("+++++  " + length);
+//            System.out.println("+++++  " + length);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter fuel type : ");
             String fuel_type = sc.nextLine();
-            System.out.println("+++++  " + fuel_type);
+//            System.out.println("+++++  " + fuel_type);
             System.out.println();
 
             System.out.print("Enter minimum water depth for ship : ");
             int min_depth = sc.nextInt();
-            System.out.println("+++++  " + min_depth);
+//            System.out.println("+++++  " + min_depth);
             System.out.println();
 
             System.out.print("Enter capacity of ship : ");
             int capacity = sc.nextInt();
-            System.out.println("+++++  " + capacity);
+//            System.out.println("+++++  " + capacity);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter ID of ship : ");
             String ID = sc.nextLine();
-            System.out.println("+++++  " + ID);
+//            System.out.println("+++++  " + ID);
             System.out.println();
 
             System.out.print("Enter name of ship company : ");
             String company = sc.nextLine();
-            System.out.println("+++++  " + company);
+//            System.out.println("+++++  " + company);
             System.out.println();
 
             int finalPrice = 600;
@@ -1130,7 +1150,9 @@ public class City {
                     Ship newShip = new Ship(classType, length, fuel_type, min_depth, capacity, ID, company);
                     ShippingPort.getShippingPortsList().get(number_shippingPort - 1).addShip(newShip);
                     total_money -= finalPrice;
+                    System.out.println("-----");
                     System.out.println("Done");
+                    System.out.println("-----");
                     showMoney();
                 } else {
                     System.out.println("Canceled !");
@@ -1143,7 +1165,7 @@ public class City {
     }
 
     static void buyTrain(){
-        System.out.println("\n\n=== Buy Train (500 $) ===");
+        System.out.println("\n\n\t\t\t\t\t=== Buy Train (500 $) ===");
         Scanner sc = new Scanner(System.in);
 
 
@@ -1159,8 +1181,8 @@ public class City {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter++;
             }
-            System.out.println("\n *** Completed ");
-            System.out.print("\nEnter number of Train Station that you want to buy a train for it : ");
+//            System.out.println("\n *** Completed ");
+            System.out.print("\n\nEnter number of Train Station that you want to buy a train for it : ");
             int number_trainStation = sc.nextInt();
             System.out.println();
 
@@ -1176,44 +1198,44 @@ public class City {
 
             System.out.print("Enter number of wagons : ");
             int wagons = sc.nextInt();
-            System.out.println("+++++  " + wagons);
+//            System.out.println("+++++  " + wagons);
             System.out.println();
 
             System.out.print("Enter number of stars for this train : ");
             int stars = sc.nextInt();
-            System.out.println("+++++  " + stars);
+//            System.out.println("+++++  " + stars);
             System.out.println();
 
             System.out.print("Enter fuel capacity  : ");
             int fuel_capacity = sc.nextInt();
-            System.out.println("+++++  " + fuel_capacity);
+//            System.out.println("+++++  " + fuel_capacity);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter fuel type : ");
             String fuel_type = sc.nextLine();
-            System.out.println("+++++  " + fuel_type);
+//            System.out.println("+++++  " + fuel_type);
             System.out.println();
 
             System.out.print("Enter max speed of this train : ");
             int speed = sc.nextInt();
-            System.out.println("+++++  " + speed);
+//            System.out.println("+++++  " + speed);
             System.out.println();
 
             System.out.print("Enter passenger capacity of train : ");
             int capacity = sc.nextInt();
-            System.out.println("+++++  " + capacity);
+//            System.out.println("+++++  " + capacity);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter ID of train : ");
             String ID = sc.nextLine();
-            System.out.println("+++++  " + ID);
+//            System.out.println("+++++  " + ID);
             System.out.println();
 
             System.out.print("Enter name of train company : ");
             String company = sc.nextLine();
-            System.out.println("+++++  " + company);
+//            System.out.println("+++++  " + company);
             System.out.println();
 
             int finalPrice = 500;
@@ -1231,7 +1253,9 @@ public class City {
                     Train newTrain = new Train(wagons, stars, fuel_capacity, fuel_type, speed, capacity, company, ID);
                     TrainStation.getTrainStationsList().get(number_trainStation - 1).addTrain(newTrain);
                     total_money -= finalPrice;
+                    System.out.println("-----");
                     System.out.println("Done");
+                    System.out.println("-----");
                     showMoney();
                 } else {
                     System.out.println("Canceled !");
@@ -1248,7 +1272,7 @@ public class City {
 
     static void engage(){
         Scanner sc = new Scanner(System.in);
-        System.out.println(" 1-pilot \n 2-driver \n 3-sailor \n 4-locomotive driver \n 5-flight attendant");
+        System.out.println(" 1-pilot \n 2-driver \n 3-sailor \n 4-locomotive driver \n 5-flight attendant \n 6-Employee");
         System.out.print("\nEnter your choice : ");
         int choice = sc.nextInt();
         String final_choice ="";
@@ -1267,180 +1291,218 @@ public class City {
         if (choice == 5)
             engageFlightAttendant();
 
+        if (choice == 6)
+            engageEmployee();
+
         mainMenu();
 
     }
 
     static void engagePilot(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Engage Pilot ===");
+        System.out.println("\n\n\t\t\t\t\t=== Engage Pilot ===");
 
-        System.out.println("ID : \t Salary:");
+        if (Airport.getAirportsList().size() >0) {
+            System.out.println("ID : \t Salary:");
 
-        for (Person ap : Person.getPeopleList()){
-            if(ap.getJob().equals("pilot") && ap.getHired() == false){
-                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            for (Person ap : Person.getPeopleList()) {
+                if (ap.getJob().equals("pilot") && ap.getHired() == false) {
+                    System.out.println(ap.getID() + "\t\t\t " + ap.getSalary());
+                }
             }
+//        System.out.println("\n** Completed\n");
+            System.out.print("\nEnter ID of your choice : ");
+            int ID = sc.nextInt();
+            System.out.println();
+
+            int counter = 1;
+            System.out.println("number : \t number of hired pilots : ");
+            for (Airport a : Airport.getAirportsList()) {
+                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredPilots());
+                counter++;
+            }
+//        System.out.println("\n** Completed\n");
+            System.out.print("\nEnter number of Airport you want hire a pilot for it : ");
+            int numberAirplane = sc.nextInt();
+
+
+            Person.engage(ID);
+            Airport.getAirportsList().get(numberAirplane - 1).addPilot(Person.find_Person_from_ID(ID));
+            total_money -= Person.find_Person_from_ID(ID).getSalary();
+            showMoney();
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter ID of your choice : ");
-        int ID = sc.nextInt();
-
-        int counter = 1;
-        System.out.println("number : \t number of hired pilots : ");
-        for (Airport a : Airport.getAirportsList()){
-            System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredPilots());
-            counter ++;
+        else{
+            System.out.println("You dont have airport so you cant engage pilot !");
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter number of Airport you want hire a pilot for it : ");
-        int numberAirplane = sc.nextInt() ;
-
-
-        Person.engage(ID);
-        Airport.getAirportsList().get(numberAirplane-1).addPilot(Person.find_Person_from_ID(ID)) ;
-        total_money -= Person.find_Person_from_ID( ID ).getSalary();
-        showMoney();
-        mainMenu();
 
 
     }
 
     static void engageDriver(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Engage Driver ===");
+        System.out.println("\n\n\t\t\t\t\t=== Engage Driver ===");
 
-        System.out.println("ID : \t Salary:");
+        if (Bus_Terminal.getBus_terminals_list().size() > 0) {
+            System.out.println("ID : \t Salary:");
 
-        for (Person ap : Person.getPeopleList()){
-            if(ap.getJob().equals("driver") && ap.getHired() == false){
-                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            for (Person ap : Person.getPeopleList()) {
+                if (ap.getJob().equals("driver") && ap.getHired() == false) {
+                    System.out.println(ap.getID() + "\t\t\t " + ap.getSalary());
+                }
             }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter ID of your choice : ");
+            int ID = sc.nextInt();
+
+            int counter = 1;
+            System.out.println("number : \t number of hired pilots : ");
+            for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()) {
+                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredDrivers());
+                counter++;
+            }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter number of Bus Terminal you want hire a driver for it : ");
+            int numberBusTerminal = sc.nextInt();
+
+
+            Person.engage(ID);
+            Bus_Terminal.getBus_terminals_list().get(numberBusTerminal - 1).addDriver(Person.find_Person_from_ID(ID));
+            ;
+            total_money -= Person.find_Person_from_ID(ID).getSalary();
+            showMoney();
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter ID of your choice : ");
-        int ID = sc.nextInt();
-
-        int counter = 1;
-        System.out.println("number : \t number of hired pilots : ");
-        for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
-            System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredDrivers());
-            counter ++;
+        else {
+            System.out.println("You dont have bus terminal so you cant engage driver ! ");
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter number of Bus Terminal you want hire a driver for it : ");
-        int numberBusTerminal = sc.nextInt() ;
-
-
-        Person.engage(ID);
-        Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).addDriver(Person.find_Person_from_ID(ID)); ;
-        total_money -= Person.find_Person_from_ID( ID ).getSalary();
-        showMoney();
-        mainMenu();
     }
 
     static void engageSailor(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Engage Sailor ===");
+        System.out.println("\n\n\t\t\t\t\t=== Engage Sailor ===");
 
-        System.out.println("ID : \t Salary:");
+        if ( ShippingPort.getShippingPortsList().size() > 0) {
+            System.out.println("ID : \t Salary:");
 
-        for (Person ap : Person.getPeopleList()){
-            if(ap.getJob().equals("sailor") && ap.getHired() == false){
-                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            for (Person ap : Person.getPeopleList()) {
+                if (ap.getJob().equals("sailor") && ap.getHired() == false) {
+                    System.out.println(ap.getID() + "\t\t\t " + ap.getSalary());
+                }
             }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter ID of your choice : ");
+            int ID = sc.nextInt();
+
+            int counter = 1;
+            System.out.println("number : \t number of hired pilots : ");
+            for (ShippingPort a : ShippingPort.getShippingPortsList()) {
+                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredSailor());
+                counter++;
+            }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter number of Shipping Port you want hire a sailor for it : ");
+            int numberShppingPort = sc.nextInt();
+
+
+            Person.engage(ID);
+            ShippingPort.getShippingPortsList().get(numberShppingPort - 1).addSailor(Person.find_Person_from_ID(ID));
+            ;
+            total_money -= Person.find_Person_from_ID(ID).getSalary();
+            showMoney();
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter ID of your choice : ");
-        int ID = sc.nextInt();
-
-        int counter = 1;
-        System.out.println("number : \t number of hired pilots : ");
-        for (ShippingPort a : ShippingPort.getShippingPortsList()){
-            System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredSailor());
-            counter ++;
+        else {
+            System.out.println("You dont have shipping port so you cant engage sailor ! ");
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter number of Shipping Port you want hire a sailor for it : ");
-        int numberShppingPort = sc.nextInt() ;
-
-
-        Person.engage(ID);
-        ShippingPort.getShippingPortsList().get(numberShppingPort-1).addSailor(Person.find_Person_from_ID(ID)); ;
-        total_money -= Person.find_Person_from_ID( ID ).getSalary();
-        showMoney();
-        mainMenu();
     }
 
     static void engageLocomotiveDriver(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Engage Locomotive Driver ===");
+        System.out.println("\n\n\t\t\t\t\t=== Engage Locomotive Driver ===");
 
-        System.out.println("ID : \t Salary:");
+        if (TrainStation.getTrainStationsList().size() > 0) {
+            System.out.println("ID : \t Salary:");
 
-        for (Person ap : Person.getPeopleList()){
-            if(ap.getJob().equals("locomotive driver") && ap.getHired() == false){
-                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            for (Person ap : Person.getPeopleList()) {
+                if (ap.getJob().equals("locomotive driver") && ap.getHired() == false) {
+                    System.out.println(ap.getID() + "\t\t\t " + ap.getSalary());
+                }
             }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter ID of your choice : ");
+            int ID = sc.nextInt();
+
+            int counter = 1;
+            System.out.println("number : \t number of hired pilots : ");
+            for (TrainStation a : TrainStation.getTrainStationsList()) {
+                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredLocomotiveDriver());
+                counter++;
+            }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter number of Train Station you want hire a locomotive driver for it : ");
+            int numberTrainStation = sc.nextInt();
+
+
+            Person.engage(ID);
+            TrainStation.getTrainStationsList().get(numberTrainStation - 1).addLocomotiveDriver(Person.find_Person_from_ID(ID));
+            ;
+            total_money -= Person.find_Person_from_ID(ID).getSalary();
+            showMoney();
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter ID of your choice : ");
-        int ID = sc.nextInt();
-
-        int counter = 1;
-        System.out.println("number : \t number of hired pilots : ");
-        for (TrainStation a : TrainStation.getTrainStationsList()){
-            System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredLocomotiveDriver());
-            counter ++;
+        else {
+            System.out.println("You dont have train station so you cant engage locomotive driver ! ");
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter number of Train Station you want hire a locomotive driver for it : ");
-        int numberTrainStation = sc.nextInt() ;
-
-
-        Person.engage(ID);
-        TrainStation.getTrainStationsList().get(numberTrainStation-1).addLocomotiveDriver(Person.find_Person_from_ID(ID)); ;
-        total_money -= Person.find_Person_from_ID( ID ).getSalary();
-        showMoney();
-        mainMenu();
     }
 
     static void engageFlightAttendant(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Engage Flight Attendant ===");
+        System.out.println("\n\n\t\t\t\t\t=== Engage Flight Attendant ===");
 
-        System.out.println("ID : \t Salary:");
+        if (Airport.getAirportsList().size() > 0) {
+            System.out.println("ID : \t Salary:");
 
-        for (Person ap : Person.getPeopleList()){
-            if(ap.getJob().equals("flight attendant") && ap.getHired() == false){
-                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            for (Person ap : Person.getPeopleList()) {
+                if (ap.getJob().equals("flight attendant") && ap.getHired() == false) {
+                    System.out.println(ap.getID() + "\t\t\t " + ap.getSalary());
+                }
             }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter ID of your choice : ");
+            int ID = sc.nextInt();
+
+            int counter = 1;
+            System.out.println("number : \t number of hired pilots : ");
+            for (Airport a : Airport.getAirportsList()) {
+                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredFlightAttendants());
+                counter++;
+            }
+            System.out.println("\n** Completed\n");
+            System.out.print("Enter number of Airport you want hire a flight attendant for it : ");
+            int numberAirplane = sc.nextInt();
+
+
+            Person.engage(ID);
+            Airport.getAirportsList().get(numberAirplane - 1).addFlightAttendant(Person.find_Person_from_ID(ID));
+            ;
+            total_money -= Person.find_Person_from_ID(ID).getSalary();
+            showMoney();
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter ID of your choice : ");
-        int ID = sc.nextInt();
-
-        int counter = 1;
-        System.out.println("number : \t number of hired pilots : ");
-        for (Airport a : Airport.getAirportsList()){
-            System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredFlightAttendants());
-            counter ++;
+        else {
+            System.out.println("You dont have airport so you cant engage flight attendant ! ");
+            mainMenu();
         }
-        System.out.println("\n** Completed\n");
-        System.out.print("Enter number of Airport you want hire a flight attendant for it : ");
-        int numberAirplane = sc.nextInt() ;
-
-
-        Person.engage(ID);
-        Airport.getAirportsList().get(numberAirplane-1).addFlightAttendant(Person.find_Person_from_ID(ID)); ;
-        total_money -= Person.find_Person_from_ID( ID ).getSalary();
-        showMoney();
-        mainMenu();
     }
 
     static void engageEmployee(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Engage Employee ===");
+        System.out.println("\n\n\t\t\t\t\t=== Engage Employee ===");
 
         System.out.println("ID : \t Salary:");
 
@@ -1597,27 +1659,27 @@ public class City {
 
     static void buildHotel(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n=== Build Hotel ===\n");
+        System.out.println("\n\n\t\t\t\t\t=== Build Hotel ===\n");
 
         System.out.print("Enter hotel name : ");
         String hotelName = sc.nextLine();
-        System.out.println("++++  " + hotelName);
+//        System.out.println("++++  " + hotelName);
         System.out.println();
 
         System.out.print("Enter address of this hotel : ");
         String address = sc.nextLine();
-        System.out.println("++++  " + address);
+//        System.out.println("++++  " + address);
 
         System.out.println();
 
         System.out.print("Enter number of stars : ");
         int stars = sc.nextInt();
-        System.out.println("++++  " + stars);
+//        System.out.println("++++  " + stars);
         System.out.println();
 
         System.out.print("Enter number of rooms (each room = 150 $) : ");
         int rooms = sc.nextInt() ;
-        System.out.println("++++  " + rooms);
+//        System.out.println("++++  " + rooms);
         System.out.println();
 
         System.out.print("Enter number of employees (each employee = 30 $) :  ");
@@ -1638,7 +1700,9 @@ public class City {
             if (choice2.equals("y")) {
                 Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,employees );
                 total_money -= finalPrice ;
+                System.out.println("-----");
                 System.out.println("Done");
+                System.out.println("-----");
                 showMoney();
             }
             else{
@@ -1654,7 +1718,7 @@ public class City {
 
     static void build_Room_In_Hotel(){
         Scanner sc  = new Scanner(System.in);
-        System.out.println("\n\n=== Build rooms in hotel ===");
+        System.out.println("\n\n\t\t\t\t\t=== Build rooms in hotel ===\n");
         int counter = 1 ;
         System.out.println("number of hotel \t max number of rooms \t number of builded rooms");
         for (Hotel a : Hotel.getHotelsList()){
@@ -1662,9 +1726,9 @@ public class City {
             counter++;
         }
 
-        System.out.print("Enter number of hotel : ");
+        System.out.print("\nEnter number of hotel : ");
         int numHotel = sc.nextInt();
-        System.out.println("\n +++ Build a room for hotel " + numHotel + " +++");
+        System.out.println("\n\n\t\t\t\t\t=== Build a room for hotel " + numHotel + " ===\n");
 
         System.out.print("Enter room number : ");
         int roomNumber = sc.nextInt();
@@ -1690,7 +1754,9 @@ public class City {
 
         if (confirm.equals("y")){
             Hotel.getHotelsList().get(numHotel-1).addRoom(roomNumber , beds , roomArea , fee);
+            System.out.println("-----");
             System.out.println("\nDone");
+            System.out.println("-----");
         }
         else
             System.out.println("\nCanceled");
