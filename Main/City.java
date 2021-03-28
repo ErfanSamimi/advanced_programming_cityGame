@@ -3,6 +3,7 @@ package Main;
 import Main.Building.*;
 import Main.Vehicles.*;
 
+import java.lang.annotation.Target;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -55,6 +56,25 @@ public class City {
         if (choice == 6)
             showStatus();
     }
+
+    static void showMoney(){
+        System.out.println("\n+++ You have " + total_money + " $\n");
+    }
+
+    static void addPeople(int number_of_people , String job , int salary ){
+
+        for (int i=0 ; i< number_of_people ; i++){
+
+            Random rand = new Random();
+            int ID = rand.nextInt(701);
+            while (!Person.uniqID(ID)) {
+                ID = rand.nextInt();
+            }
+            Person newPerson = new Person(job, salary, ID);
+        }
+    }
+
+    //========================================================================================
 
     static void showStatus(){
         System.out.println("\n\n=== Show Status === \n");
@@ -321,22 +341,6 @@ public class City {
             mainMenu();
     }
 
-    static void showMoney(){
-        System.out.println("\n+++ You have " + total_money + " $\n");
-    }
-
-    static void addPeople(int number_of_people , String job , int salary ){
-
-        for (int i=0 ; i< number_of_people ; i++){
-
-            Random rand = new Random();
-            int ID = rand.nextInt(701);
-            while (!Person.uniqID(ID)) {
-                ID = rand.nextInt();
-            }
-            Person newPerson = new Person(job, salary, ID);
-        }
-    }
 
     //=======================================================================================
 
@@ -1432,6 +1436,161 @@ public class City {
         total_money -= Person.find_Person_from_ID( ID ).getSalary();
         showMoney();
         mainMenu();
+    }
+
+    static void engageEmployee(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\n\n=== Engage Employee ===");
+
+        System.out.println("ID : \t Salary:");
+
+        for (Person ap : Person.getPeopleList()){
+            if(ap.getJob().equals("employee") && ap.getHired() == false){
+                System.out.println(ap.getID() + "\t\t\t " + ap.getSalary() );
+            }
+        }
+        System.out.println("\n** Completed\n");
+        System.out.print("Enter ID of your choice : ");
+        int ID = sc.nextInt();
+
+        System.out.println(" 1-Airport \n 2-Bus Terminal \n 3-Hotel \n 4-Shipping Port \n 5-Train Station");
+        System.out.print("\n Engage employee for : ");
+        int employeeFor = sc.nextInt();
+
+        if (employeeFor == 1 ){
+
+            System.out.println("\n\n=== Engage Employee For Airport ===\n");
+
+            int counter = 1;
+            System.out.println("Number : \t Airplane name : \t Maximum number of employee : \t Number of hired employees :  ");
+            for (Airport a : Airport.getAirportsList()){
+                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                counter ++ ;
+            }
+            System.out.print("\nEnter number of airplane you want hire employee for that : ");
+            int numberAirport = sc.nextInt();
+
+            if(Airport.getAirportsList().get(numberAirport-1).getNumber_of_hired_employees() < Airport.getAirportsList().get(numberAirport-1).getNumber_of_employees() ){
+                Person.engage(ID);
+                Airport.getAirportsList().get(numberAirport-1).addEmployee( Person.find_Person_from_ID(ID));
+                total_money -= Person.find_Person_from_ID( ID ).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                System.out.println("You cant engage an employee for this airport ! ");
+                mainMenu();
+            }
+        }
+
+
+        else if (employeeFor == 2){
+
+            System.out.println("\n\n=== Engage Employee For Bus Terminal ===\n");
+
+            int counter = 1;
+            System.out.println("Number : \t Bus terminal name : \t Maximum number of employee : \t Number of hired employees :  ");
+            for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
+                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                counter ++ ;
+            }
+            System.out.print("\nEnter number of bus terminal you want hire employee for that : ");
+            int numberBusTerminal = sc.nextInt();
+
+            if(Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).getNumber_of_hired_employees() < Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).getNumber_of_employees() ){
+                Person.engage(ID);
+                Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).addEmployee( Person.find_Person_from_ID(ID));
+                total_money -= Person.find_Person_from_ID( ID ).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                System.out.println("You cant engage an employee for this bus terminal ! ");
+                mainMenu();
+            }
+
+        }
+
+
+        else if (employeeFor == 3 ){
+
+            System.out.println("\n\n=== Engage Employee For Hotel ===\n");
+
+            int counter = 1;
+            System.out.println("Number : \t Hotel name : \t Maximum number of employee : \t Number of hired employees :  ");
+            for (Hotel a : Hotel.getHotelsList()){
+                System.out.println(counter + "\t\t\t" + a.getHotelName() + "\t\t\t\t" + a.getNumber_of_Employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_Employees());
+                counter ++ ;
+            }
+            System.out.print("\nEnter number of hotel you want hire employee for that : ");
+            int numberHotel = sc.nextInt();
+
+            if(Hotel.getHotelsList().get(numberHotel-1).getNumber_of_hired_Employees() < Hotel.getHotelsList().get(numberHotel-1).getNumber_of_Employees() ){
+                Person.engage(ID);
+                Hotel.getHotelsList().get(numberHotel-1).addEmployee( Person.find_Person_from_ID(ID));
+                total_money -= Person.find_Person_from_ID( ID ).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                System.out.println("You cant engage an employee for this hotel ! ");
+                mainMenu();
+            }
+        }
+
+
+        else if (employeeFor == 4 ) {
+            System.out.println("\n\n=== Engage Employee For Shipping Port ===\n");
+
+            int counter = 1;
+            System.out.println("Number : \t Shipping port name : \t Maximum number of employee : \t Number of hired employees :  ");
+            for (ShippingPort a : ShippingPort.getShippingPortsList()){
+                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                counter ++ ;
+            }
+            System.out.print("\nEnter number of Shipping port you want hire employee for that : ");
+            int numberShippingPort = sc.nextInt();
+
+            if(ShippingPort.getShippingPortsList().get(numberShippingPort-1).getNumber_of_hired_employees() < ShippingPort.getShippingPortsList().get(numberShippingPort-1).getNumber_of_employees() ){
+                Person.engage(ID);
+                ShippingPort.getShippingPortsList().get(numberShippingPort-1).addEmployee( Person.find_Person_from_ID(ID));
+                total_money -= Person.find_Person_from_ID( ID ).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                System.out.println("You cant engage an employee for this shipping port ! ");
+                mainMenu();
+            }
+        }
+
+
+        else if (employeeFor == 5){
+
+            System.out.println("\n\n=== Engage Employee For Train Station ===\n");
+
+            int counter = 1;
+            System.out.println("Number : \t Train station name : \t Maximum number of employee : \t Number of hired employees :  ");
+            for (TrainStation a : TrainStation.getTrainStationsList()){
+                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                counter ++ ;
+            }
+            System.out.print("\nEnter number of train station you want hire employee for that : ");
+            int numberTrainStation= sc.nextInt();
+
+            if(TrainStation.getTrainStationsList().get(numberTrainStation-1).getNumber_of_hired_employees() < TrainStation.getTrainStationsList().get(numberTrainStation-1).getNumber_of_employees() ){
+                Person.engage(ID);
+                TrainStation.getTrainStationsList().get(numberTrainStation-1).addEmployee( Person.find_Person_from_ID(ID));
+                total_money -= Person.find_Person_from_ID( ID ).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                System.out.println("You cant engage an employee for this Train Station ! ");
+                mainMenu();
+            }
+        }
+
     }
 
     //==============================================================

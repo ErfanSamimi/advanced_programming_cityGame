@@ -11,7 +11,7 @@ public class Hotel {
     private int stars ;
     private int number_of_rooms ;
     private int builtRooms = 0 ;
-    private int number_of_workers ;
+    private int number_of_employees ;
 
     private ArrayList<Room> roomList = new ArrayList<Room>() ;
     private static ArrayList<Hotel> hotelsList = new ArrayList<Hotel>();
@@ -23,10 +23,10 @@ public class Hotel {
 
     //======================================================================
 
-    public Hotel(String hotelName, String address, int stars, int number_of_rooms, int number_of_workers){
+    public Hotel(String hotelName, String address, int stars, int number_of_rooms, int number_of_employees){
         this.hotelName = hotelName ;
-        this.buildCost =(number_of_rooms*150) + (number_of_workers*30 );
-        this.number_of_workers = number_of_workers ;
+        this.buildCost =(number_of_rooms*150) + (number_of_employees*30 );
+        this.number_of_employees = number_of_employees ;
         this.address = address ;
         this.stars = stars ;
         this.number_of_rooms = number_of_rooms;
@@ -64,13 +64,26 @@ public class Hotel {
         return this.hotelName;
     }
 
+    public int getNumber_of_Employees(){
+        return number_of_employees;
+    }
+
+    public int getNumber_of_hired_Employees(){
+        return employees.size();
+    }
+
+    public void addEmployee(Person empl){
+        employees.add(empl);
+    }
+
+
     public void showInfo(){
         System.out.println("Hotel name : " + hotelName);
         System.out.println("Address : " + address);
         System.out.println("Number of stars : " + stars);
         System.out.println("Maximum number of hotel rooms : " + number_of_rooms);
         System.out.println("Number of built rooms : " + builtRooms);
-        System.out.println("Maximum number of employees : " + number_of_workers);
+        System.out.println("Maximum number of employees : " + number_of_employees);
         System.out.println("Number of hired employees : " + employees.size());
 
         System.out.println("\n===================================================================\n");

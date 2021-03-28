@@ -57,6 +57,18 @@ public class TrainStation extends Terminal{
         return terminalName ;
     }
 
+    public void addEmployee(Person emp){
+        super.setEmployees(emp);
+    }
+
+    public int getNumber_of_employees(){
+        return number_of_workers;
+    }
+
+    public int getNumber_of_hired_employees(){
+        return super.getEmployees().size();
+    }
+
     public void showInfo(){
         System.out.println("Input rails " + inputRails);
         System.out.println("Output rails " + outputRails);

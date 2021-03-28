@@ -83,6 +83,18 @@ public class Airport extends Terminal {
         flightAttendants.add(flight_attendant);
     }
 
+    public void addEmployee(Person emp){
+        super.setEmployees(emp);
+    }
+
+    public int getNumber_of_employees(){
+        return number_of_workers;
+    }
+
+    public int getNumber_of_hired_employees(){
+        return super.getEmployees().size();
+    }
+
     public void showInfo(){
         System.out.println("International : " + international_Airport);
         System.out.println("Runways : " + number_of_runways);
