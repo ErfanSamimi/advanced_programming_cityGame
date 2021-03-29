@@ -86,7 +86,7 @@ public class Hotel {
         System.out.println("Maximum number of employees : " + number_of_employees);
         System.out.println("Number of hired employees : " + employees.size());
 
-        System.out.println("\n===================================================================\n");
+        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 
 }

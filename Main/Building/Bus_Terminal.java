@@ -85,7 +85,7 @@ public class Bus_Terminal extends Terminal{
         System.out.println("Number of hired employees : " + super.getEmployees().size());
         System.out.println("Number of drivers : " + drivers.size());
 
-        System.out.println("\n===================================================================\n");
+        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 
 }

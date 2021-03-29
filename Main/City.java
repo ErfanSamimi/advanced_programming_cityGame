@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class City {
-    static int total_money = 1000000000 ;
+    static int total_money = 10000 ;
     public static void main (String [] args){
 
         addPeople(2 , "pilot" , 70);
@@ -70,7 +70,7 @@ public class City {
             Random rand = new Random();
             int ID = rand.nextInt(701);
             while (!Person.uniqID(ID)) {
-                ID = rand.nextInt();
+                ID = rand.nextInt(701);
             }
             Person newPerson = new Person(job, salary, ID);
         }
@@ -164,7 +164,7 @@ public class City {
         else if (choice == 2 ){
             int counter = 1 ;
 
-            System.out.println("Number : \t Airport name " );
+            System.out.println("Number : \t Airport name : " );
             for (Airport a : Airport.getAirportsList()){
                 System.out.println(counter + "\t\t\t\t" + a.getName());
                 counter++;
@@ -204,7 +204,7 @@ public class City {
         else if (choice == 2 ){
             int counter = 1 ;
 
-            System.out.println("Number : \t Bus terminal name " );
+            System.out.println("Number : \t Bus terminal name :" );
             for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
                 System.out.println(counter + "\t\t\t\t\t" + a.getName());
                 counter++;
@@ -324,7 +324,7 @@ public class City {
         else if (choice == 2 ){
             int counter = 1 ;
 
-            System.out.println("Number : \t Train station name " );
+            System.out.println("Number : \t Train station name :" );
             for (TrainStation a : TrainStation.getTrainStationsList()){
                 System.out.println(counter + "\t\t\t\t\t" + a.getName());
                 counter++;
@@ -481,7 +481,7 @@ public class City {
          int number_buses = sc.nextInt();
          System.out.println();
 
-         System.out.println("Enter number of employees (30 $ for each employee): ");
+         System.out.print("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
          int number_employees = sc.nextInt();
          System.out.println();
@@ -551,7 +551,7 @@ public class City {
         int number_ships = sc.nextInt();
         System.out.println();
 
-        System.out.println("Enter number of employees (30 $ for each employee): ");
+        System.out.print("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
         int number_employees = sc.nextInt();
         System.out.println();
@@ -625,7 +625,7 @@ public class City {
         int number_trains = sc.nextInt();
         System.out.println();
 
-        System.out.println("Enter number of employees (30 $ for each employee): ");
+        System.out.print("Enter number of employees (30 $ for each employee): ");
 //        sc.nextLine();
         int number_employees = sc.nextInt();
         System.out.println();
@@ -1526,7 +1526,7 @@ public class City {
             int counter = 1;
             System.out.println("Number : \t Airplane name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (Airport a : Airport.getAirportsList()){
-                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of airplane you want hire employee for that : ");
@@ -1553,7 +1553,7 @@ public class City {
             int counter = 1;
             System.out.println("Number : \t Bus terminal name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
-                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of bus terminal you want hire employee for that : ");
@@ -1581,7 +1581,7 @@ public class City {
             int counter = 1;
             System.out.println("Number : \t Hotel name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (Hotel a : Hotel.getHotelsList()){
-                System.out.println(counter + "\t\t\t" + a.getHotelName() + "\t\t\t\t" + a.getNumber_of_Employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_Employees());
+                System.out.println(counter + "\t\t\t   " + a.getHotelName() + "\t\t\t\t\t" + a.getNumber_of_Employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_Employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of hotel you want hire employee for that : ");
@@ -1607,7 +1607,7 @@ public class City {
             int counter = 1;
             System.out.println("Number : \t Shipping port name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (ShippingPort a : ShippingPort.getShippingPortsList()){
-                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of Shipping port you want hire employee for that : ");
@@ -1634,7 +1634,7 @@ public class City {
             int counter = 1;
             System.out.println("Number : \t Train station name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (TrainStation a : TrainStation.getTrainStationsList()){
-                System.out.println(counter + "\t\t\t" + a.getName() + "\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of train station you want hire employee for that : ");

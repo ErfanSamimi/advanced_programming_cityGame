@@ -12,7 +12,7 @@ abstract public class Terminal {
     int area ;
     int number_of_vehicles ;
     int number_of_employees ;
-    private static ArrayList<Person> employees = new ArrayList<Person>();
+    private  ArrayList<Person> employees = new ArrayList<Person>();
 
     //=============================================================================================
 

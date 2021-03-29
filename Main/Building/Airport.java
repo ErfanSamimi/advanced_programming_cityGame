@@ -111,6 +111,6 @@ public class Airport extends Terminal {
         System.out.println("Number of pilots : " + pilots.size());
         System.out.println("Number of flight attendants : " + flightAttendants.size());
 
-        System.out.println("\n===================================================================\n");
+        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 }

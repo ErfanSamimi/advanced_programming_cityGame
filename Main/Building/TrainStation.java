@@ -84,7 +84,7 @@ public class TrainStation extends Terminal{
         System.out.println("Number of locomotive drivers : " + locomotiveDrivers.size());
 
 
-        System.out.println("\n===================================================================\n");
+        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 
 }

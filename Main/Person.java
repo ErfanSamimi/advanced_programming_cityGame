@@ -80,7 +80,10 @@ public class Person {
         for (Person a : peopleList){
             if(a.ID == ID) {
                 a.hired = true;
+                System.out.println("---------------------------------------------------------------------------");
                 System.out.println("You engaged person " + ID + " as " + a.job + " with " + a.salary + "$");
+                System.out.println("---------------------------------------------------------------------------");
+
             }
         }
 
