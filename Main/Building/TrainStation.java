@@ -11,7 +11,6 @@ public class TrainStation extends Terminal{
     private ArrayList<Person> locomotiveDrivers = new ArrayList<Person>();
     private int inputRails ;
     private int outputRails ;
-    private int number_of_bought_vehicles = 0;
 
 
     //===============================================================
@@ -26,49 +25,10 @@ public class TrainStation extends Terminal{
 
     //================================================================
 
-    public void addTrain(Train train){
-        trainList.add(train) ;
-        System.out.println("\nA Train added to " + this.terminalName + " Train Station . ");
-        number_of_bought_vehicles ++ ;
+    public static ArrayList<TrainStation> getTrainStationsList(){
+        return trainStationsList ;
     }
 
-    public int max_number_of_vehicle (){
-        return this.number_of_vehicles;
-    }
-
-    public int getNumber_of_bought_vehicles(){
-        return this.number_of_bought_vehicles ;
-    }
-
-    ArrayList<Train> getTrainList (){
-        return  trainList ;
-    }
-
-    public static ArrayList<TrainStation> getTrainStationsList (){ return trainStationsList ; }
-
-    public int numberOfHiredLocomotiveDriver(){
-        return locomotiveDrivers.size();
-    }
-
-    public void addLocomotiveDriver(Person driver){
-        locomotiveDrivers.add(driver);
-    }
-
-    public String getName(){
-        return terminalName ;
-    }
-
-    public void addEmployee(Person emp){
-        super.setEmployees(emp);
-    }
-
-    public int getNumber_of_employees(){
-        return number_of_employees;
-    }
-
-    public int getNumber_of_hired_employees(){
-        return super.getEmployees().size();
-    }
 
     public void showInfo(){
         System.out.println("Input rails " + inputRails);
@@ -78,9 +38,9 @@ public class TrainStation extends Terminal{
         System.out.println("Address : " + address );
         System.out.println("Area : " + area);
         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
-        System.out.println("Number of bought vehicles : " + number_of_bought_vehicles);
+        System.out.println("Number of bought vehicles : " + getNumber_of_bought_vehicles());
         System.out.println("Maximum number of  employees : " + number_of_employees);
-        System.out.println("Number of hired employees : " + super.getEmployees().size());
+        System.out.println("Number of hired employees : " + number_of_hired_employees());
         System.out.println("Number of locomotive drivers : " + locomotiveDrivers.size());
 
 

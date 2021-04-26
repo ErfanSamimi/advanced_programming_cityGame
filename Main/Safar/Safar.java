@@ -11,17 +11,18 @@ public class Safar implements Comparable<Safar> {
     private Terminal startingTerminal;
     private Terminal destinationTerminal ;
     private ArrayList<Person> passengerList = new ArrayList<Person>();
-
     private Person driver ;
     private Vehicle vehicle;
-
     private String journeyID;
     private int journeyDay;
     private int journeyMonth;
     private int price ;
 
 
-    Safar (Terminal startingTerminal , Terminal destinationTerminal , ArrayList<Person> passengerList , Person driver , Vehicle vehicle , String journeyID , int journeyDay , int journeyMonth , int price ){
+    //=================================================================================================================
+
+
+    public Safar (Terminal startingTerminal , Terminal destinationTerminal , ArrayList<Person> passengerList , Person driver , Vehicle vehicle , String journeyID , int journeyDay , int journeyMonth , int price ){
         this.startingTerminal = startingTerminal ;
         this.destinationTerminal = destinationTerminal ;
         this. passengerList = passengerList ;
@@ -49,6 +50,14 @@ public class Safar implements Comparable<Safar> {
             return -1;
 
         return 0;
+    }
+
+    public void printINFO(){
+        System.out.println("Starting terminal name : " + startingTerminal.getTerminalName());
+        System.out.println("Destination terminal name : " + destinationTerminal.getTerminalName());
+        System.out.println("Journey id : " + journeyID);
+        System.out.println("Date : " + journeyID + " / " + journeyMonth);
+        System.out.println("-------------------------------------------------------------");
     }
 
 

@@ -16,11 +16,11 @@ public class City {
 
 
     private ArrayList<Person> personList = new ArrayList<Person>();
-    private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
-    private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
+//    private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
+//    private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
     private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
-    private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
-    private ArrayList<TrainStation> cityTrainStaionList = new ArrayList<TrainStation>();
+//    private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
+//    private ArrayList<TrainStation> cityTrainStaionList = new ArrayList<TrainStation>();
     private static ArrayList<City> citiesList = new ArrayList<City>();
 
 

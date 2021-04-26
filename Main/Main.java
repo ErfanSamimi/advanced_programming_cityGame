@@ -142,7 +142,7 @@ public class Main {
 
             System.out.println("Number : \t Airport name : " );
             for (Airport a : Airport.getAirportsList()){
-                System.out.println(counter + "\t\t\t\t" + a.getName());
+                System.out.println(counter + "\t\t\t\t" + a.getTerminalName());
                 counter++;
             }
 
@@ -182,7 +182,7 @@ public class Main {
 
             System.out.println("Number : \t Bus terminal name :" );
             for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
-                System.out.println(counter + "\t\t\t\t\t" + a.getName());
+                System.out.println(counter + "\t\t\t\t\t" + a.getTerminalName());
                 counter++;
             }
 
@@ -262,7 +262,7 @@ public class Main {
 
             System.out.println("Number : \t Shipping port name : " );
             for (ShippingPort a : ShippingPort.getShippingPortsList()){
-                System.out.println(counter + "\t\t\t\t\t" + a.getName());
+                System.out.println(counter + "\t\t\t\t\t" + a.getTerminalName());
                 counter++;
             }
 
@@ -302,7 +302,7 @@ public class Main {
 
             System.out.println("Number : \t Train station name :" );
             for (TrainStation a : TrainStation.getTrainStationsList()){
-                System.out.println(counter + "\t\t\t\t\t" + a.getName());
+                System.out.println(counter + "\t\t\t\t\t" + a.getTerminalName());
                 counter++;
             }
 
@@ -687,7 +687,7 @@ public class Main {
             System.out.println("Number : \t Shipping port name : \t Maximum number of vehicles : \t Number of bought vehicles : ");
             int counter = 1;
             for (ShippingPort a : ShippingPort.getShippingPortsList()) {
-                System.out.println(counter + "\t\t\t\t\t" + a.getName() +"\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
+                System.out.println(counter + "\t\t\t\t\t" + a.getTerminalName() +"\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
                 counter ++ ;
             }
 //            System.out.println("\n *** Completed ");
@@ -749,7 +749,7 @@ public class Main {
 
                 if (choice2.equals("y")) {
                     Boat newBoat = new Boat(distance, fuel_type, min_depth, capacity, ID, company);
-                    ShippingPort.getShippingPortsList().get(number_shippingPort - 1).addBoat(newBoat);
+                    ShippingPort.getShippingPortsList().get(number_shippingPort - 1).addVehicle(newBoat);
                     total_money -= finalPrice;
                     System.out.println("-----");
                     System.out.println("Done");
@@ -843,7 +843,7 @@ public class Main {
 
                 if (choice2.equals("y")) {
                     Bus newBus = new Bus(classType, kpl, capacity, fuel_type, speed, capacity, company, ID);
-                    Bus_Terminal.getBus_terminals_list().get(number_busTerminal-1).addBus(newBus);
+                    Bus_Terminal.getBus_terminals_list().get(number_busTerminal-1).addVehicle(newBus);
                     total_money -= finalPrice;
                     System.out.println("-----");
                     System.out.println("Done");
@@ -938,7 +938,7 @@ public class Main {
 
                 if (choice2.equals("y")) {
                     CargoPlane newCargoPlane = new CargoPlane(weight, height, runway, capacity, ID, company);
-                    Airport.getAirportsList().get(number_airport-1).addCargoAirplane(newCargoPlane);
+                    Airport.getAirportsList().get(number_airport-1).addVehicle( newCargoPlane);
                     total_money -= finalPrice;
                     System.out.println("-----");
                     System.out.println("Done");
@@ -1034,7 +1034,7 @@ public class Main {
 
                 if (choice2.equals("y")) {
                     Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, classType, height, runway, capacity, ID, company);
-                    Airport.getAirportsList().get(number_airport-1).addPassengerAirplane(newPassengerAirplane);
+                    Airport.getAirportsList().get(number_airport-1).addVehicle(newPassengerAirplane);
                     total_money -= finalPrice;
                     System.out.println("-----");
                     System.out.println("Done");
@@ -1129,7 +1129,7 @@ public class Main {
 
                 if (choice2.equals("y")) {
                     Ship newShip = new Ship(classType, length, fuel_type, min_depth, capacity, ID, company);
-                    ShippingPort.getShippingPortsList().get(number_shippingPort - 1).addShip(newShip);
+                    ShippingPort.getShippingPortsList().get(number_shippingPort - 1).addVehicle(newShip);
                     total_money -= finalPrice;
                     System.out.println("-----");
                     System.out.println("Done");
@@ -1232,7 +1232,7 @@ public class Main {
 
                 if (choice2.equals("y")) {
                     Train newTrain = new Train(wagons, stars, fuel_capacity, fuel_type, speed, capacity, company, ID);
-                    TrainStation.getTrainStationsList().get(number_trainStation - 1).addTrain(newTrain);
+                    TrainStation.getTrainStationsList().get(number_trainStation - 1).addVehicle(newTrain);
                     total_money -= finalPrice;
                     System.out.println("-----");
                     System.out.println("Done");
@@ -1299,7 +1299,7 @@ public class Main {
             int counter = 1;
             System.out.println("number : \t number of hired pilots : ");
             for (Airport a : Airport.getAirportsList()) {
-                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredPilots());
+                System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
             }
 //        System.out.println("\n** Completed\n");
@@ -1308,7 +1308,7 @@ public class Main {
 
 
             Person.engage(ID);
-            Airport.getAirportsList().get(numberAirplane - 1).addPilot(Person.find_Person_from_ID(ID));
+            Airport.getAirportsList().get(numberAirplane - 1).add_Driver(Person.find_Person_from_ID(ID));
             total_money -= Person.find_Person_from_ID(ID).getSalary();
             showMoney();
             mainMenu();
@@ -1340,7 +1340,7 @@ public class Main {
             int counter = 1;
             System.out.println("number : \t number of hired pilots : ");
             for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()) {
-                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredDrivers());
+                System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
             }
             System.out.println("\n** Completed\n");
@@ -1349,7 +1349,7 @@ public class Main {
 
 
             Person.engage(ID);
-            Bus_Terminal.getBus_terminals_list().get(numberBusTerminal - 1).addDriver(Person.find_Person_from_ID(ID));
+            Bus_Terminal.getBus_terminals_list().get(numberBusTerminal - 1).add_Driver(Person.find_Person_from_ID(ID));
             ;
             total_money -= Person.find_Person_from_ID(ID).getSalary();
             showMoney();
@@ -1380,7 +1380,7 @@ public class Main {
             int counter = 1;
             System.out.println("number : \t number of hired pilots : ");
             for (ShippingPort a : ShippingPort.getShippingPortsList()) {
-                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredSailor());
+                System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
             }
             System.out.println("\n** Completed\n");
@@ -1389,7 +1389,7 @@ public class Main {
 
 
             Person.engage(ID);
-            ShippingPort.getShippingPortsList().get(numberShppingPort - 1).addSailor(Person.find_Person_from_ID(ID));
+            ShippingPort.getShippingPortsList().get(numberShppingPort - 1).add_Driver(Person.find_Person_from_ID(ID));
             ;
             total_money -= Person.find_Person_from_ID(ID).getSalary();
             showMoney();
@@ -1420,7 +1420,7 @@ public class Main {
             int counter = 1;
             System.out.println("number : \t number of hired pilots : ");
             for (TrainStation a : TrainStation.getTrainStationsList()) {
-                System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredLocomotiveDriver());
+                System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
             }
             System.out.println("\n** Completed\n");
@@ -1429,7 +1429,7 @@ public class Main {
 
 
             Person.engage(ID);
-            TrainStation.getTrainStationsList().get(numberTrainStation - 1).addLocomotiveDriver(Person.find_Person_from_ID(ID));
+            TrainStation.getTrainStationsList().get(numberTrainStation - 1).add_Driver(Person.find_Person_from_ID(ID));
             ;
             total_money -= Person.find_Person_from_ID(ID).getSalary();
             showMoney();
@@ -1507,15 +1507,15 @@ public class Main {
             int counter = 1;
             System.out.println("Number : \t Airplane name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (Airport a : Airport.getAirportsList()){
-                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getTerminalName() + "\t\t\t\t\t" + a.max_number_of_employees() + "\t\t\t\t\t\t\t\t" + a.number_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of airplane you want hire employee for that : ");
             int numberAirport = sc.nextInt();
 
-            if(Airport.getAirportsList().get(numberAirport-1).getNumber_of_hired_employees() < Airport.getAirportsList().get(numberAirport-1).getNumber_of_employees() ){
+            if(Airport.getAirportsList().get(numberAirport-1).number_of_hired_employees() < Airport.getAirportsList().get(numberAirport-1).number_of_hired_employees() ){
                 Person.engage(ID);
-                Airport.getAirportsList().get(numberAirport-1).addEmployee( Person.find_Person_from_ID(ID));
+                Airport.getAirportsList().get(numberAirport-1).addEmployees( Person.find_Person_from_ID(ID));
                 total_money -= Person.find_Person_from_ID( ID ).getSalary();
                 showMoney();
                 mainMenu();
@@ -1534,15 +1534,15 @@ public class Main {
             int counter = 1;
             System.out.println("Number : \t Bus terminal name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (Bus_Terminal a : Bus_Terminal.getBus_terminals_list()){
-                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getTerminalName() + "\t\t\t\t\t\t" + a.max_number_of_employees() + "\t\t\t\t\t\t\t\t\t" + a.number_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of bus terminal you want hire employee for that : ");
             int numberBusTerminal = sc.nextInt();
 
-            if(Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).getNumber_of_hired_employees() < Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).getNumber_of_employees() ){
+            if(Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).number_of_hired_employees() < Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).max_number_of_employees() ){
                 Person.engage(ID);
-                Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).addEmployee( Person.find_Person_from_ID(ID));
+                Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).addEmployees( Person.find_Person_from_ID(ID));
                 total_money -= Person.find_Person_from_ID( ID ).getSalary();
                 showMoney();
                 mainMenu();
@@ -1588,15 +1588,15 @@ public class Main {
             int counter = 1;
             System.out.println("Number : \t Shipping port name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (ShippingPort a : ShippingPort.getShippingPortsList()){
-                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getTerminalName() + "\t\t\t\t\t\t" + a.max_number_of_employees() + "\t\t\t\t\t\t\t\t" + a.number_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of Shipping port you want hire employee for that : ");
             int numberShippingPort = sc.nextInt();
 
-            if(ShippingPort.getShippingPortsList().get(numberShippingPort-1).getNumber_of_hired_employees() < ShippingPort.getShippingPortsList().get(numberShippingPort-1).getNumber_of_employees() ){
+            if(ShippingPort.getShippingPortsList().get(numberShippingPort-1).number_of_hired_employees() < ShippingPort.getShippingPortsList().get(numberShippingPort-1).max_number_of_employees() ){
                 Person.engage(ID);
-                ShippingPort.getShippingPortsList().get(numberShippingPort-1).addEmployee( Person.find_Person_from_ID(ID));
+                ShippingPort.getShippingPortsList().get(numberShippingPort-1).addEmployees( Person.find_Person_from_ID(ID));
                 total_money -= Person.find_Person_from_ID( ID ).getSalary();
                 showMoney();
                 mainMenu();
@@ -1615,15 +1615,15 @@ public class Main {
             int counter = 1;
             System.out.println("Number : \t Train station name : \t Maximum number of employee : \t Number of hired employees :  ");
             for (TrainStation a : TrainStation.getTrainStationsList()){
-                System.out.println(counter + "\t\t\t\t" + a.getName() + "\t\t\t\t\t\t\t" + a.getNumber_of_employees() + "\t\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_employees());
+                System.out.println(counter + "\t\t\t\t" + a.getTerminalName() + "\t\t\t\t\t\t\t" + a.max_number_of_employees() + "\t\t\t\t\t\t\t\t\t" + a.number_of_hired_employees());
                 counter ++ ;
             }
             System.out.print("\nEnter number of train station you want hire employee for that : ");
             int numberTrainStation= sc.nextInt();
 
-            if(TrainStation.getTrainStationsList().get(numberTrainStation-1).getNumber_of_hired_employees() < TrainStation.getTrainStationsList().get(numberTrainStation-1).getNumber_of_employees() ){
+            if(TrainStation.getTrainStationsList().get(numberTrainStation-1).number_of_hired_employees() < TrainStation.getTrainStationsList().get(numberTrainStation-1).max_number_of_employees() ){
                 Person.engage(ID);
-                TrainStation.getTrainStationsList().get(numberTrainStation-1).addEmployee( Person.find_Person_from_ID(ID));
+                TrainStation.getTrainStationsList().get(numberTrainStation-1).addEmployees( Person.find_Person_from_ID(ID));
                 total_money -= Person.find_Person_from_ID( ID ).getSalary();
                 showMoney();
                 mainMenu();
