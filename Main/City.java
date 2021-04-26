@@ -10,9 +10,12 @@ import java.util.Scanner;
 
 public class City {
 
-    String cityName;
+    private int budget;
+
+    private String cityName;
 
 
+    private ArrayList<Person> personList = new ArrayList<Person>();
     private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
     private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
     private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
@@ -29,7 +32,7 @@ public class City {
 
 
 
-    static void main (){
+    void main (){
 
         addPeople(2 , "pilot" , 70);
         addPeople(3 , "pilot" , 80);
@@ -49,7 +52,7 @@ public class City {
 
 
 
-    static void addPeople(int number_of_people , String job , int salary ){
+    void addPeople(int number_of_people , String job , int salary ){
 
         for (int i=0 ; i< number_of_people ; i++){
 
@@ -59,6 +62,7 @@ public class City {
                 ID = rand.nextInt(701);
             }
             Person newPerson = new Person(job, salary, ID);
+            this.personList.add(newPerson);
         }
     }
 
@@ -84,6 +88,14 @@ public class City {
 
      static ArrayList<City> getCitiesList (){
         return citiesList;
+    }
+
+    int getPopulation(){
+        return this.personList.size();
+    }
+
+    int getBudget(){
+        return this.budget;
     }
 
 
