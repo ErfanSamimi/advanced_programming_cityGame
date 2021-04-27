@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.City;
 import Main.Person;
 import Main.Vehicles.Train;
 
@@ -15,8 +16,8 @@ public class TrainStation extends Terminal{
 
     //===============================================================
 
-    public TrainStation (int inputRails , int outputRails , String cityName , String terminalName , String address , int area , int number_of_vehicles , int  number_of_employees  ){
-        super(1100, cityName , terminalName , address ,area ,number_of_vehicles , number_of_employees);
+    public TrainStation (int inputRails , int outputRails , City city, String terminalName , String address , int area , int number_of_vehicles , int  number_of_employees  ){
+        super(1100, city , terminalName , address ,area ,number_of_vehicles , number_of_employees);
 
         this.inputRails = inputRails ;
         this.outputRails = outputRails ;
@@ -33,7 +34,7 @@ public class TrainStation extends Terminal{
     public void showInfo(){
         System.out.println("Input rails " + inputRails);
         System.out.println("Output rails " + outputRails);
-        System.out.println("City name : " + cityName);
+        System.out.println("City name : " + city.getCityName());
         System.out.println("Airport name : " + terminalName);
         System.out.println("Address : " + address );
         System.out.println("Area : " + area);

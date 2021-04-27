@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.City;
 import Main.Person;
 import Main.Safar.Safar;
 import Main.Safar.Safarable;
@@ -11,7 +12,7 @@ import java.util.Collections;
 
 abstract public class Terminal implements Safarable {
     int build_price ;
-    String cityName ;
+    City city ;
     String terminalName ;
     String address ;
     int area ;
@@ -28,10 +29,10 @@ abstract public class Terminal implements Safarable {
 
     //=============================================================================================
 
-    Terminal(int build_price , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
+    Terminal(int build_price , City city, String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
         this.build_price = build_price ;
         this.number_of_employees = number_of_employees ;
-        this.cityName = cityName ;
+        this.city = city ;
         this.terminalName = terminalName ;
         this.address = address ;
         this.area = area ;
@@ -51,7 +52,7 @@ abstract public class Terminal implements Safarable {
         return employees.size();
     }
 
-    ArrayList<Vehicle> getVehiclesList(){
+    public ArrayList<Vehicle> getVehiclesList(){
         return this.vehiclesList;
     }
 
@@ -102,9 +103,20 @@ abstract public class Terminal implements Safarable {
         startingTerminal.startingTerminalOfJourneys.add(newSafar);
         destinationTerminal.destinationTerminalOfJourneys.add(newSafar);
 
-        //TODO delete passenger from starting city and add them to destination city
 
-        //TODO add price of journey to destination city budget
+        startingTerminal.city.getPersonList().remove(driver);
+        destinationTerminal.city.getPersonList().add(driver);
+
+
+        for ( Person a : passengerList){
+            if ( ! a.getHired() ){
+                startingTerminal.city.getPersonList().remove(a);
+                destinationTerminal.city.getPersonList().add(a);
+            }
+        }
+
+
+        startingTerminal.city.addBudget( journeyPrice( passengerList , vehicle) );
 
 
 
@@ -126,6 +138,22 @@ abstract public class Terminal implements Safarable {
                 sa.printINFO();
         }
     }
+
+    @Override
+    public int journeyPrice ( ArrayList<Person> passengerList , Vehicle vehicle){
+
+        int total_journey_price = 0 ;
+        int ticketPrice = vehicle.getTicketPrice();
+        for ( Person a : passengerList){
+
+            if ( ! a.getHired() )
+                total_journey_price +=ticketPrice;
+
+        }
+
+        return total_journey_price;
+    }
+
 
 
 

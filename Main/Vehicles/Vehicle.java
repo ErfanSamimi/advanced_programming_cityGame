@@ -10,6 +10,8 @@ public class Vehicle {
     private String ID ;
     private String name_builder_company ;
     private static ArrayList<String> ID_list = new ArrayList<String>();
+    private static int ticketPrice = 0;
+
     //==================================================
 
     Vehicle(int price , int capacity , String ID , String name_builder_company){
@@ -27,6 +29,10 @@ public class Vehicle {
 
 
 
+    }
+
+    public int getTicketPrice(){
+        return ticketPrice;
     }
 
 

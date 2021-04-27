@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.City;
 import Main.Person;
 import Main.Vehicles.Air_transport_vehicle;
 
@@ -11,7 +12,6 @@ public class Airport extends Terminal {
 
 
     private static ArrayList <Airport> airportsList = new ArrayList<Airport>();
-    private  ArrayList<Person> pilots = new ArrayList<Person>();
     private ArrayList<Person> flightAttendants = new ArrayList<Person>();
     private boolean international_Airport ;
     private int number_of_runways ;
@@ -19,8 +19,8 @@ public class Airport extends Terminal {
 
     //====================================================================
 
-    public Airport(boolean international_Airport, int number_of_runways, String cityName, String terminalName, String address, int area, int number_of_vehicles, int number_of_employees){
-        super(1400 + number_of_employees*30 ,cityName ,terminalName ,address , area ,number_of_vehicles, number_of_employees);
+    public Airport(boolean international_Airport, int number_of_runways, City city, String terminalName, String address, int area, int number_of_vehicles, int number_of_employees){
+        super(1400 + number_of_employees*30 ,city ,terminalName ,address , area ,number_of_vehicles, number_of_employees);
         this.international_Airport = international_Airport ;
         this.number_of_runways = number_of_runways ;
         airportsList.add(this);
@@ -43,7 +43,7 @@ public class Airport extends Terminal {
     public void showInfo(){
         System.out.println("International : " + international_Airport);
         System.out.println("Runways : " + number_of_runways);
-        System.out.println("City name : " + cityName);
+        System.out.println("City name : " + city.getCityName());
         System.out.println("Airport name : " + terminalName);
         System.out.println("Address : " + address );
         System.out.println("Area : " + area);
@@ -51,7 +51,7 @@ public class Airport extends Terminal {
         System.out.println("Number of bought vehicles : "  + getNumber_of_bought_vehicles() );
         System.out.println("Maximum number of  employees : " + number_of_employees);
         System.out.println("Number of hired employees : " + super.number_of_hired_employees());
-        System.out.println("Number of pilots : " + pilots.size());
+        System.out.println("Number of pilots : " + number_of_hired_drivers());
         System.out.println("Number of flight attendants : " + flightAttendants.size());
 
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");

@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.City;
 import Main.Person;
 import Main.Vehicles.Boat;
 import Main.Vehicles.Ship;
@@ -15,8 +16,8 @@ public class ShippingPort extends  Terminal {
     private int number_of_waterfront ;
 
     //==========================================
-     public ShippingPort ( int number_of_waterfront , String cityName , String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
-         super( 1000 + number_of_employees*30 , cityName , terminalName , address , area , number_of_vehicles , number_of_employees);
+     public ShippingPort (int number_of_waterfront , City city, String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
+         super( 1000 + number_of_employees*30 , city , terminalName , address , area , number_of_vehicles , number_of_employees);
          this.number_of_waterfront = number_of_waterfront ;
          shippingPortsList.add(this);
      }
@@ -51,7 +52,7 @@ public class ShippingPort extends  Terminal {
 
      public void showInfo(){
          System.out.println("Number of waterfronts :  " + number_of_waterfront);
-         System.out.println("City name : " + cityName);
+         System.out.println("City name : " + city.getCityName());
          System.out.println("Airport name : " + terminalName);
          System.out.println("Address : " + address );
          System.out.println("Area : " + area);

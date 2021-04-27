@@ -11,28 +11,44 @@ import java.util.Scanner;
 public class City {
 
     private int budget;
-
     private String cityName;
 
 
     private ArrayList<Person> personList = new ArrayList<Person>();
-//    private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
-//    private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
-    private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
-//    private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
-//    private ArrayList<TrainStation> cityTrainStaionList = new ArrayList<TrainStation>();
     private static ArrayList<City> citiesList = new ArrayList<City>();
 
+    //=================================================================================
 
-    City(String cityName){
+
+    private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
+    private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
+    private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
+    private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
+    private ArrayList<TrainStation> cityTrainStationList = new ArrayList<TrainStation>();
+
+    //=================================================================================
+
+    private ArrayList<Boat> boatsList = getBoatsList();
+    private ArrayList<Bus> busesList = getBusesList() ;
+    private ArrayList<CargoPlane> cargoPlanesList = getCargoPlanesList();
+    private ArrayList<Passenger_airplane> passenger_airplanesList = getPassenger_airplanesList();
+    private ArrayList<Ship> shipsList = getShipsList() ;
+    private ArrayList<Train> trainsList = getTrainsList();
+
+
+    //=================================================================================
+
+    City(String cityName , int budget){
+        this.budget = budget;
         this.cityName = cityName ;
+        addFirstPopulation();
         citiesList.add(this);
     }
 
+//=================================================================================
 
 
-
-    void main (){
+    void addFirstPopulation (){
 
         addPeople(2 , "pilot" , 70);
         addPeople(3 , "pilot" , 80);
@@ -51,7 +67,6 @@ public class City {
     }
 
 
-
     void addPeople(int number_of_people , String job , int salary ){
 
         for (int i=0 ; i< number_of_people ; i++){
@@ -65,6 +80,8 @@ public class City {
             this.personList.add(newPerson);
         }
     }
+
+    //=================================================================================
 
     void addAirport (Airport a){
         this.cityAirportList.add(a);
@@ -83,10 +100,12 @@ public class City {
     }
 
     void addTrainStation (TrainStation t){
-        this.cityTrainStaionList.add(t);
+        this.cityTrainStationList.add(t);
     }
 
-     static ArrayList<City> getCitiesList (){
+//=================================================================================
+
+    static ArrayList<City> getCitiesList (){
         return citiesList;
     }
 
@@ -94,8 +113,132 @@ public class City {
         return this.personList.size();
     }
 
+    public ArrayList<Person> getPersonList(){
+        return this.personList;
+    }
+
     int getBudget(){
         return this.budget;
+    }
+
+    public void addBudget( int value ){
+        this.budget += value ;
+    }
+
+    public String getCityName(){
+        return this.cityName;
+    }
+
+    //=================================================================================
+
+    ArrayList<Airport> getCityAirportList(){
+        return this.cityAirportList;
+    }
+
+    ArrayList<ShippingPort> getCityShippingPortList (){
+        return this.cityShippingPortList;
+    }
+
+    ArrayList<Bus_Terminal> getCityBusTerminalList(){
+        return cityBusTerminalList;
+    }
+
+    ArrayList<TrainStation> getCityTrainStationList(){
+        return cityTrainStationList;
+    }
+
+    ArrayList<Hotel> getCityHotelList(){
+        return cityHotelList;
+    }
+
+
+    //=================================================================================
+
+    ArrayList<Boat> getBoatsList (){
+        ArrayList <Boat> boats = new ArrayList<>();
+        for ( ShippingPort a : this.cityShippingPortList){
+            for ( Vehicle b : a.getVehiclesList()){
+                if (b instanceof Boat)
+                    boats.add((Boat) b);
+            }
+        }
+        this.boatsList = boats ;
+        return this.boatsList;
+    }
+
+    ArrayList<Bus> getBusesList (){
+        ArrayList <Bus> buses = new ArrayList<>();
+        for ( Bus_Terminal a : this.cityBusTerminalList){
+            for ( Vehicle b : a.getVehiclesList()){
+                if (b instanceof Bus)
+                    buses.add((Bus) b);
+            }
+        }
+        this.busesList = buses ;
+        return this.busesList ;
+    }
+
+    ArrayList<CargoPlane> getCargoPlanesList (){
+
+        ArrayList <CargoPlane> cargoPlanes = new ArrayList<>();
+        for ( Airport a : this.cityAirportList){
+            for ( Vehicle b : a.getVehiclesList()){
+                if (b instanceof CargoPlane)
+                    cargoPlanes.add((CargoPlane) b);
+            }
+        }
+        this.cargoPlanesList = cargoPlanes ;
+        return this.cargoPlanesList ;
+    }
+
+    ArrayList<Passenger_airplane> getPassenger_airplanesList (){
+
+        ArrayList <Passenger_airplane> passenger_airplanes = new ArrayList<>();
+        for ( Airport a : this.cityAirportList){
+            for ( Vehicle b : a.getVehiclesList()){
+                if (b instanceof Passenger_airplane)
+                    passenger_airplanes.add((Passenger_airplane) b);
+            }
+        }
+        this.passenger_airplanesList = passenger_airplanes ;
+        return this.passenger_airplanesList ;
+    }
+
+    ArrayList<Ship> getShipsList (){
+
+        ArrayList <Ship> ships = new ArrayList<>();
+        for ( ShippingPort a : this.cityShippingPortList){
+            for ( Vehicle b : a.getVehiclesList()){
+                if (b instanceof Ship)
+                    ships.add((Ship) b);
+            }
+        }
+        this.shipsList = ships ;
+        return this.shipsList ;
+    }
+
+    ArrayList<Train> getTrainsList (){
+
+        ArrayList <Train> trains = new ArrayList<>();
+        for ( TrainStation a : this.cityTrainStationList){
+            for ( Vehicle b : a.getVehiclesList()){
+                if (b instanceof Train)
+                    trains.add((Train) b);
+            }
+        }
+        this.trainsList = trains ;
+        return this.trainsList ;
+    }
+
+
+    void showInfo(){
+        System.out.println("City name : " + this.cityName);
+        System.out.println("City budget : " + this.budget);
+        System.out.println("Population : " + this.personList.size());
+        //TODO  Complete show info method in City.java
+
+
+        System.out.println("\n-------------------------\n");
     }
 
 

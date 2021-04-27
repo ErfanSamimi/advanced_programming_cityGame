@@ -1,5 +1,6 @@
 package Main.Building;
 
+import Main.City;
 import Main.Person;
 import Main.Vehicles.Bus;
 
@@ -14,8 +15,8 @@ public class Bus_Terminal extends Terminal{
 
     //=======================================================================
 
-    public Bus_Terminal(String cityName, String terminalName, String address, int area, int number_of_vehicles, int number_of_employees){
-        super(600 + number_of_employees*30, cityName ,terminalName ,address , area ,number_of_vehicles , number_of_employees);
+    public Bus_Terminal(City city, String terminalName, String address, int area, int number_of_vehicles, int number_of_employees){
+        super(600 + number_of_employees*30,  city,terminalName ,address , area ,number_of_vehicles , number_of_employees);
         bus_terminals_list.add(this) ;
     }
 
@@ -30,7 +31,7 @@ public class Bus_Terminal extends Terminal{
 
     public void showInfo(){
 
-        System.out.println("City name : " + cityName);
+        System.out.println("City name : " + city.getCityName());
         System.out.println("Airport name : " + terminalName);
         System.out.println("Address : " + address );
         System.out.println("Area : " + area);

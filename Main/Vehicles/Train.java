@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Train extends Land_transport_vehicle{
 
+    private static int ticketPrice = 2;
+
     enum Services {
         Restaurant , Breakfast , Lunch , Dinner
     }
@@ -20,6 +22,10 @@ public class Train extends Land_transport_vehicle{
 
     public static ArrayList<Train> getTrainsList(){
         return trainsList;
+    }
+
+    public int getTicketPrice(){
+        return ticketPrice;
     }
 }
 
