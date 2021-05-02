@@ -103,6 +103,10 @@ abstract public class Terminal implements Safarable {
             return "TrainStation";
     }
 
+    public ArrayList<Person> getDriversList(){
+        return driversList;
+    }
+
 
 
 
@@ -137,7 +141,7 @@ abstract public class Terminal implements Safarable {
         }
 
 
-        startingTerminal.city.addBudget( journeyPrice( passengerList , vehicle) );
+        startingTerminal.city.addBudget( journeyPrice( passengerList , price) );
 
 
 
@@ -161,10 +165,9 @@ abstract public class Terminal implements Safarable {
     }
 
     @Override
-    public int journeyPrice ( ArrayList<Person> passengerList , Vehicle vehicle){
+    public int journeyPrice ( ArrayList<Person> passengerList , int ticketPrice ){
 
         int total_journey_price = 0 ;
-        int ticketPrice = vehicle.getTicketPrice();
         for ( Person a : passengerList){
 
             if ( ! a.getHired() )

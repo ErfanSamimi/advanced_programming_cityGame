@@ -10,7 +10,7 @@ public interface Safarable {
 
     void newJourney(Terminal startingTerminal , Terminal destinationTerminal , ArrayList<Person> passengerList , Person driver , Vehicle vehicle , String journeyID , int journeyDay , int journeyMonth , int price);
     void sortJourneys();
-    int journeyPrice ( ArrayList<Person> passengerList , Vehicle vehicle);
+    int journeyPrice ( ArrayList<Person> passengerList , int ticketPrice);
 
     void journeyHistory( boolean startingTerminal , boolean destinationTerminal);
 

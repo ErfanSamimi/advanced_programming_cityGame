@@ -6,7 +6,6 @@ public class Bus extends Land_transport_vehicle{
     private String class_type ; //business class , economy class
     private int KPL ;  //kilometer per liter
     private static ArrayList<Bus> busesList = new ArrayList<Bus>() ;
-    private static int ticketPrice = 2;
 
 
     public Bus(String class_type, int KPL, int fuel_capacity, String fuel_type, int speed, int passenger_capacity, String name_company, String ID){
@@ -14,9 +13,6 @@ public class Bus extends Land_transport_vehicle{
         this.class_type = class_type;
         this.KPL = KPL ;
         busesList.add(this);
-    }
-    public int getTicketPrice(){
-        return ticketPrice;
     }
     public static ArrayList<Bus> getBusesList(){
         return busesList;

@@ -7,7 +7,6 @@ public class Passenger_airplane extends Air_transport_vehicle {
     private int number_of_flightAttendants;
     private String classType ;     // business class , economy class
 
-    private static int ticketPrice = 5;
 
     private static ArrayList<Passenger_airplane> passenger_airplanesList = new ArrayList<Passenger_airplane>() ;
 
@@ -19,9 +18,6 @@ public class Passenger_airplane extends Air_transport_vehicle {
         this.classType = classType;
         passenger_airplanesList.add(this);
 
-    }
-    public int getTicketPrice(){
-        return ticketPrice;
     }
     public static ArrayList<Passenger_airplane> getPassenger_airplanesList(){
         return passenger_airplanesList;

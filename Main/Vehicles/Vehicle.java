@@ -38,10 +38,9 @@ public class Vehicle {
 
     }
 
-    public int getTicketPrice(){
-        return ticketPrice;
+    public int getCapacity(){
+        return capacity;
     }
-
 
     public static Vehicle getVehicleByID( String ID){
         for (Vehicle a : vehiclesList ){

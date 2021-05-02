@@ -5,6 +5,7 @@ import Main.Exception.*;
 import Main.Safar.Safar;
 import Main.Vehicles.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -120,25 +121,53 @@ public class Main {
 
         //====================================================
 
-
+        //get Terminals information
         System.out.print("Enter name of starting Terminal : ");
         String starting = sc.nextLine();
         System.out.print("Enter name of destination Terminal : ");
         String destination = sc.nextLine();
 
+        Terminal startingTerminal = Terminal.getTerminalByName(starting);
+        Terminal destinationTerminal = Terminal.getTerminalByName(destination);
+
+
+        checkTerminalsValidity( startingTerminal , destinationTerminal);
+
+        //get vehicle info
+
         System.out.print("Enter ID of vehicle : ");
         String vehicleID = sc.nextLine();
 
-        Terminal startingTerminal = Terminal.getTerminalByName(starting);
-        Terminal destinationTerminal = Terminal.getTerminalByName(destination);
         Vehicle vehicle = Vehicle.getVehicleByID(vehicleID);
 
-        checkTerminalsValidity( startingTerminal , destinationTerminal);
-        checkVehicleValidity(vehicleID , startingTerminal);
+        checkVehicleValidity(vehicle , startingTerminal , passengerList.size());
 
 
-        //TODO get driver
-//        Safar newSafar = new Safar(startingTerminal ,destinationTerminal ,passengerList ,)
+        // get driver
+
+        System.out.print("Enter id of driver : ");
+        int id = sc.nextInt();
+
+        Person driver = Person.find_Person_from_ID(id);
+        checkDriverValidity(driver , vehicle , startingTerminal);
+
+
+        // get journey info
+        System.out.print("Enter ID of this journey : ");
+        String journeyID = sc.nextLine();
+
+        System.out.print("Enter day number of this journey : ");
+        int day = sc.nextInt();
+
+        System.out.print("Enter month number of this journey : ");
+        int month = sc.nextInt();
+
+        System.out.print("Enter ticket price : ");
+        int price = sc.nextInt();
+
+
+        startingTerminal.newJourney(startingTerminal , destinationTerminal , passengerList , driver , vehicle , journeyID ,day , month , price);
+
 
     }
 
@@ -192,12 +221,13 @@ public class Main {
     }
 
 
-    static void checkVehicleValidity(String id , Terminal startingTerminal) {
+    static void checkVehicleValidity(Vehicle selectedVehicle, Terminal startingTerminal , int numberOfPassengers) {
 
 
-        Vehicle selectedVehicle = Vehicle.getVehicleByID(id);
 
 
+        if ( selectedVehicle instanceof CargoPlane )
+            throw new Vehicle_type_Exception("Can not use a Cargo airplane for transform passengers");
 
         if (selectedVehicle.getVehicleType() == "Air_transport_vehicle"  &&  startingTerminal.getTerminalType() != "Airport")
             throw new Vehicle_type_Exception("You can travel with Airplane between Airports ");
@@ -215,11 +245,32 @@ public class Main {
         if ( ! startingTerminal.getVehiclesList().contains(selectedVehicle) )
             throw new Vehicle_does_not_exists_Exception("No vehicle exits with this id in " + startingTerminal.getTerminalType() + " terminal ");
 
+        if ( numberOfPassengers < selectedVehicle.getCapacity()/2D )
+            throw new Enough_passenger_exception();
+
 
 
     }
 
 
+    static void checkDriverValidity(Person driver , Vehicle vehicle , Terminal starting){
+
+        if ( ! starting.getDriversList().contains(driver) )
+            throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + "Terminal");
+
+        if ( vehicle.getVehicleType().equals("Air_transport_vehicle") && ! driver.getJob().equals("pilot"))
+            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not pilot !");
+
+        if ( vehicle.getVehicleType().equals("Train") && ! driver.getJob().equals("locomotive driver"))
+            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not locomotive driver !");
+
+        if ( vehicle.getVehicleType().equals("Bus") && ! driver.getJob().equals("driver"))
+            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not driver !");
+
+        if ( vehicle.getVehicleType().equals("Shipping_vehicle") && ! driver.getJob().equals("sailor"))
+            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not sailor !");
+
+    }
 
 
     //========================================================================================
