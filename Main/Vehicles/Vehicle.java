@@ -1,8 +1,12 @@
 package Main.Vehicles;
 
+import Main.Building.Airport;
+import Main.Exception.Vehicle_does_not_exists_Exception;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Vehicle {
     private int price ;
@@ -11,6 +15,7 @@ public class Vehicle {
     private String name_builder_company ;
     private static ArrayList<String> ID_list = new ArrayList<String>();
     private static int ticketPrice = 0;
+    private static ArrayList<Vehicle> vehiclesList = new ArrayList<>();
 
     //==================================================
 
@@ -27,6 +32,8 @@ public class Vehicle {
         this.ID = ID;
         ID_list.add(ID);
 
+        vehiclesList.add(this);
+
 
 
     }
@@ -34,6 +41,32 @@ public class Vehicle {
     public int getTicketPrice(){
         return ticketPrice;
     }
+
+
+    public static Vehicle getVehicleByID( String ID){
+        for (Vehicle a : vehiclesList ){
+            if (a.ID.equals(ID))
+                return a;
+        }
+
+        throw new Vehicle_does_not_exists_Exception("No vehicle exist with this id ");
+    }
+
+
+    public String getVehicleType(){
+        if (this instanceof Air_transport_vehicle)
+            return "Air_transport_vehicle";
+
+        else if ( this instanceof Train)
+            return "Train";
+
+        else if ( this instanceof  Bus)
+            return "Bus";
+
+        else
+            return "Shipping_vehicle";
+    }
+
 
 
 

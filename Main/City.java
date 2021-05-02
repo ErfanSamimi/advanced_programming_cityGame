@@ -103,6 +103,16 @@ public class City {
         this.cityTrainStationList.add(t);
     }
 
+    ArrayList<Terminal> getTerminalList(){
+        ArrayList<Terminal> terminalList = new ArrayList<>();
+        terminalList.addAll(getCityBusTerminalList());
+        terminalList.addAll(getCityAirportList());
+        terminalList.addAll(getCityShippingPortList());
+        terminalList.addAll(getCityTrainStationList());
+
+        return terminalList;
+    }
+
 //=================================================================================
 
     static ArrayList<City> getCitiesList (){

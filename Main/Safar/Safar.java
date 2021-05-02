@@ -5,6 +5,7 @@ import Main.Person;
 import Main.Vehicles.Vehicle;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Safar implements Comparable<Safar> {
 
@@ -14,11 +15,12 @@ public class Safar implements Comparable<Safar> {
     private Person driver ;
     private Vehicle vehicle;
     private String journeyID;
+    private static ArrayList<String> idList = new ArrayList<>();
     private int journeyDay;
     private int journeyMonth;
     private int price ;
 
-
+    Scanner sc = new Scanner(System.in);
     //=================================================================================================================
 
 
@@ -28,10 +30,18 @@ public class Safar implements Comparable<Safar> {
         this. passengerList = passengerList ;
         this.driver = driver ;
         this.vehicle = vehicle ;
-        this.journeyID = journeyID ;
         this.journeyDay = journeyDay ;
         this.journeyMonth = journeyMonth;
         this.price = price;
+
+
+        while ( idList.contains(journeyID) ){
+            System.out.print("This id is already exists . Please enter new id for this journey : ");
+            journeyID = sc.nextLine();
+        }
+
+        this.journeyID = journeyID ;
+
     }
 
     public int compareTo(Safar sa){

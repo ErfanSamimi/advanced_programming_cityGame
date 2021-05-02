@@ -1,5 +1,7 @@
 package Main;
 
+import Main.Exception.InvalidPassengers;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -73,7 +75,8 @@ public class Person {
             if(a.ID == ID)
                 return a;
         }
-        return null;
+        throw new InvalidPassengers("No person exists with this id ");
+
     }
 
     public static void engage (int ID){

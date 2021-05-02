@@ -1,6 +1,7 @@
 package Main.Building;
 
 import Main.City;
+import Main.Exception.Invalid_TerminalName;
 import Main.Person;
 import Main.Safar.Safar;
 import Main.Safar.Safarable;
@@ -18,6 +19,7 @@ abstract public class Terminal implements Safarable {
     int area ;
     int number_of_vehicles ;
     int number_of_employees ;
+    static ArrayList<Terminal> totalTerminals = new ArrayList<>();
     private  ArrayList<Person> employees = new ArrayList<Person>();
     private  ArrayList<Safar> safarList = new ArrayList<Safar>();
     private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
@@ -37,6 +39,7 @@ abstract public class Terminal implements Safarable {
         this.address = address ;
         this.area = area ;
         this.number_of_vehicles = number_of_vehicles ;
+        totalTerminals.add(this);
     }
     //==============================================================================================
 
@@ -76,10 +79,28 @@ abstract public class Terminal implements Safarable {
         this.driversList.add(pr);
     }
 
-
-
     public void addVehicle ( Vehicle vehicle){
         this.vehiclesList.add( vehicle );
+    }
+
+    public static Terminal getTerminalByName(String name ){
+        for (Terminal a : totalTerminals){
+            if (a.terminalName.equals(name))
+                return a;
+        }
+
+        throw new Invalid_TerminalName(name + " Terminal does not exists");
+    }
+
+    public String getTerminalType( ){
+        if (this instanceof Airport)
+            return "Airport";
+        else if (this instanceof Bus_Terminal)
+            return "BusTerminal";
+        else if ( this instanceof ShippingPort)
+            return "ShippingPort";
+        else
+            return "TrainStation";
     }
 
 
@@ -109,10 +130,10 @@ abstract public class Terminal implements Safarable {
 
 
         for ( Person a : passengerList){
-            if ( ! a.getHired() ){
+
                 startingTerminal.city.getPersonList().remove(a);
                 destinationTerminal.city.getPersonList().add(a);
-            }
+
         }
 
 
