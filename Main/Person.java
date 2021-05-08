@@ -94,9 +94,9 @@ public class Person {
 
     }
 
-    public static int number_of_jobs( String job){
+    public static int number_of_jobs( String job , ArrayList<Person> people){
         int counter = 0 ;
-        for (Person a : peopleList){
+        for (Person a : people){
             if (a.job == job)
                 counter ++;
         }

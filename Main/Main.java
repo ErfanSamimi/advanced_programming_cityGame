@@ -5,8 +5,10 @@ import Main.Exception.*;
 import Main.Safar.Safar;
 import Main.Vehicles.*;
 
+import java.lang.reflect.Method;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -17,14 +19,36 @@ public class Main {
 
     public static void main(String[] args){
 
-        citiesMenu();
+
+
+        while (true) {
+            try {
+                citiesMenu();
+            } catch (RuntimeException ex) {
+                System.out.println(ex.toString());
+            }
+        }
+//        catch (InvalidJourney ex){
+//            System.out.println(ex.toString());
+//        }
+//        catch (CanceledJourney ex){
+//            System.out.println(ex.toString());
+//        }
+//
+//        catch (Invalid_input ex){
+//            System.out.println(ex.toString());
+//        }
+
+
+
+//
 
     }
 
 
     //================================================
 
-    static void  citiesMenu(){
+    static void  citiesMenu() {
         System.out.println("\n\n\t\t\t\t\t=== Cities Menu  === \n");
         Scanner sc = new Scanner(System.in);
         System.out.println("\n===============================================");
@@ -33,18 +57,21 @@ public class Main {
         System.out.print("\nEnter your choice : ");
         int choice = sc.nextInt();
 
+
         if (choice == 1 )
             buildCity();
 
-        if ( choice == 2 ) {
+        else if ( choice == 2 ) {
             selectedCity = selectCity();
             total_money = selectedCity.getBudget();
             mainMenu();
         }
 
-        if (choice == 3 )
+        else if (choice == 3 )
             showCitiesInformation();
 
+        else
+            citiesMenu();
 
     }
 
@@ -54,34 +81,41 @@ public class Main {
 
         System.out.println("City : " + selectedCity.getCityName());
 
-        System.out.println("\n\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Show Status \n 7-Show Cities Menu");
+        System.out.println("\n\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Make new journey \n 7-Show Status \n 8-Show Cities Menu");
         System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
+
         int choice = sc.nextInt();
+
 
         if(choice == 1)
             buildTerminal();
 
-        if(choice == 2)
+        else if(choice == 2)
             buyVehicles();
 
-        if(choice == 3)
+        else if(choice == 3)
             engage();
 
-        if(choice == 4)
+        else if(choice == 4)
             buildHotel();
 
-        if(choice == 5)
+        else if(choice == 5)
             build_Room_In_Hotel();
 
-        if (choice == 6)
+        else if (choice == 6)
             makeNewJourney();
 
-        if (choice == 7)
+        else if (choice == 7)
             showStatus();
 
-        if (choice == 8)
+        else if (choice == 8) {
+            selectedCity.setBudget(total_money);
             citiesMenu();
+        }
+
+        else
+            mainMenu();
     }
 
     static void showMoney(){
@@ -90,7 +124,7 @@ public class Main {
 
     //=======================================================================================
 
-    static void makeNewJourney(){
+    static void makeNewJourney() {
         System.out.println("\n\n\t\t\t\t\t=== Make New Journey  === \n");
         Scanner sc = new Scanner(System.in);
 
@@ -98,19 +132,32 @@ public class Main {
 
         //get number of passengers
         System.out.print("Enter number of passengers : ");
-        int number_of_passengers = sc.nextInt();
 
+        int number_of_passengers =0;
+
+        try {
+            number_of_passengers = sc.nextInt();
+        }
+        catch (InputMismatchException ex){
+            System.out.println();
+        }
         //show id of people in selected city
+        int counter =0;
         System.out.println("People IDs in " + selectedCity.getCityName() + " : ");
         for (Person a : selectedCity.getPersonList()) {
-            if ( ! a.getHired() )
-                System.out.println(a.getID() + "\t");
+            if (counter % 10 ==0)
+                System.out.println();
+
+            if ( ! a.getHired() ) {
+                System.out.print(a.getID() + " - ");
+                counter ++;
+            }
         }
         System.out.println();
 
         // get passengers
         for (int i =0 ; i < number_of_passengers ; i++) {
-            System.out.print("Enter ID of passenger" + i+1 );
+            System.out.print("Enter ID of passenger" + (i+1) + " : ");
             int id = sc.nextInt();
             passengerList.add( Person.find_Person_from_ID(id));
         }
@@ -122,6 +169,7 @@ public class Main {
         //====================================================
 
         //get Terminals information
+        sc.nextLine();
         System.out.print("Enter name of starting Terminal : ");
         String starting = sc.nextLine();
         System.out.print("Enter name of destination Terminal : ");
@@ -153,6 +201,7 @@ public class Main {
 
 
         // get journey info
+        sc.nextLine();
         System.out.print("Enter ID of this journey : ");
         String journeyID = sc.nextLine();
 
@@ -178,6 +227,9 @@ public class Main {
 
             if ( ! selectedCity.getPersonList().contains(a))
                 throw new InvalidPassengers("Person " + a.getID() + " not in " + selectedCity.getCityName());
+
+            if (a.getHired())
+                throw new InvalidPassengers("Person " + a.getID() + " is working in " + selectedCity.getCityName() + " and can not go to journey");
         }
 
 
@@ -191,7 +243,7 @@ public class Main {
         if ( starting == destination )
             throw  new Same_starting_and_destination_terminal_Exception();
 
-        if ( starting.getTerminalType() == destination.getTerminalType() )
+        if ( starting.getTerminalType() != destination.getTerminalType() )
             throw new Starting_and_destination_terminal_type_Exception();
 
         if (starting.getVehiclesList().size() == 0)
@@ -210,10 +262,6 @@ public class Main {
 
         if ( ! isExist)
             throw new Invalid_TerminalName( starting.getTerminalName() + " Terminal does not exist in " + selectedCity.getCityName());
-
-
-
-
 
 
 
@@ -246,7 +294,11 @@ public class Main {
             throw new Vehicle_does_not_exists_Exception("No vehicle exits with this id in " + startingTerminal.getTerminalType() + " terminal ");
 
         if ( numberOfPassengers < selectedVehicle.getCapacity()/2D )
-            throw new Enough_passenger_exception();
+            throw new Enough_passenger_exception("At least half of passenger capacity must be reserved");
+
+        if (numberOfPassengers > selectedVehicle.getCapacity()){
+            throw new Enough_passenger_exception("Number of passengers is more than selected vehicle passenger capacity");
+        }
 
 
 
@@ -256,7 +308,7 @@ public class Main {
     static void checkDriverValidity(Person driver , Vehicle vehicle , Terminal starting){
 
         if ( ! starting.getDriversList().contains(driver) )
-            throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + "Terminal");
+            throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + " Terminal");
 
         if ( vehicle.getVehicleType().equals("Air_transport_vehicle") && ! driver.getJob().equals("pilot"))
             throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not pilot !");
@@ -343,12 +395,22 @@ public class Main {
 
         System.out.println("****** population : \n");
         System.out.println("Your city population : " + selectedCity.getPersonList().size());
-        System.out.println("Your city has " + Person.number_of_jobs("pilot") + " pilot(s)");
-        System.out.println("Your city has " + Person.number_of_jobs("driver") + " driver(s)");
-        System.out.println("Your city has " + Person.number_of_jobs("sailor") + " sailor(s)");
-        System.out.println("Your city has " + Person.number_of_jobs("locomotive driver") + " locomotive driver(s)");
-        System.out.println("Your city has " + Person.number_of_jobs("flight attendant") + " flight attendant(s)");
-        System.out.println("Your city has " + Person.number_of_jobs("employee") + " employee(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("pilot" , selectedCity.getPersonList()) + " pilot(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("driver" , selectedCity.getPersonList()) + " driver(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("sailor" , selectedCity.getPersonList()) + " sailor(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("locomotive driver" , selectedCity.getPersonList()) + " locomotive driver(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("flight attendant" , selectedCity.getPersonList()) + " flight attendant(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("employee" , selectedCity.getPersonList()) + " employee(s)");
+        System.out.println("People list : ");
+
+        int counter =0;
+        for (Person a : selectedCity.getPersonList()) {
+            if (counter % 10 == 0)
+                System.out.println();
+            System.out.print(a.getID() + " - ");
+            counter ++ ;
+        }
+        System.out.println();
 
 
 
@@ -1044,7 +1106,7 @@ public class Main {
         }
         else {
 
-            System.out.println("number : \t maximum number of vehicles : \t number of bought vehicles : ");
+            System.out.println("number : \t maximum number of vehicles : \t number of available vehicles : ");
             int counter = 1;
             for (Bus_Terminal a :selectedCity.getCityBusTerminalList()) {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
@@ -1138,7 +1200,7 @@ public class Main {
         }
         else {
 
-            System.out.println("number : \t maximum number of vehicles : \t number of bought vehicles : ");
+            System.out.println("number : \t maximum number of vehicles : \t number of available vehicles : ");
             int counter = 1;
             for (Airport a : selectedCity.getCityAirportList()) {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
@@ -1233,7 +1295,7 @@ public class Main {
         }
         else {
 
-            System.out.println("number : \t maximum number of vehicles : \t number of bought vehicles : ");
+            System.out.println("number : \t maximum number of vehicles : \t number of available vehicles : ");
             int counter = 1;
             for (Airport a : selectedCity.getCityAirportList()) {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
@@ -1329,7 +1391,7 @@ public class Main {
         }
         else {
 
-            System.out.println("number : \t maximum number of vehicles : \t number of bought vehicles : ");
+            System.out.println("number : \t maximum number of vehicles : \t number of available vehicles : ");
             int counter = 1;
             for (ShippingPort a : selectedCity.getCityShippingPortList()) {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
@@ -1425,7 +1487,7 @@ public class Main {
         }
         else {
 
-            System.out.println("number : \t maximum number of vehicles : \t number of bought vehicles : ");
+            System.out.println("number : \t maximum number of vehicles : \t number of available vehicles : ");
             int counter = 1;
             for (TrainStation a : selectedCity.getCityTrainStationList()) {
                 System.out.println(counter + "\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
@@ -1573,14 +1635,20 @@ public class Main {
             }
 //        System.out.println("\n** Completed\n");
             System.out.print("\nEnter number of Airport you want hire a pilot for it : ");
-            int numberAirplane = sc.nextInt();
+            int numberAirport = sc.nextInt();
 
-
-            Person.engage(ID);
-            selectedCity.getCityAirportList().get(numberAirplane - 1).add_Driver(Person.find_Person_from_ID(ID));
-            total_money -= Person.find_Person_from_ID(ID).getSalary();
-            showMoney();
-            mainMenu();
+            Person selected = Person.find_Person_from_ID(ID);
+            if (selected.getJob().equals("pilot")) {
+                Airport airport = selectedCity.getCityAirportList().get(numberAirport - 1);
+                Person.engage(ID);
+                airport.add_Driver(selected);
+                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a pilot");
+            }
         }
         else{
             System.out.println("You dont have airport so you cant engage pilot !");
@@ -1616,13 +1684,19 @@ public class Main {
             System.out.print("Enter number of Bus Terminal you want hire a driver for it : ");
             int numberBusTerminal = sc.nextInt();
 
+            Person selected = Person.find_Person_from_ID(ID);
+            if (selected.getJob().equals("driver")) {
+                Bus_Terminal bus_terminal  = selectedCity.getCityBusTerminalList().get(numberBusTerminal - 1);
+                Person.engage(ID);
+                bus_terminal.add_Driver(selected);
 
-            Person.engage(ID);
-            selectedCity.getCityBusTerminalList().get(numberBusTerminal - 1).add_Driver(Person.find_Person_from_ID(ID));
-            ;
-            total_money -= Person.find_Person_from_ID(ID).getSalary();
-            showMoney();
-            mainMenu();
+                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a driver");
+            }
         }
         else {
             System.out.println("You dont have bus terminal so you cant engage driver ! ");
@@ -1656,13 +1730,18 @@ public class Main {
             System.out.print("Enter number of Shipping Port you want hire a sailor for it : ");
             int numberShppingPort = sc.nextInt();
 
-
-            Person.engage(ID);
-            selectedCity.getCityShippingPortList().get(numberShppingPort - 1).add_Driver(Person.find_Person_from_ID(ID));
-            ;
-            total_money -= Person.find_Person_from_ID(ID).getSalary();
-            showMoney();
-            mainMenu();
+            Person selected = Person.find_Person_from_ID(ID);
+            if (selected.getJob().equals("sailor")) {
+                ShippingPort shippingPort = selectedCity.getCityShippingPortList().get(numberShppingPort - 1);
+                Person.engage(ID);
+                shippingPort.add_Driver(selected);
+                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a sailor");
+            }
         }
         else {
             System.out.println("You dont have shipping port so you cant engage sailor ! ");
@@ -1696,13 +1775,18 @@ public class Main {
             System.out.print("Enter number of Train Station you want hire a locomotive driver for it : ");
             int numberTrainStation = sc.nextInt();
 
-
-            Person.engage(ID);
-            selectedCity.getCityTrainStationList().get(numberTrainStation - 1).add_Driver(Person.find_Person_from_ID(ID));
-            ;
-            total_money -= Person.find_Person_from_ID(ID).getSalary();
-            showMoney();
-            mainMenu();
+            Person selected = Person.find_Person_from_ID(ID);
+            if(selected.getJob().equals("locomotive driver")) {
+                TrainStation trainStation = selectedCity.getCityTrainStationList().get(numberTrainStation - 1);
+                Person.engage(ID);
+                trainStation.add_Driver(selected);
+                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a locomotive driver");
+            }
         }
         else {
             System.out.println("You dont have train station so you cant engage locomotive driver ! ");
@@ -1734,15 +1818,21 @@ public class Main {
             }
             System.out.println("\n** Completed\n");
             System.out.print("Enter number of Airport you want hire a flight attendant for it : ");
-            int numberAirplane = sc.nextInt();
+            int numberAirport = sc.nextInt();
 
-
-            Person.engage(ID);
-            selectedCity.getCityAirportList().get(numberAirplane - 1).addFlightAttendant(Person.find_Person_from_ID(ID));
-            ;
-            total_money -= Person.find_Person_from_ID(ID).getSalary();
-            showMoney();
-            mainMenu();
+            Person selected = Person.find_Person_from_ID(ID);
+            if (selected.getJob().equals("flight attendant")) {
+                Airport airport = selectedCity.getCityAirportList().get(numberAirport - 1);
+                Person.engage(ID);
+                airport.addFlightAttendant(selected);
+                ;
+                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                showMoney();
+                mainMenu();
+            }
+            else {
+                throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a flight attendant");
+            }
         }
         else {
             System.out.println("You dont have airport so you cant engage flight attendant ! ");
@@ -1783,11 +1873,18 @@ public class Main {
             int numberAirport = sc.nextInt();
 
             if(selectedCity.getCityAirportList().get(numberAirport-1).number_of_hired_employees() < selectedCity.getCityAirportList().get(numberAirport-1).number_of_hired_employees() ){
-                Person.engage(ID);
-                selectedCity.getCityAirportList().get(numberAirport-1).addEmployees( Person.find_Person_from_ID(ID));
-                total_money -= Person.find_Person_from_ID( ID ).getSalary();
-                showMoney();
-                mainMenu();
+                Person selected = Person.find_Person_from_ID(ID);
+                if (selected.getJob().equals("employee")) {
+                    Airport airport = selectedCity.getCityAirportList().get(numberAirport - 1);
+                    Person.engage(ID);
+                    airport.addEmployees(selected);
+                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    showMoney();
+                    mainMenu();
+                }
+                else {
+                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
+                }
             }
             else {
                 System.out.println("You cant engage an employee for this airport ! ");
@@ -1810,11 +1907,18 @@ public class Main {
             int numberBusTerminal = sc.nextInt();
 
             if(Bus_Terminal.getBus_terminals_list().get(numberBusTerminal-1).number_of_hired_employees() <selectedCity.getCityBusTerminalList().get(numberBusTerminal-1).max_number_of_employees() ){
-                Person.engage(ID);
-                selectedCity.getCityBusTerminalList().get(numberBusTerminal-1).addEmployees( Person.find_Person_from_ID(ID));
-                total_money -= Person.find_Person_from_ID( ID ).getSalary();
-                showMoney();
-                mainMenu();
+                Person selected = Person.find_Person_from_ID(ID);
+                if (selected.getJob().equals("employee")) {
+                    Bus_Terminal bus_terminal = selectedCity.getCityBusTerminalList().get(numberBusTerminal - 1);
+                    Person.engage(ID);
+                    bus_terminal.addEmployees(selected);
+                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    showMoney();
+                    mainMenu();
+                }
+                else {
+                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
+                }
             }
             else {
                 System.out.println("You cant engage an employee for this bus terminal ! ");
@@ -1838,11 +1942,19 @@ public class Main {
             int numberHotel = sc.nextInt();
 
             if(selectedCity.getCityHotelList().get(numberHotel-1).getNumber_of_hired_Employees() < selectedCity.getCityHotelList().get(numberHotel-1).getNumber_of_Employees() ){
-                Person.engage(ID);
-                selectedCity.getCityHotelList().get(numberHotel-1).addEmployee( Person.find_Person_from_ID(ID));
-                total_money -= Person.find_Person_from_ID( ID ).getSalary();
-                showMoney();
-                mainMenu();
+                Person selected = Person.find_Person_from_ID(ID);
+                if (selected.getJob().equals("employee")) {
+                    Hotel hotel = selectedCity.getCityHotelList().get(numberHotel - 1);
+                    Person.engage(ID);
+                    hotel.addEmployee(selected);
+                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    showMoney();
+                    mainMenu();
+                }
+                else {
+                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
+                }
+
             }
             else {
                 System.out.println("You cant engage an employee for this hotel ! ");
@@ -1864,11 +1976,18 @@ public class Main {
             int numberShippingPort = sc.nextInt();
 
             if(selectedCity.getCityShippingPortList().get(numberShippingPort-1).number_of_hired_employees() < selectedCity.getCityShippingPortList().get(numberShippingPort-1).max_number_of_employees() ){
-                Person.engage(ID);
-                selectedCity.getCityShippingPortList().get(numberShippingPort-1).addEmployees( Person.find_Person_from_ID(ID));
-                total_money -= Person.find_Person_from_ID( ID ).getSalary();
-                showMoney();
-                mainMenu();
+                Person selected = Person.find_Person_from_ID(ID);
+                if (selected.getJob().equals("employee")) {
+                    ShippingPort shippingPort = selectedCity.getCityShippingPortList().get(numberShippingPort - 1);
+                    Person.engage(ID);
+                    shippingPort.addEmployees(selected);
+                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    showMoney();
+                    mainMenu();
+                }
+                else {
+                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
+                }
             }
             else {
                 System.out.println("You cant engage an employee for this shipping port ! ");
@@ -1891,11 +2010,19 @@ public class Main {
             int numberTrainStation= sc.nextInt();
 
             if(selectedCity.getCityTrainStationList().get(numberTrainStation-1).number_of_hired_employees() < selectedCity.getCityTrainStationList().get(numberTrainStation-1).max_number_of_employees() ){
-                Person.engage(ID);
-                selectedCity.getCityTrainStationList().get(numberTrainStation-1).addEmployees( Person.find_Person_from_ID(ID));
-                total_money -= Person.find_Person_from_ID( ID ).getSalary();
-                showMoney();
-                mainMenu();
+                Person selected = Person.find_Person_from_ID(ID);
+                if (selected.getJob().equals("employee")) {
+                    TrainStation trainStation =  selectedCity.getCityTrainStationList().get(numberTrainStation - 1);
+                    Person.engage(ID);
+                    trainStation.addEmployees(Person.find_Person_from_ID(ID));
+                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    showMoney();
+                    mainMenu();
+                }
+                else {
+                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
+                }
+
             }
             else {
                 System.out.println("You cant engage an employee for this Train Station ! ");

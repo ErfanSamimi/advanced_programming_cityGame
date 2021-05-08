@@ -135,6 +135,10 @@ public class City {
         this.budget += value ;
     }
 
+    public void setBudget(int value){
+        this.budget = value;
+    }
+
     public String getCityName(){
         return this.cityName;
     }

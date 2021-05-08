@@ -119,8 +119,8 @@ abstract public class Terminal implements Safarable {
         Safar newSafar = new Safar(startingTerminal , destinationTerminal , passengerList ,driver , vehicle ,journeyID , journeyDay , journeyMonth , price);
         this.safarList.add(newSafar);
 
-        startingTerminal.employees.remove(driver);
-        destinationTerminal.employees.add(driver);
+        startingTerminal.driversList.remove(driver);
+//        destinationTerminal.driversList.add(driver);
 
         startingTerminal.vehiclesList.remove(vehicle);
         destinationTerminal.vehiclesList.add(vehicle);
@@ -131,6 +131,7 @@ abstract public class Terminal implements Safarable {
 
         startingTerminal.city.getPersonList().remove(driver);
         destinationTerminal.city.getPersonList().add(driver);
+        destinationTerminal.add_Driver(driver);
 
 
         for ( Person a : passengerList){
