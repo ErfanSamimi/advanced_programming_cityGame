@@ -223,7 +223,7 @@ public class Main {
     static void checkPassengersValidity(ArrayList<Person> passengers){
         for ( Person a : passengers){
             if ( passengers.indexOf(a) != passengers.lastIndexOf(a) )
-                throw new InvalidPassengers("More than one person with " + a.getID() + "ID in list");
+                throw new InvalidPassengers("More than one person with " + a.getID() + " ID in list");
 
             if ( ! selectedCity.getPersonList().contains(a))
                 throw new InvalidPassengers("Person " + a.getID() + " not in " + selectedCity.getCityName());
@@ -310,17 +310,17 @@ public class Main {
         if ( ! starting.getDriversList().contains(driver) )
             throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + " Terminal");
 
-        if ( vehicle.getVehicleType().equals("Air_transport_vehicle") && ! driver.getJob().equals("pilot"))
-            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not pilot !");
-
-        if ( vehicle.getVehicleType().equals("Train") && ! driver.getJob().equals("locomotive driver"))
-            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not locomotive driver !");
-
-        if ( vehicle.getVehicleType().equals("Bus") && ! driver.getJob().equals("driver"))
-            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not driver !");
-
-        if ( vehicle.getVehicleType().equals("Shipping_vehicle") && ! driver.getJob().equals("sailor"))
-            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not sailor !");
+//        if ( vehicle.getVehicleType().equals("Air_transport_vehicle") && ! driver.getJob().equals("pilot"))
+//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not pilot !");
+//
+//        if ( vehicle.getVehicleType().equals("Train") && ! driver.getJob().equals("locomotive driver"))
+//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not locomotive driver !");
+//
+//        if ( vehicle.getVehicleType().equals("Bus") && ! driver.getJob().equals("driver"))
+//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not driver !");
+//
+//        if ( vehicle.getVehicleType().equals("Shipping_vehicle") && ! driver.getJob().equals("sailor"))
+//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not sailor !");
 
     }
 
@@ -1015,7 +1015,7 @@ public class Main {
         }
         else {
 
-            System.out.println("Number : \t Shipping port name : \t Maximum number of vehicles : \t Number of bought vehicles : ");
+            System.out.println("Number : \t Shipping port name : \t Maximum number of vehicles : \t Number of available vehicles : ");
             int counter = 1;
             for (ShippingPort a : selectedCity.getCityShippingPortList()) {
                 System.out.println(counter + "\t\t\t\t\t" + a.getTerminalName() +"\t\t\t\t\t\t" + a.max_number_of_vehicle() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_bought_vehicles());
@@ -1220,18 +1220,15 @@ public class Main {
 
             System.out.print("Enter total weight this plane can transport : ");
             int weight = sc.nextInt();
-//            System.out.println("+++++  " + weight);
             System.out.println();
 
             System.out.print("Enter maximum height of flight : ");
             int height = sc.nextInt();
-//            System.out.println("+++++  " + height);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter runway length : ");
             int runway = sc.nextInt();
-//            System.out.println("+++++  " + runway);
             System.out.println();
 
 
@@ -1242,18 +1239,15 @@ public class Main {
                 System.out.print("Enter passenger capacity of this plane ( max = 5 ) : ");
                 capacity = sc.nextInt();
             }
-            System.out.println("+++++  " + capacity);
             System.out.println();
 
             sc.nextLine();
             System.out.print("Enter ID of cargo plane : ");
             String ID = sc.nextLine();
-            System.out.println("+++++  " + ID);
             System.out.println();
 
             System.out.print("Enter name of cargo plane company : ");
             String company = sc.nextLine();
-            System.out.println("+++++  " + company);
             System.out.println();
 
             int finalPrice = 700;
@@ -1675,7 +1669,7 @@ public class Main {
             int ID = sc.nextInt();
 
             int counter = 1;
-            System.out.println("number : \t number of hired pilots : ");
+            System.out.println("number : \t number of hired drivers : ");
             for (Bus_Terminal a :selectedCity.getCityBusTerminalList()) {
                 System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
@@ -1721,7 +1715,7 @@ public class Main {
             int ID = sc.nextInt();
 
             int counter = 1;
-            System.out.println("number : \t number of hired pilots : ");
+            System.out.println("number : \t number of hired sailors : ");
             for (ShippingPort a : selectedCity.getCityShippingPortList()) {
                 System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
@@ -1766,7 +1760,7 @@ public class Main {
             int ID = sc.nextInt();
 
             int counter = 1;
-            System.out.println("number : \t number of hired pilots : ");
+            System.out.println("number : \t number of hired Locomotive Driver : ");
             for (TrainStation a : selectedCity.getCityTrainStationList()) {
                 System.out.println(counter + "\t\t\t\t\t" + a.number_of_hired_drivers());
                 counter++;
@@ -1811,7 +1805,7 @@ public class Main {
             int ID = sc.nextInt();
 
             int counter = 1;
-            System.out.println("number : \t number of hired pilots : ");
+            System.out.println("number : \t number of hired Flight Attendant : ");
             for (Airport a : selectedCity.getCityAirportList()) {
                 System.out.println(counter + "\t\t\t\t\t" + a.numberOfHiredFlightAttendants());
                 counter++;

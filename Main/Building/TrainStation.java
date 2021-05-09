@@ -42,7 +42,7 @@ public class TrainStation extends Terminal{
         System.out.println("Number of bought vehicles : " + getNumber_of_bought_vehicles());
         System.out.println("Maximum number of  employees : " + number_of_employees);
         System.out.println("Number of hired employees : " + number_of_hired_employees());
-        System.out.println("Number of locomotive drivers : " + locomotiveDrivers.size());
+        System.out.println("Number of locomotive drivers : " + number_of_hired_drivers());
 
 
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");

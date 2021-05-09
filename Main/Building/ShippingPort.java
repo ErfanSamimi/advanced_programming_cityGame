@@ -62,7 +62,7 @@ public class ShippingPort extends  Terminal {
          System.out.println("Number of boats : " + boatList().size());
          System.out.println("Maximum number of  employees : " + number_of_employees);
          System.out.println("Number of hired employees : " + number_of_hired_employees());
-         System.out.println("Number of sailors : " + sailors.size());
+         System.out.println("Number of sailors : " + number_of_hired_drivers());
 
          System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 
