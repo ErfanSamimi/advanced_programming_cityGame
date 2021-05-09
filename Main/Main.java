@@ -75,6 +75,7 @@ public class Main {
             System.out.println();
             System.out.println("Total Budget : " + Country.totalBudget());
             System.out.println("Total population : " + Country.totalPopulation());
+            citiesMenu();
         }
 
         else
@@ -219,6 +220,8 @@ public class Main {
         System.out.print("Enter month number of this journey : ");
         int month = sc.nextInt();
 
+        checkDateValidity(day ,month);
+
         System.out.print("Enter ticket price : ");
         int price = sc.nextInt();
 
@@ -228,6 +231,14 @@ public class Main {
         mainMenu();
 
 
+    }
+
+    static void checkDateValidity( int day , int month){
+        if (day >31 || day < 1)
+            throw new Invalid_date("Invalid day ! ");
+
+        if(month > 12  || month < 1)
+            throw new Invalid_date("Invalid month ! ");
     }
 
     static void checkPassengersValidity(ArrayList<Person> passengers){
@@ -405,7 +416,7 @@ public class Main {
 
         System.out.println("****** population : \n");
         System.out.println("Your city population : " + selectedCity.getPersonList().size());
-        System.out.println("Your city has " + Person.number_of_jobs("pilot" , selectedCity.getPersonList()) + " pilot(s)");
+        System.out.println("Your city has " + Person.number_of_jobs("pilot" , selectedCity.getPersonList()) + " pilot(s)" + selectedCity);
         System.out.println("Your city has " + Person.number_of_jobs("driver" , selectedCity.getPersonList()) + " driver(s)");
         System.out.println("Your city has " + Person.number_of_jobs("sailor" , selectedCity.getPersonList()) + " sailor(s)");
         System.out.println("Your city has " + Person.number_of_jobs("locomotive driver" , selectedCity.getPersonList()) + " locomotive driver(s)");

@@ -34,13 +34,14 @@ public class Safar implements Comparable<Safar> {
         this.journeyMonth = journeyMonth;
         this.price = price;
 
-
+        System.out.println("********* " + idList);
         while ( idList.contains(journeyID) ){
             System.out.print("This id is already exists . Please enter new id for this journey : ");
             journeyID = sc.nextLine();
         }
 
         this.journeyID = journeyID ;
+        idList.add(journeyID);
 
     }
 
@@ -63,10 +64,11 @@ public class Safar implements Comparable<Safar> {
     }
 
     public void printINFO(){
-        System.out.println("Starting terminal name : " + startingTerminal.getTerminalName());
+        System.out.println("\nStarting terminal name : " + startingTerminal.getTerminalName());
         System.out.println("Destination terminal name : " + destinationTerminal.getTerminalName());
+        System.out.println("Number of Passengers : " + this.passengerList.size());
         System.out.println("Journey id : " + journeyID);
-        System.out.println("Date : " + journeyID + " / " + journeyMonth);
+        System.out.println("Date : " + journeyDay + " / " + journeyMonth);
         System.out.println("-------------------------------------------------------------");
     }
 
