@@ -52,7 +52,7 @@ public class Main {
         System.out.println("\n\n\t\t\t\t\t=== Cities Menu  === \n");
         Scanner sc = new Scanner(System.in);
         System.out.println("\n===============================================");
-        System.out.println("\n 1-Build New City \n 2-Enter To A City  \n 3-Show Cities Information ");
+        System.out.println("\n 1-Build New City \n 2-Enter To A City  \n 3-Show Cities Information \n 4-Show Country info");
         System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
         int choice = sc.nextInt();
@@ -70,6 +70,13 @@ public class Main {
         else if (choice == 3 )
             showCitiesInformation();
 
+        else if ( choice == 4) {
+            System.out.println("\n\n\t\t\t\t\t=== Country Info  === \n");
+            System.out.println();
+            System.out.println("Total Budget : " + Country.totalBudget());
+            System.out.println("Total population : " + Country.totalPopulation());
+        }
+
         else
             citiesMenu();
 
@@ -80,6 +87,7 @@ public class Main {
         System.out.println("\n===============================================\n");
 
         System.out.println("City : " + selectedCity.getCityName());
+        System.out.println("Money : " + total_money);
 
         System.out.println("\n\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Make new journey \n 7-Show Status \n 8-Show Cities Menu");
         System.out.println("\n===============================================");
@@ -216,6 +224,8 @@ public class Main {
 
 
         startingTerminal.newJourney(startingTerminal , destinationTerminal , passengerList , driver , vehicle , journeyID ,day , month , price);
+
+        mainMenu();
 
 
     }
@@ -438,7 +448,7 @@ public class Main {
 
         if (moreInfo.equals("y")){
             System.out.println("\n\n****** Show More Information ******\n");
-            System.out.println(" 1-Airport(s) more info \n 2-Bus Terminal(s) more info \n 3-Hotel(s) more info \n 4-Shipping Port(s) more info \n 5-Train Station(s) more info ");
+            System.out.println(" 1-Airport(s) more info \n 2-Bus Terminal(s) more info \n 3-Hotel(s) more info \n 4-Shipping Port(s) more info \n 5-Train Station(s) more info \n 6-Show Journey history of " + selectedCity.getCityName() + " City");
             System.out.print("\nEnter number of your choice : ");
             int choice = sc.nextInt();
             System.out.println("\n===============================================");
@@ -457,6 +467,9 @@ public class Main {
 
             if (choice == 5)
                 trainStationsInfo();
+
+            if(choice == 6)
+                showJourneyHistory();
 
 
         }
@@ -663,6 +676,43 @@ public class Main {
 
         else
             mainMenu();
+    }
+
+    static void showJourneyHistory(){
+        System.out.println("\n\n\t\t\t\t\t=== Show More Information About Train Station(s) ===\n");
+        Scanner sc = new Scanner(System.in);
+
+        int counter = 1;
+
+        System.out.println("Terminal List :");
+        for(Terminal a : selectedCity.getTerminalList()){
+            System.out.println(counter + "- " + a.getTerminalName());
+            counter++;
+        }
+
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        Terminal selectedTerminal = selectedCity.getTerminalList().get(choice-1);
+
+        System.out.println(" 1- Show journeys that " + selectedTerminal.getTerminalName() + " was the starting point");
+        System.out.println(" 2- Show journeys that " + selectedTerminal.getTerminalName() + " was the destination point");
+        System.out.println(" 3- Show all journeys of " + selectedTerminal.getTerminalName() + " terminal");
+
+        System.out.print("\nEnter number of your choice : ");
+        int choice2 = sc.nextInt();
+
+        if (choice2 == 1)
+            selectedTerminal.journeyHistory(true , false);
+
+        else if (choice2 ==2 )
+            selectedTerminal.journeyHistory(false , true);
+
+        else if (choice2 == 3)
+            selectedTerminal.journeyHistory(true , true);
+
+
+        mainMenu();
     }
 
 

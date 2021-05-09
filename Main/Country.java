@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Country {
 
-    ArrayList<City> citiesList = City.getCitiesList();
+    static ArrayList<City> citiesList = City.getCitiesList();
 
 
-    int totalPopulation (){
+    public static int totalPopulation (){
 
         int population =0 ;
 
@@ -18,7 +18,7 @@ public class Country {
         return population;
     }
 
-    int totalBudget(){
+    public static int totalBudget(){
 
         int budget = 0 ;
         for (City c : citiesList){

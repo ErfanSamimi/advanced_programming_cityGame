@@ -41,7 +41,10 @@ public class City {
     City(String cityName , int budget){
         this.budget = budget;
         this.cityName = cityName ;
-        addFirstPopulation();
+
+        if (citiesList.size() == 0)
+            addFirstPopulation();
+        
         citiesList.add(this);
     }
 
