@@ -2,11 +2,7 @@ package Main;
 
 import Main.Building.*;
 import Main.Exception.*;
-import Main.Safar.Safar;
 import Main.Vehicles.*;
-
-import java.lang.reflect.Method;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,24 +24,14 @@ public class Main {
                 System.out.println(ex.toString());
             }
         }
-//        catch (InvalidJourney ex){
-//            System.out.println(ex.toString());
-//        }
-//        catch (CanceledJourney ex){
-//            System.out.println(ex.toString());
-//        }
-//
-//        catch (Invalid_input ex){
-//            System.out.println(ex.toString());
-//        }
 
-
-
-//
 
     }
 
 
+    static void testing(int a){
+        a++;
+    }
     //================================================
 
     static void  citiesMenu() {

@@ -34,7 +34,7 @@ public class Safar implements Comparable<Safar> {
         this.journeyMonth = journeyMonth;
         this.price = price;
 
-        System.out.println("********* " + idList);
+
         while ( idList.contains(journeyID) ){
             System.out.print("This id is already exists . Please enter new id for this journey : ");
             journeyID = sc.nextLine();
@@ -47,18 +47,18 @@ public class Safar implements Comparable<Safar> {
 
     public int compareTo(Safar sa){
         if (this.journeyMonth > sa.journeyMonth)
-            return 1;
-        else if ( this.journeyMonth < sa.journeyMonth)
-            return  -1;
-        else if ( this.journeyDay > sa.journeyDay)
-            return 1;
-        else if (this.journeyDay < sa.journeyDay)
             return -1;
+        else if ( this.journeyMonth < sa.journeyMonth)
+            return  1;
+        else if ( this.journeyDay > sa.journeyDay)
+            return -1;
+        else if (this.journeyDay < sa.journeyDay)
+            return 1;
 
         else if (this.price > sa.price)
-            return 1;
-        else if (this.price < sa.price)
             return -1;
+        else if (this.price < sa.price)
+            return 1;
 
         return 0;
     }
@@ -69,6 +69,7 @@ public class Safar implements Comparable<Safar> {
         System.out.println("Number of Passengers : " + this.passengerList.size());
         System.out.println("Journey id : " + journeyID);
         System.out.println("Date : " + journeyDay + " / " + journeyMonth);
+        System.out.println("Ticket Price : " + this.price);
         System.out.println("-------------------------------------------------------------");
     }
 

@@ -21,7 +21,7 @@ abstract public class Terminal implements Safarable {
     int number_of_employees ;
     static ArrayList<Terminal> totalTerminals = new ArrayList<>();
     private  ArrayList<Person> employees = new ArrayList<Person>();
-    private  ArrayList<Safar> safarList = new ArrayList<Safar>();
+//    private  ArrayList<Safar> safarList = new ArrayList<Safar>();
     private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     private ArrayList<Person> driversList = new ArrayList<Person>();
     private ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<Safar>();
@@ -117,7 +117,7 @@ abstract public class Terminal implements Safarable {
     public void newJourney(Terminal startingTerminal , Terminal destinationTerminal , ArrayList<Person> passengerList , Person driver , Vehicle vehicle , String journeyID , int journeyDay , int journeyMonth , int price){
 
         Safar newSafar = new Safar(startingTerminal , destinationTerminal , passengerList ,driver , vehicle ,journeyID , journeyDay , journeyMonth , price);
-        this.safarList.add(newSafar);
+//        this.safarList.add(newSafar);
 
         startingTerminal.driversList.remove(driver);
 //        destinationTerminal.driversList.add(driver);
@@ -149,18 +149,21 @@ abstract public class Terminal implements Safarable {
     }
 
     @Override
-    public void sortJourneys(){
-        Collections.sort(this.safarList);
+    public ArrayList<Safar> sortJourneys(ArrayList<Safar> sa){
+        Collections.sort(sa);
+        return sa;
     }
 
     @Override
     public void journeyHistory(boolean startingTerminal , boolean destinationTerminal){
         if(startingTerminal){
-            for (Safar sa : startingTerminalOfJourneys)
+            ArrayList<Safar> safar = sortJourneys(startingTerminalOfJourneys);
+            for (Safar sa : safar)
                 sa.printINFO();
         }
         if( destinationTerminal){
-            for (Safar sa : destinationTerminalOfJourneys)
+            ArrayList<Safar> safar = sortJourneys(destinationTerminalOfJourneys);
+            for (Safar sa : safar)
                 sa.printINFO();
         }
     }
