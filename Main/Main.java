@@ -565,7 +565,7 @@ public class Main {
         if (choice == 1){
             System.out.println("\n\n++++++ Show Information Of All Hotels ++++++\n");
 
-            for (Hotel a : selectCity().getCityHotelList())
+            for (Hotel a : selectedCity.getCityHotelList())
                 a.showInfo();
 
             System.out.println("\n\n ****** Finished ");
@@ -2117,6 +2117,7 @@ public class Main {
 
             if (choice2.equals("y")) {
                 Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,employees );
+                selectedCity.addHotel(newHotel);
                 total_money -= finalPrice ;
                 System.out.println("-----");
                 System.out.println("Done");
@@ -2146,7 +2147,10 @@ public class Main {
 
         System.out.print("\nEnter number of hotel : ");
         int numHotel = sc.nextInt();
-        System.out.println("\n\n\t\t\t\t\t=== Build a room for hotel " + numHotel + " ===\n");
+
+        Hotel hotel = selectedCity.getCityHotelList().get(numHotel-1);
+
+        System.out.println("\n\n\t\t\t\t\t=== Build a room for  " +  hotel.getHotelName() + " ===\n");
 
         System.out.print("Enter room number : ");
         int roomNumber = sc.nextInt();
@@ -2171,7 +2175,7 @@ public class Main {
 
 
         if (confirm.equals("y")){
-            selectedCity.getCityHotelList().get(numHotel-1).addRoom(roomNumber , beds , roomArea , fee);
+            hotel.addRoom(roomNumber , beds , roomArea , fee);
             System.out.println("-----");
             System.out.println("\nDone");
             System.out.println("-----");
