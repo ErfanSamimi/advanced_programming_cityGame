@@ -1171,8 +1171,8 @@ public class Main {
 
             //===========================================================================================================================
             sc.nextLine();
-            System.out.print("Enter type of bus class (business , economy ) : ");
-            String classType = sc.nextLine();
+//            System.out.print("Enter type of bus class (business , economy ) : ");
+//            String classType = sc.nextLine();
 //            System.out.println("+++++  " + classType);
             System.out.println();
 
@@ -1220,7 +1220,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Bus newBus = new Bus(classType, kpl, capacity, fuel_type, speed, capacity, company, ID);
+                    Bus newBus = new Bus("none", kpl, capacity, fuel_type, speed, capacity, company, ID);
                     selectedCity.getCityBusTerminalList().get(number_busTerminal-1).addVehicle(newBus);
                     total_money -= finalPrice;
                     System.out.println("-----");
@@ -1360,8 +1360,8 @@ public class Main {
             System.out.println();
 
             sc.nextLine();
-            System.out.print("Enter type of airplane class (business , economy ) : ");
-            String classType = sc.nextLine();
+//            System.out.print("Enter type of airplane class (business , economy ) : ");
+//            String classType = sc.nextLine();
 //            System.out.println("+++++  " + classType);
             System.out.println();
 
@@ -1405,7 +1405,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, classType, height, runway, capacity, ID, company);
+                    Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, "none", height, runway, capacity, ID, company);
                     selectedCity.getCityAirportList().get(number_airport-1).addVehicle(newPassengerAirplane);
                     total_money -= finalPrice;
                     System.out.println("-----");
@@ -1451,8 +1451,8 @@ public class Main {
 
             //===========================================================================================================================
             sc.nextLine();
-            System.out.print("Enter type of ship class (business , economy ) : ");
-            String classType = sc.nextLine();
+//            System.out.print("Enter type of ship class (business , economy ) : ");
+//            String classType = sc.nextLine();
 //            System.out.println("+++++  " + classType);
             System.out.println();
 
@@ -1500,7 +1500,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Ship newShip = new Ship(classType, length, fuel_type, min_depth, capacity, ID, company);
+                    Ship newShip = new Ship("none", length, fuel_type, min_depth, capacity, ID, company);
                     selectedCity.getCityShippingPortList().get(number_shippingPort - 1).addVehicle(newShip);
                     total_money -= finalPrice;
                     System.out.println("-----");

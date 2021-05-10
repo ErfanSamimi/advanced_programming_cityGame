@@ -161,6 +161,7 @@ abstract public class Terminal implements Safarable {
             for (Safar sa : safar)
                 sa.printINFO();
         }
+        System.out.println("********************************************************************************");
         if( destinationTerminal){
             ArrayList<Safar> safar = sortJourneys(destinationTerminalOfJourneys);
             for (Safar sa : safar)
