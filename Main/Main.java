@@ -11,7 +11,7 @@ public class Main {
 
 
     static City selectedCity;
-    static int total_money ;
+
 
     public static void main(String[] args){
 
@@ -29,9 +29,7 @@ public class Main {
     }
 
 
-    static void testing(int a){
-        a++;
-    }
+
     //================================================
 
     static void  citiesMenu() {
@@ -41,31 +39,32 @@ public class Main {
         System.out.println("\n 1-Build New City \n 2-Enter To A City  \n 3-Show Cities Information \n 4-Show Country info");
         System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
-        int choice = sc.nextInt();
 
 
-        if (choice == 1 )
-            buildCity();
+        try {
+            int choice = sc.nextInt();
+            if (choice == 1)
+                buildCity();
 
-        else if ( choice == 2 ) {
-            selectedCity = selectCity();
-            total_money = selectedCity.getBudget();
-            mainMenu();
+            else if (choice == 2) {
+                selectedCity = selectCity();
+                mainMenu();
+            } else if (choice == 3)
+                showCitiesInformation();
+
+            else if (choice == 4) {
+                System.out.println("\n\n\t\t\t\t\t=== Country Info  === \n");
+                System.out.println();
+                System.out.println("Total Budget : " + Country.totalBudget());
+                System.out.println("Total population : " + Country.totalPopulation());
+                citiesMenu();
+            } else
+                citiesMenu();
         }
-
-        else if (choice == 3 )
-            showCitiesInformation();
-
-        else if ( choice == 4) {
-            System.out.println("\n\n\t\t\t\t\t=== Country Info  === \n");
-            System.out.println();
-            System.out.println("Total Budget : " + Country.totalBudget());
-            System.out.println("Total population : " + Country.totalPopulation());
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
             citiesMenu();
         }
-
-        else
-            citiesMenu();
 
     }
 
@@ -73,48 +72,60 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n===============================================\n");
 
+
         System.out.println("City : " + selectedCity.getCityName());
-        System.out.println("Money : " + total_money);
+        System.out.println("Money : " + selectedCity.getBudget());
 
         System.out.println("\n\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Make new journey \n 7-Show Status \n 8-Show Cities Menu");
         System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
-
-        int choice = sc.nextInt();
-
-
-        if(choice == 1)
-            buildTerminal();
-
-        else if(choice == 2)
-            buyVehicles();
-
-        else if(choice == 3)
-            engage();
-
-        else if(choice == 4)
-            buildHotel();
-
-        else if(choice == 5)
-            build_Room_In_Hotel();
-
-        else if (choice == 6)
-            makeNewJourney();
-
-        else if (choice == 7)
-            showStatus();
-
-        else if (choice == 8) {
-            selectedCity.setBudget(total_money);
+        int choice = -1;
+        try{
+            choice =sc.nextInt();
+        }
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
             citiesMenu();
         }
 
-        else
+        try {
+
+
+
+            if (choice == 1)
+                buildTerminal();
+
+            else if (choice == 2)
+                buyVehicles();
+
+            else if (choice == 3)
+                engage();
+
+            else if (choice == 4)
+                buildHotel();
+
+            else if (choice == 5)
+                build_Room_In_Hotel();
+
+            else if (choice == 6)
+                makeNewJourney();
+
+            else if (choice == 7)
+                showStatus();
+
+            else if (choice == 8) {
+                citiesMenu();
+            } else
+                mainMenu();
+        }
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
             mainMenu();
+        }
     }
 
     static void showMoney(){
-        System.out.println("\n+++ You have " + total_money + " $\n");
+        System.out.println("\n+++ You have " + selectedCity.getBudget() + " $\n");
     }
 
     //=======================================================================================
@@ -402,7 +413,7 @@ public class Main {
 
         System.out.println("****** population : \n");
         System.out.println("Your city population : " + selectedCity.getPersonList().size());
-        System.out.println("Your city has " + Person.number_of_jobs("pilot" , selectedCity.getPersonList()) + " pilot(s)" + selectedCity);
+        System.out.println("Your city has " + Person.number_of_jobs("pilot" , selectedCity.getPersonList()) + " pilot(s)" );
         System.out.println("Your city has " + Person.number_of_jobs("driver" , selectedCity.getPersonList()) + " driver(s)");
         System.out.println("Your city has " + Person.number_of_jobs("sailor" , selectedCity.getPersonList()) + " sailor(s)");
         System.out.println("Your city has " + Person.number_of_jobs("locomotive driver" , selectedCity.getPersonList()) + " locomotive driver(s)");
@@ -720,18 +731,31 @@ public class Main {
         System.out.println(" 1-Airport \n 2-Bus Terminal \n 3-Shipping port \n 4-Train station ");
         System.out.print("\nEnter your choice : ");
         Scanner sc = new Scanner(System.in) ;
-        int choice = sc.nextInt();
-        if (choice == 1){
-            buildAirport();
+        int choice = -1;
+
+        try {
+            choice = sc.nextInt();
         }
-        else if (choice == 2){
-            buildBusTerminal();
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
+            mainMenu();
         }
-        else if (choice == 3){
-            buildShippingPort();
+
+        try {
+
+            if (choice == 1) {
+                buildAirport();
+            } else if (choice == 2) {
+                buildBusTerminal();
+            } else if (choice == 3) {
+                buildShippingPort();
+            } else if (choice == 4) {
+                buildTrainStation();
+            }
         }
-        else if (choice == 4){
-            buildTrainStation();
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
+            buildTerminal();
         }
 
         mainMenu();
@@ -784,8 +808,8 @@ public class Main {
 
         int finalPrice = 1400 + number_employees*30 ;
 
-        if(finalPrice <= total_money ){
-            System.out.println("Build this airport costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+        if(finalPrice <= selectedCity.getBudget() ){
+            System.out.println("Build this airport costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
             System.out.print("\nBuild this airport ? (y/n) : ");
 //            sc.next();
@@ -797,7 +821,7 @@ public class Main {
                 Airport newAirport = new Airport(international, runways, selectedCity, airportName, address, area, number_airplane, number_employees);
                 selectedCity.addAirport(newAirport);
 
-                total_money -= finalPrice ;
+                selectedCity.withdrawalBudget(finalPrice);
                 System.out.println("-----");
                 System.out.println("Done");
                 System.out.println("-----");
@@ -850,8 +874,8 @@ public class Main {
 
         int finalPrice = 600 + number_employees*30 ;
 
-        if(finalPrice <= total_money ){
-            System.out.println("Build this Bus terminal costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+        if(finalPrice <= selectedCity.getBudget() ){
+            System.out.println("Build this Bus terminal costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
             System.out.print("\nBuild this Bus terminal ? (y/n) : ");
 //            sc.next();
@@ -862,7 +886,7 @@ public class Main {
             if (choice2.equals("y")) {
                 Bus_Terminal newBusTerminal = new Bus_Terminal( selectedCity, busTerminalName , address, area, number_buses , number_employees);
                 selectedCity.addBusTerminal(newBusTerminal);
-                total_money -= finalPrice ;
+                selectedCity.withdrawalBudget(finalPrice);
                 System.out.println("-----");
                 System.out.println("Done");
                 System.out.println("-----");
@@ -917,8 +941,8 @@ public class Main {
 
         int finalPrice = 1000 + number_employees*30 ;
 
-        if(finalPrice <= total_money ){
-            System.out.println("Build this shipping port costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+        if(finalPrice <= selectedCity.getBudget() ){
+            System.out.println("Build this shipping port costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
             System.out.print("\nBuild this shipping port ? (y/n) : ");
 //            sc.next();
@@ -929,7 +953,7 @@ public class Main {
             if (choice2.equals("y")) {
                 ShippingPort newShippingPort = new ShippingPort( waterfronts , selectedCity, shippingPortName , address, area, number_ships , number_employees);
                 selectedCity.addShippingPort(newShippingPort);
-                total_money -= finalPrice ;
+                selectedCity.withdrawalBudget(finalPrice);
                 System.out.println("-----");
                 System.out.println("Done");
                 System.out.println("-----");
@@ -988,8 +1012,8 @@ public class Main {
 
         int finalPrice = 1100 + number_employees*30 ;
 
-        if(finalPrice <= total_money ){
-            System.out.println("Build this train station costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+        if(finalPrice <= selectedCity.getBudget() ){
+            System.out.println("Build this train station costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
             System.out.print("\nBuild this train station ? (y/n) : ");
 //            sc.next();
@@ -1000,7 +1024,7 @@ public class Main {
             if (choice2.equals("y")) {
                 TrainStation newTrainStation = new TrainStation( inputRails , outputRails , selectedCity , trainStationName , address, area, number_trains , number_employees);
                 selectedCity.addTrainStation(newTrainStation);
-                total_money -= finalPrice ;
+                selectedCity.withdrawalBudget(finalPrice);
                 System.out.println("-----");
                 System.out.println("Done");
                 System.out.println("-----");
@@ -1027,25 +1051,40 @@ public class Main {
         System.out.println("\n\n\t\t\t\t\t====== Buy vehicles ======");
         System.out.println(" 1-boat \n 2-bus \n 3-cargo plane \n 4-passenger airplane \n 5-ship \n 6-train ");
         System.out.print("\nEnter your choice : ");
-        int choice = sc.nextInt() ;
+        int choice = -1;
+        try {
+            choice = sc.nextInt();
+        }
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
+            mainMenu();
+        }
 
-        if(choice == 1)
-            buyBoat() ;
+        try {
+            ;
 
-        if(choice == 2)
-            buyBus() ;
+            if (choice == 1)
+                buyBoat();
 
-        if(choice == 3)
-            buyCargoPlane() ;
+            if (choice == 2)
+                buyBus();
 
-        if(choice == 4)
-            buyPassengerAirplane() ;
+            if (choice == 3)
+                buyCargoPlane();
 
-        if(choice == 5)
-            buyShip() ;
+            if (choice == 4)
+                buyPassengerAirplane();
 
-        if(choice == 6)
-            buyTrain() ;
+            if (choice == 5)
+                buyShip();
+
+            if (choice == 6)
+                buyTrain();
+        }
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
+            buyVehicles();
+        }
 
 
         mainMenu();
@@ -1116,8 +1155,8 @@ public class Main {
 
             int finalPrice = 300;
 
-            if (finalPrice <= total_money) {
-                System.out.println("Buy this boat costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+            if (finalPrice <= selectedCity.getBudget()) {
+                System.out.println("Buy this boat costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
                 System.out.print("\nBuy this boat ? (y/n) : ");
 //            sc.next();
@@ -1128,7 +1167,7 @@ public class Main {
                 if (choice2.equals("y")) {
                     Boat newBoat = new Boat(distance, fuel_type, min_depth, capacity, ID, company);
                     selectedCity.getCityShippingPortList().get(number_shippingPort - 1).addVehicle(newBoat);
-                    total_money -= finalPrice;
+                    selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
                     System.out.println("Done");
                     System.out.println("-----");
@@ -1210,8 +1249,8 @@ public class Main {
 
             int finalPrice = 200;
 
-            if (finalPrice <= total_money) {
-                System.out.println("Buy this bus costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+            if (finalPrice <= selectedCity.getBudget()) {
+                System.out.println("Buy this bus costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
                 System.out.print("\nBuy this bus ? (y/n) : ");
 //            sc.next();
@@ -1222,7 +1261,7 @@ public class Main {
                 if (choice2.equals("y")) {
                     Bus newBus = new Bus("none", kpl, capacity, fuel_type, speed, capacity, company, ID);
                     selectedCity.getCityBusTerminalList().get(number_busTerminal-1).addVehicle(newBus);
-                    total_money -= finalPrice;
+                    selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
                     System.out.println("Done");
                     System.out.println("-----");
@@ -1299,8 +1338,8 @@ public class Main {
 
             int finalPrice = 700;
 
-            if (finalPrice <= total_money) {
-                System.out.println("Buy this cargo plane costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+            if (finalPrice <= selectedCity.getBudget()) {
+                System.out.println("Buy this cargo plane costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
                 System.out.print("\nBuy this cargo plane ? (y/n) : ");
 //            sc.next();
@@ -1311,7 +1350,7 @@ public class Main {
                 if (choice2.equals("y")) {
                     CargoPlane newCargoPlane = new CargoPlane(weight, height, runway, capacity, ID, company);
                     selectedCity.getCityAirportList().get(number_airport-1).addVehicle( newCargoPlane);
-                    total_money -= finalPrice;
+                    selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
                     System.out.println("Done");
                     System.out.println("-----");
@@ -1395,8 +1434,8 @@ public class Main {
 
             int finalPrice = 800;
 
-            if (finalPrice <= total_money) {
-                System.out.println("Buy this passenger airplane costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+            if (finalPrice <= selectedCity.getBudget()) {
+                System.out.println("Buy this passenger airplane costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
                 System.out.print("\nBuy this passenger airplane ? (y/n) : ");
 //            sc.next();
@@ -1407,7 +1446,7 @@ public class Main {
                 if (choice2.equals("y")) {
                     Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, "none", height, runway, capacity, ID, company);
                     selectedCity.getCityAirportList().get(number_airport-1).addVehicle(newPassengerAirplane);
-                    total_money -= finalPrice;
+                    selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
                     System.out.println("Done");
                     System.out.println("-----");
@@ -1490,8 +1529,8 @@ public class Main {
 
             int finalPrice = 600;
 
-            if (finalPrice <= total_money) {
-                System.out.println("Buy this ship costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+            if (finalPrice <= selectedCity.getBudget()) {
+                System.out.println("Buy this ship costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
                 System.out.print("\nBuy this ship ? (y/n) : ");
 //            sc.next();
@@ -1502,7 +1541,7 @@ public class Main {
                 if (choice2.equals("y")) {
                     Ship newShip = new Ship("none", length, fuel_type, min_depth, capacity, ID, company);
                     selectedCity.getCityShippingPortList().get(number_shippingPort - 1).addVehicle(newShip);
-                    total_money -= finalPrice;
+                    selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
                     System.out.println("Done");
                     System.out.println("-----");
@@ -1593,8 +1632,8 @@ public class Main {
 
             int finalPrice = 500;
 
-            if (finalPrice <= total_money) {
-                System.out.println("Buy this train costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+            if (finalPrice <= selectedCity.getBudget()) {
+                System.out.println("Buy this train costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
                 System.out.print("\nBuy this train ? (y/n) : ");
 //            sc.next();
@@ -1605,7 +1644,7 @@ public class Main {
                 if (choice2.equals("y")) {
                     Train newTrain = new Train(wagons, stars, fuel_capacity, fuel_type, speed, capacity, company, ID);
                     selectedCity.getCityTrainStationList().get(number_trainStation - 1).addVehicle(newTrain);
-                    total_money -= finalPrice;
+                    selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
                     System.out.println("Done");
                     System.out.println("-----");
@@ -1627,25 +1666,38 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1-pilot \n 2-driver \n 3-sailor \n 4-locomotive driver \n 5-flight attendant \n 6-Employee");
         System.out.print("\nEnter your choice : ");
-        int choice = sc.nextInt();
-        String final_choice ="";
-        if (choice == 1)
-            engagePilot();
+        int choice = -1;
+        try {
+            choice = sc.nextInt();
+        }
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
+            mainMenu();
+        }
 
-        if (choice == 2)
-            engageDriver();
+        try {
+            if (choice == 1)
+                engagePilot();
 
-        if (choice == 3)
-            engageSailor();
+            if (choice == 2)
+                engageDriver();
 
-        if (choice == 4)
-            engageLocomotiveDriver();
+            if (choice == 3)
+                engageSailor();
 
-        if (choice == 5)
-            engageFlightAttendant();
+            if (choice == 4)
+                engageLocomotiveDriver();
 
-        if (choice == 6)
-            engageEmployee();
+            if (choice == 5)
+                engageFlightAttendant();
+
+            if (choice == 6)
+                engageEmployee();
+        }
+        catch (RuntimeException ex){
+            System.out.println(ex.toString());
+            engage();
+        }
 
         mainMenu();
 
@@ -1683,7 +1735,7 @@ public class Main {
                 Airport airport = selectedCity.getCityAirportList().get(numberAirport - 1);
                 Person.engage(ID);
                 airport.add_Driver(selected);
-                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                 showMoney();
                 mainMenu();
             }
@@ -1731,7 +1783,7 @@ public class Main {
                 Person.engage(ID);
                 bus_terminal.add_Driver(selected);
 
-                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                 showMoney();
                 mainMenu();
             }
@@ -1776,7 +1828,7 @@ public class Main {
                 ShippingPort shippingPort = selectedCity.getCityShippingPortList().get(numberShppingPort - 1);
                 Person.engage(ID);
                 shippingPort.add_Driver(selected);
-                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                 showMoney();
                 mainMenu();
             }
@@ -1821,7 +1873,7 @@ public class Main {
                 TrainStation trainStation = selectedCity.getCityTrainStationList().get(numberTrainStation - 1);
                 Person.engage(ID);
                 trainStation.add_Driver(selected);
-                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                 showMoney();
                 mainMenu();
             }
@@ -1867,7 +1919,7 @@ public class Main {
                 Person.engage(ID);
                 airport.addFlightAttendant(selected);
                 ;
-                total_money -= Person.find_Person_from_ID(ID).getSalary();
+                selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                 showMoney();
                 mainMenu();
             }
@@ -1919,7 +1971,7 @@ public class Main {
                     Airport airport = selectedCity.getCityAirportList().get(numberAirport - 1);
                     Person.engage(ID);
                     airport.addEmployees(selected);
-                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                     showMoney();
                     mainMenu();
                 }
@@ -1953,7 +2005,7 @@ public class Main {
                     Bus_Terminal bus_terminal = selectedCity.getCityBusTerminalList().get(numberBusTerminal - 1);
                     Person.engage(ID);
                     bus_terminal.addEmployees(selected);
-                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                     showMoney();
                     mainMenu();
                 }
@@ -1988,7 +2040,7 @@ public class Main {
                     Hotel hotel = selectedCity.getCityHotelList().get(numberHotel - 1);
                     Person.engage(ID);
                     hotel.addEmployee(selected);
-                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                     showMoney();
                     mainMenu();
                 }
@@ -2022,7 +2074,7 @@ public class Main {
                     ShippingPort shippingPort = selectedCity.getCityShippingPortList().get(numberShippingPort - 1);
                     Person.engage(ID);
                     shippingPort.addEmployees(selected);
-                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                     showMoney();
                     mainMenu();
                 }
@@ -2056,7 +2108,7 @@ public class Main {
                     TrainStation trainStation =  selectedCity.getCityTrainStationList().get(numberTrainStation - 1);
                     Person.engage(ID);
                     trainStation.addEmployees(Person.find_Person_from_ID(ID));
-                    total_money -= Person.find_Person_from_ID(ID).getSalary();
+                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
                     showMoney();
                     mainMenu();
                 }
@@ -2106,8 +2158,8 @@ public class Main {
 
         int finalPrice = (rooms * 150) + (employees * 30)  ;
 
-        if(finalPrice <= total_money ){
-            System.out.println("Build this Hotel costs : " + finalPrice + " $\nand now you have " + total_money + "$");
+        if(finalPrice <= selectedCity.getBudget() ){
+            System.out.println("Build this Hotel costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
 
             System.out.print("\nBuild this hotel ? (y/n) : ");
 //            sc.next();
@@ -2118,7 +2170,7 @@ public class Main {
             if (choice2.equals("y")) {
                 Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,employees );
                 selectedCity.addHotel(newHotel);
-                total_money -= finalPrice ;
+                selectedCity.withdrawalBudget(finalPrice);
                 System.out.println("-----");
                 System.out.println("Done");
                 System.out.println("-----");

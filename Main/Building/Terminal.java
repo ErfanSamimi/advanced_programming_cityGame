@@ -141,7 +141,7 @@ abstract public class Terminal implements Safarable {
 
         }
 
-
+        System.out.println(journeyPrice(passengerList , price));
         startingTerminal.city.addBudget( journeyPrice( passengerList , price) );
 
 
