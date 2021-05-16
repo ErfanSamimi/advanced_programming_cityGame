@@ -141,12 +141,9 @@ public class Main {
 
         int number_of_passengers =0;
 
-        try {
-            number_of_passengers = sc.nextInt();
-        }
-        catch (InputMismatchException ex){
-            System.out.println();
-        }
+
+        number_of_passengers = sc.nextInt();
+
         //show id of people in selected city
         int counter =0;
         System.out.println("People IDs in " + selectedCity.getCityName() + " : ");
