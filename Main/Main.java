@@ -1344,7 +1344,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    CargoPlane newCargoPlane = new CargoPlane(weight, height, runway, capacity, ID, company);
+                    CargoPlane newCargoPlane = new CargoPlane(weight, height, runway, capacity, ID, company , true);
                     selectedCity.getCityAirportList().get(number_airport-1).addVehicle( newCargoPlane);
                     selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
