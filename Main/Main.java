@@ -1638,7 +1638,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Train newTrain = new Train(wagons, stars, fuel_capacity, fuel_type, speed, capacity, company, ID);
+                    Train newTrain = new Train(wagons, stars, fuel_capacity, fuel_type, speed, capacity, company, ID , true);
                     selectedCity.getCityTrainStationList().get(number_trainStation - 1).addVehicle(newTrain);
                     selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
