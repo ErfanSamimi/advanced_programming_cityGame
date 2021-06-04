@@ -79,7 +79,7 @@ public class City {
             while (!Person.uniqID(ID)) {
                 ID = rand.nextInt(701);
             }
-            Person newPerson = new Person(job, salary, ID);
+            Person newPerson = new Person(job, salary, ID ,true);
             this.personList.add(newPerson);
         }
     }

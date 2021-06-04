@@ -3,6 +3,7 @@ package Main;
 
 import Main.Exception.InvalidPerson;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,11 +22,11 @@ public class Person {
     private static ArrayList<Person> peopleList = new ArrayList<Person>() ;
 
 
-    public Person(String job , int salary , int ID ){
-        this(null , null , null , job , null , 0000 , salary , ID) ;
+    public Person(String job , int salary , int ID , boolean save){
+        this(null , null , null , job , null , 0000 , salary , ID , save) ;
     }
 
-    public Person(String firstname , String lastname , String birthPlace , String job , String gender , int birthDate , int salary , int ID ){
+    public Person(String firstname , String lastname , String birthPlace , String job , String gender , int birthDate , int salary , int ID  , boolean save){
         this.firstname = firstname ;
         this.lastname = lastname ;
         this.birthDate = birthDate ;
@@ -40,6 +41,14 @@ public class Person {
         }
 
         this.ID = ID ;
+
+        if (save) {
+            try {
+                savePerson();
+            } catch (IOException ex) {
+            }
+        }
+
         peopleList.add(this);
     }
 
@@ -101,6 +110,34 @@ public class Person {
                 counter ++;
         }
         return counter ;
+    }
+
+    void savePerson() throws IOException {
+
+        FileOutputStream people = new FileOutputStream("/home/erfan/Projects/Java/Files/CityGame/people.csv" , true);
+        PrintWriter pw = new PrintWriter(people );
+
+        pw.format("%s,%d,%d,%b\n" , this.job , this.salary , this.ID , this.hired);
+
+        pw.close();
+        people.close();
+
+    }
+
+    void restorePeople() throws FileNotFoundException {
+
+        FileReader people = new FileReader("/home/erfan/Projects/Java/Files/CityGame/people.csv" );
+
+        Scanner sc = new Scanner(people);
+
+        while (sc.hasNextLine()){
+            String [] person = sc.nextLine().split(",");
+
+            Person newPerson = new Person(person[0] , Integer.parseInt(person[1])  ,  Integer.parseInt(person[2])   , false);
+            newPerson.hired = Boolean.parseBoolean(person[3]);
+
+            peopleList.add(newPerson);
+        }
     }
 
 }

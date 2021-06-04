@@ -1040,7 +1040,6 @@ public class Main {
     //==========================================================================================
 
 
-    //TODO set buy vehicle
 
     static void buyVehicles(){
         Scanner sc = new Scanner(System.in);
