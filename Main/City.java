@@ -3,12 +3,13 @@ package Main;
 import Main.Building.*;
 import Main.Vehicles.*;
 
+import java.io.Serializable;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class City {
+public class City implements Serializable {
 
     private int budget;
     private String cityName;
@@ -28,12 +29,12 @@ public class City {
 
     //=================================================================================
 
-    private ArrayList<Boat> boatsList = getBoatsList();
-    private ArrayList<Bus> busesList = getBusesList() ;
-    private ArrayList<CargoPlane> cargoPlanesList = getCargoPlanesList();
-    private ArrayList<Passenger_airplane> passenger_airplanesList = getPassenger_airplanesList();
-    private ArrayList<Ship> shipsList = getShipsList() ;
-    private ArrayList<Train> trainsList = getTrainsList();
+//    private ArrayList<Boat> boatsList = getBoatsList();
+//    private ArrayList<Bus> busesList = getBusesList() ;
+//    private ArrayList<CargoPlane> cargoPlanesList = getCargoPlanesList();
+//    private ArrayList<Passenger_airplane> passenger_airplanesList = getPassenger_airplanesList();
+//    private ArrayList<Ship> shipsList = getShipsList() ;
+//    private ArrayList<Train> trainsList = getTrainsList();
 
 
     //=================================================================================
@@ -183,8 +184,8 @@ public class City {
                     boats.add((Boat) b);
             }
         }
-        this.boatsList = boats ;
-        return this.boatsList;
+//        this.boatsList = boats ;
+        return boats;
     }
 
     ArrayList<Bus> getBusesList (){
@@ -195,8 +196,8 @@ public class City {
                     buses.add((Bus) b);
             }
         }
-        this.busesList = buses ;
-        return this.busesList ;
+//        this.busesList = buses ;
+        return buses ;
     }
 
     ArrayList<CargoPlane> getCargoPlanesList (){
@@ -208,8 +209,8 @@ public class City {
                     cargoPlanes.add((CargoPlane) b);
             }
         }
-        this.cargoPlanesList = cargoPlanes ;
-        return this.cargoPlanesList ;
+//        this.cargoPlanesList = cargoPlanes ;
+        return cargoPlanes ;
     }
 
     ArrayList<Passenger_airplane> getPassenger_airplanesList (){
@@ -221,8 +222,8 @@ public class City {
                     passenger_airplanes.add((Passenger_airplane) b);
             }
         }
-        this.passenger_airplanesList = passenger_airplanes ;
-        return this.passenger_airplanesList ;
+//        this.passenger_airplanesList = passenger_airplanes ;
+        return passenger_airplanes ;
     }
 
     ArrayList<Ship> getShipsList (){
@@ -234,8 +235,8 @@ public class City {
                     ships.add((Ship) b);
             }
         }
-        this.shipsList = ships ;
-        return this.shipsList ;
+//        this.shipsList = ships ;
+        return ships ;
     }
 
     ArrayList<Train> getTrainsList (){
@@ -247,8 +248,8 @@ public class City {
                     trains.add((Train) b);
             }
         }
-        this.trainsList = trains ;
-        return this.trainsList ;
+//        this.trainsList = trains ;
+        return trains ;
     }
 
 
@@ -261,6 +262,11 @@ public class City {
 
         System.out.println("\n-------------------------\n");
     }
+
+
+    //=====================================================================================
+
+
 
 
 }

@@ -14,7 +14,6 @@ public class Vehicle {
     private String ID ;
     private String name_builder_company ;
     private static ArrayList<String> ID_list = new ArrayList<String>();
-//    private static int ticketPrice = 0;
     private static ArrayList<Vehicle> vehiclesList = new ArrayList<>();
 
     //==================================================
