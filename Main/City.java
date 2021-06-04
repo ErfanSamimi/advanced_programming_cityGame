@@ -3,7 +3,7 @@ package Main;
 import Main.Building.*;
 import Main.Vehicles.*;
 
-import java.io.Serializable;
+import java.io.*;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Random;
@@ -47,6 +47,10 @@ public class City implements Serializable {
             addFirstPopulation();
         
         citiesList.add(this);
+        try{
+            saveCity();
+        }
+        catch (IOException ex){}
     }
 
 //=================================================================================
@@ -266,8 +270,55 @@ public class City implements Serializable {
 
     //=====================================================================================
 
+    transient static boolean firstTimeSavingObject = true;
+
+    void saveCity() throws IOException {
+
+        FileOutputStream cities = new FileOutputStream("home/erfan/Projects/Java/Files/CityGame/cities.txt" , true);
+
+        if (firstTimeSavingObject){
+            ObjectOutputStream obOut = new ObjectOutputStream(cities);
+            obOut.writeObject(this);
+            firstTimeSavingObject = false;
+            obOut.close();
+            cities.close();
+        }
+
+        else {
+            CustomObjectOutputClass obOut = new CustomObjectOutputClass(cities);
+            obOut.writeObject(this);
+            obOut.close();
+            cities.close();
+        }
+
+    }
+
+    void restoreCities() throws IOException, ClassNotFoundException {
+
+        FileInputStream fin = new FileInputStream("home/erfan/Projects/Java/Files/CityGame/cities.txt");
+        ObjectInputStream obIn = new ObjectInputStream(fin);
+
+        try{
+            while (true){
+                City city = (City) obIn.readObject();
+                citiesList.add(city);
+            }
+        }
+        catch (EOFException ex){}
+
+    }
 
 
+}
 
+
+class CustomObjectOutputClass extends ObjectOutputStream {
+
+
+    CustomObjectOutputClass(OutputStream out) throws IOException {
+        super (out);
+    }
+    @Override
+    protected void writeStreamHeader(){}
 }
 

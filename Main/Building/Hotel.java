@@ -2,9 +2,11 @@ package Main.Building;
 
 import Main.Person;
 
+import java.io.Serializable;
+import java.security.SecureRandomParameters;
 import java.util.ArrayList;
 
-public class Hotel {
+public class Hotel implements Serializable {
     private String hotelName ;
     private int buildCost  ;
     private String address ;
@@ -91,7 +93,7 @@ public class Hotel {
 
 }
 
-class Room{
+class Room implements Serializable {
     private int  roomNumber ;
     private int number_of_beds ;
     private int roomArea ;
