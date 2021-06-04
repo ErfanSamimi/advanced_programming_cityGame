@@ -19,6 +19,8 @@ public class Passenger_airplane extends Air_transport_vehicle {
         passenger_airplanesList.add(this);
 
     }
+
+
     public static ArrayList<Passenger_airplane> getPassenger_airplanesList(){
         return passenger_airplanesList;
     }

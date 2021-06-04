@@ -50,6 +50,13 @@ public class Vehicle {
         throw new Vehicle_does_not_exists_Exception("No vehicle exist with this id ");
     }
 
+    public String getID(){
+        return ID;
+    }
+
+    public String getName_builder_company() {
+        return name_builder_company;
+    }
 
     public String getVehicleType(){
         if (this instanceof Air_transport_vehicle)

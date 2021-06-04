@@ -1161,7 +1161,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Boat newBoat = new Boat(distance, fuel_type, min_depth, capacity, ID, company);
+                    Boat newBoat = new Boat(distance, fuel_type, min_depth, capacity, ID, company , true);
                     selectedCity.getCityShippingPortList().get(number_shippingPort - 1).addVehicle(newBoat);
                     selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");

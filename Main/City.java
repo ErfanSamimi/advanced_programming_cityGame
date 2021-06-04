@@ -271,7 +271,7 @@ public class City implements Serializable {
 
     //=====================================================================================
 
-    transient static boolean firstTimeSavingObject = true;
+    static boolean firstTimeSavingObject = true;
 
     void saveCity() throws IOException {
 
