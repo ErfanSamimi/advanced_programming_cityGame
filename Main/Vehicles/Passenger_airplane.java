@@ -16,12 +16,19 @@ public class Passenger_airplane extends Air_transport_vehicle {
     private static ArrayList<Passenger_airplane> passenger_airplanesList = new ArrayList<Passenger_airplane>() ;
 
     public Passenger_airplane(int number_of_flightAttendants, String classType, int max_flight_height, int runway_length
-            , int capacity, String ID, String companyName){
+            , int capacity, String ID, String companyName , boolean save){
 
         super(max_flight_height ,runway_length , 800 ,capacity ,ID ,companyName);
         this.number_of_flightAttendants = number_of_flightAttendants ;
         this.classType = classType;
         passenger_airplanesList.add(this);
+
+        if (save){
+            try {
+                savePassenger_airplane();
+            }
+            catch (IOException ex){}
+        }
 
     }
 
@@ -31,26 +38,27 @@ public class Passenger_airplane extends Air_transport_vehicle {
     }
 
 
-    public void saveBus() throws IOException {
+    public void savePassenger_airplane() throws IOException {
 
-        FileOutputStream fout = new FileOutputStream("home/erfan/Projects/Java/Files/CityGame/buses.csv" , true);
+        FileOutputStream fout = new FileOutputStream("home/erfan/Projects/Java/Files/CityGame/passenger_airplanes.csv" , true);
         PrintWriter pw = new PrintWriter(fout);
 
-        pw.format("%s,%d,%d,%s,%d,%d,%s,%s\n" , this.class_type , this.KPL , this.fuel_capacity , this.class_type , this.speed , this.getCapacity() , this.getName_builder_company() , this.getID() );
+        pw.format("%d,%s,%d,%d,%d,%s,%s\n" , this.number_of_flightAttendants , this.classType , this.max_flight_height , this.runway_length , this.getCapacity() , this.getID() , this.getName_builder_company()  );
         pw.close();
         fout.close();
     }
 
-    public void restoreBuses() throws IOException {
+    public void restorePassenger_airplane() throws IOException {
 
         FileInputStream fin = new FileInputStream("home/erfan/Projects/Java/Files/CityGame/buses.csv" );
         Scanner sc = new Scanner(fin);
 
         while (sc.hasNextLine()) {
 
-            String[] bus = sc.nextLine().split(",");
+            String[] airplane = sc.nextLine().split(",");
 
-            Bus newBus = new Bus(bus[0]  ,  Integer.parseInt(bus[1]) , Integer.parseInt(bus[2])  , bus[3]  ,  Integer.parseInt(bus[4]) , Integer.parseInt(bus[5]) , bus[6] , bus[7] , false );
+            Passenger_airplane newAirplane = new Passenger_airplane( Integer.parseInt(airplane[0])  , airplane[1] ,  Integer.parseInt(airplane[2]) ,  Integer.parseInt(airplane[3]) ,  Integer.parseInt(airplane[4]) ,
+                    airplane[5] , airplane[6] , false);
 
         }
 

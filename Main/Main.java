@@ -1440,7 +1440,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, "none", height, runway, capacity, ID, company);
+                    Passenger_airplane newPassengerAirplane = new Passenger_airplane(flightAttendant, "none", height, runway, capacity, ID, company , true);
                     selectedCity.getCityAirportList().get(number_airport-1).addVehicle(newPassengerAirplane);
                     selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
