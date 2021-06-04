@@ -18,7 +18,7 @@ public class CargoPlane extends Air_transport_vehicle {
 
         if (save){
             try {
-                saveBus();
+                saveCargoPlane();
             }
             catch (IOException ex){}
         }
@@ -30,7 +30,7 @@ public class CargoPlane extends Air_transport_vehicle {
 
 
 
-    public void saveBus() throws IOException {
+    public void saveCargoPlane() throws IOException {
 
         FileOutputStream fout = new FileOutputStream("home/erfan/Projects/Java/Files/CityGame/cargoPlanes.csv" , true);
         PrintWriter pw = new PrintWriter(fout);
@@ -40,7 +40,7 @@ public class CargoPlane extends Air_transport_vehicle {
         fout.close();
     }
 
-    public void restoreBuses() throws IOException {
+    public void restoreCargoPlane() throws IOException {
 
         FileInputStream fin = new FileInputStream("home/erfan/Projects/Java/Files/CityGame/cargoPlanes.csv" );
         Scanner sc = new Scanner(fin);
