@@ -1255,7 +1255,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Bus newBus = new Bus("none", kpl, capacity, fuel_type, speed, capacity, company, ID);
+                    Bus newBus = new Bus("none", kpl, capacity, fuel_type, speed, capacity, company, ID , true);
                     selectedCity.getCityBusTerminalList().get(number_busTerminal-1).addVehicle(newBus);
                     selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
