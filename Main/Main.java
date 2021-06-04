@@ -1535,7 +1535,7 @@ public class Main {
 
 
                 if (choice2.equals("y")) {
-                    Ship newShip = new Ship("none", length, fuel_type, min_depth, capacity, ID, company);
+                    Ship newShip = new Ship("none", length, fuel_type, min_depth, capacity, ID, company , true);
                     selectedCity.getCityShippingPortList().get(number_shippingPort - 1).addVehicle(newShip);
                     selectedCity.withdrawalBudget(finalPrice);
                     System.out.println("-----");
