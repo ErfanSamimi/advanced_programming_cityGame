@@ -1,6 +1,7 @@
 package Main;
 
 import Main.Building.*;
+import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Vehicles.*;
 
 import java.io.*;
@@ -312,13 +313,5 @@ public class City implements Serializable {
 }
 
 
-class CustomObjectOutputClass extends ObjectOutputStream {
 
-
-    CustomObjectOutputClass(OutputStream out) throws IOException {
-        super (out);
-    }
-    @Override
-    protected void writeStreamHeader(){}
-}
 
