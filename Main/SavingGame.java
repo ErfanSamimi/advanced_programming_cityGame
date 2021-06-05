@@ -13,31 +13,46 @@ public class SavingGame implements Runnable {
     static void restoreGame() throws IOException, ClassNotFoundException {
 
         Person.restorePeople();
+        System.out.println("people restored");
 
         //-------------------------
 
         Boat.restoreBoats();
+//        System.out.println("boats restored");
         Bus.restoreBuses();
+//        System.out.println("bus restored");
         CargoPlane.restoreCargoPlane();
+//        System.out.println("cargo plane restored");
         Passenger_airplane.restorePassenger_airplane();
+//        System.out.println("passenger airplane restored");
         Ship.restoreShips();
+//        System.out.println("ships restored");
         Train.restoreTrains();
+//        System.out.println("trains restored");
 
         //-------------------------
 
         Hotel.restoreHotel();
+//        System.out.println("hotel restored");
         Airport.restoreAirports();
+//        System.out.println("Airports restored");
         Bus_Terminal.restoreBusTerminals();
+//        System.out.println("Bus terminal restored");
         ShippingPort.restoreShippingPorts();
+//        System.out.println("shipping port restored");
         TrainStation.restoreTrainStations();
+//        System.out.println("train station restored");
 
         //-------------------------
 
         Safar.restoreSafars();
+//        System.out.println("safars restored");
 
         //-------------------------
 
         City.restoreCity();
+//        System.out.println("city restored");
+//        System.out.println("*-*-*-* Finished");
 
         //-------------------------
 
@@ -61,6 +76,7 @@ public class SavingGame implements Runnable {
             clear_a_file("/home/erfan/Projects/Java/Files/CityGame/boats.csv");
             clear_a_file("/home/erfan/Projects/Java/Files/CityGame/cargoPlanes.csv");
             clear_a_file("/home/erfan/Projects/Java/Files/CityGame/passenger_airplanes.csv");
+            clear_a_file("/home/erfan/Projects/Java/Files/CityGame/safars.txt");
         }
         catch (FileNotFoundException ex){
             ex.printStackTrace();

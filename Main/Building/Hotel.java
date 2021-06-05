@@ -6,7 +6,7 @@ import Main.Person;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Hotel {
+public class Hotel implements Serializable{
     private String hotelName ;
     private int buildCost  ;
     private String address ;
@@ -154,6 +154,7 @@ public class Hotel {
 
                 Hotel newHotel = (Hotel) obIn.readObject();
 
+                newHotel.employees = new ArrayList<>();
 
                 for (int id : newHotel.employeeIDs)
                     newHotel.employees.add( Person.find_Person_from_ID(id));

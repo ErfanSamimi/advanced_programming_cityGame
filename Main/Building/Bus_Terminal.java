@@ -32,9 +32,9 @@ public class Bus_Terminal extends Terminal{
 
     public void showInfo(){
 
-        System.out.println("City name : " + city.getCityName());
+        System.out.println("City name : " + getCity().getCityName());
         System.out.println("Airport name : " + terminalName);
-        System.out.println("Address : " + address );
+        System.out.println("Address : " + super.address );
         System.out.println("Area : " + area);
         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
         System.out.println("Number of available vehicles : " + getNumber_of_bought_vehicles());
@@ -79,6 +79,11 @@ public class Bus_Terminal extends Terminal{
             fout.close();
         }
 
+        this.startingPointIDs.removeAll(startingPointIDs);
+        this.destinationPointIDs.removeAll(destinationPointIDs);
+        this.driverIDs.removeAll(driverIDs);
+        this.employeeIDs.removeAll(employeeIDs);
+        this.vehicleIDs.removeAll(vehicleIDs);
 
 
     }
@@ -94,6 +99,7 @@ public class Bus_Terminal extends Terminal{
 
             while (true){
                 Bus_Terminal newTerminal = (Bus_Terminal) obIn.readObject();
+
 
 
                 newTerminal.restoreTerminal();

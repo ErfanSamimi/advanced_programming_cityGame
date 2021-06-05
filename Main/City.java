@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class City {
+public class City implements Serializable{
 
     private int budget;
     private String cityName;
@@ -27,7 +27,7 @@ public class City {
 
     private static ArrayList<City> citiesList = new ArrayList<City>();
 
-    transient private ArrayList<Person> personList = new ArrayList<Person>();
+    transient private ArrayList<Person> personList = new ArrayList<>();
     transient private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
     transient private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
     transient private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
@@ -303,8 +303,8 @@ public class City {
     }
 
     static void restoreCityPeople(City city){
-        for (Integer id : city.peopleIDs)
-            city.personList.add( Person.find_Person_from_ID(id));
+        for (int id : city.peopleIDs)
+            city.personList.add(Person.find_Person_from_ID(id));
     }
 
      static <T extends Terminal> void restoreCityTerminals( ArrayList<String> terminalNames , ArrayList<T> cityTerminalList ){
@@ -323,13 +323,17 @@ public class City {
 
     public void saveCity() throws IOException {
 
-        completePeopleIDs();
-        completeAirportNames();
-        completeBusTerminalNames();
-        completeShippingPortNames();
-        completeTrainStationNames();
-        completeHotelNames();
+        try{
+            completePeopleIDs();
+            completeAirportNames();
+            completeBusTerminalNames();
+            completeShippingPortNames();
+            completeTrainStationNames();
+            completeHotelNames();
+        }
+        catch (NullPointerException ex){
 
+        }
         //----------------------------
 
 
@@ -350,9 +354,18 @@ public class City {
             fout.close();
         }
 
+        this.peopleIDs.removeAll(peopleIDs);
+        this.airportsNames.removeAll(airportsNames);
+        this.busTerminalsNames.removeAll(busTerminalsNames);
+        this.hotelNames.removeAll(hotelNames);
+        this.shippingPortsNames.removeAll(shippingPortsNames);
+        this.trainStationNames.removeAll(trainStationNames);
+
 
 
     }
+
+    //------------------------------------------------------------------
 
     public static void restoreCity() throws IOException, ClassNotFoundException {
 
@@ -363,14 +376,33 @@ public class City {
             ObjectInputStream obIn = new ObjectInputStream(fin);
 
             while (true){
+
+
                 City newCity = (City) obIn.readObject();
 
-                restoreCityPeople(newCity);
-                restoreCityTerminals(newCity.airportsNames , newCity.cityAirportList);
-                restoreCityTerminals(newCity.busTerminalsNames , newCity.cityBusTerminalList);
-                restoreCityTerminals(newCity.shippingPortsNames , newCity.cityShippingPortList);
-                restoreCityTerminals(newCity.trainStationNames , newCity.cityTrainStationList);
-                restoreCityHotels(newCity);
+
+                newCity.personList = new ArrayList<>();
+                newCity.cityAirportList = new ArrayList<>();
+                newCity.cityBusTerminalList = new ArrayList<>();
+                newCity.cityHotelList = new ArrayList<>();
+                newCity.cityShippingPortList = new ArrayList<>();
+                newCity.cityTrainStationList = new ArrayList<>();
+
+
+
+
+
+                try{
+                    restoreCityPeople(newCity);
+                    restoreCityTerminals(newCity.airportsNames, newCity.cityAirportList);
+                    restoreCityTerminals(newCity.busTerminalsNames, newCity.cityBusTerminalList);
+                    restoreCityTerminals(newCity.shippingPortsNames, newCity.cityShippingPortList);
+                    restoreCityTerminals(newCity.trainStationNames, newCity.cityTrainStationList);
+                    restoreCityHotels(newCity);
+                }
+                catch (NullPointerException ex){
+                    ex.printStackTrace();
+                }
 
                 citiesList.add(newCity);
             }

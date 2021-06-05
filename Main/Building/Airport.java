@@ -45,9 +45,9 @@ public class Airport extends Terminal {
     public void showInfo(){
         System.out.println("International : " + international_Airport);
         System.out.println("Runways : " + number_of_runways);
-        System.out.println("City name : " + city.getCityName());
+        System.out.println("City name : " + getCity().getCityName());
         System.out.println("Airport name : " + terminalName);
-        System.out.println("Address : " + address );
+        System.out.println("Address : " + super.address );
         System.out.println("Area : " + area);
         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
         System.out.println("Number of available vehicles : "  + getNumber_of_bought_vehicles() );
@@ -99,6 +99,12 @@ public class Airport extends Terminal {
             fout.close();
         }
 
+        this.flightAttendantsIDs.removeAll(flightAttendants);
+        this.startingPointIDs.removeAll(startingPointIDs);
+        this.destinationPointIDs.removeAll(destinationPointIDs);
+        this.driverIDs.removeAll(driverIDs);
+        this.employeeIDs.removeAll(employeeIDs);
+        this.vehicleIDs.removeAll(vehicleIDs);
 
 
     }
@@ -114,6 +120,8 @@ public class Airport extends Terminal {
 
             while (true){
                 Airport newAirport = (Airport)obIn.readObject();
+
+                newAirport.flightAttendants = new ArrayList<>();
 
                 restoreFlightAttendants(newAirport);
                 newAirport.restoreTerminal();

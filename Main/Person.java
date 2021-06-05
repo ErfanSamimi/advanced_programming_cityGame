@@ -101,7 +101,7 @@ public class Person {
     public static int number_of_jobs( String job , ArrayList<Person> people){
         int counter = 0 ;
         for (Person a : people){
-            if (a.job == job)
+            if (a.job.equals(job))
                 counter ++;
         }
         return counter ;

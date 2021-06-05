@@ -2,7 +2,10 @@ package Main;
 
 import Main.Building.*;
 import Main.Exception.*;
+import Main.Safar.Safar;
 import Main.Vehicles.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,8 +16,31 @@ public class Main {
     static City selectedCity;
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
+        System.out.print("New Game ? ");
+        String str = new Scanner(System.in).nextLine();
+
+        if (str.equals("yes")){
+            SavingGame.clearAllFiles();
+            System.out.println("Starting new game");
+    }
+
+        //-------------------------------------------
+
+        try {
+            SavingGame.restoreGame();
+
+        }
+        catch (IOException | ClassNotFoundException  ex){
+            ex.printStackTrace();
+        }
+
+        //-------------------------------------------
+
+
+        Thread save = new Thread(new SavingGame() , "save" );
+        save.start();
 
 
         while (true) {
@@ -119,7 +145,8 @@ public class Main {
                 mainMenu();
         }
         catch (RuntimeException ex){
-            System.out.println(ex.toString());
+//            System.out.println(ex.toString());
+            ex.printStackTrace();
             mainMenu();
         }
     }
@@ -324,18 +351,6 @@ public class Main {
 
         if ( ! starting.getDriversList().contains(driver) )
             throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + " Terminal");
-
-//        if ( vehicle.getVehicleType().equals("Air_transport_vehicle") && ! driver.getJob().equals("pilot"))
-//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not pilot !");
-//
-//        if ( vehicle.getVehicleType().equals("Train") && ! driver.getJob().equals("locomotive driver"))
-//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not locomotive driver !");
-//
-//        if ( vehicle.getVehicleType().equals("Bus") && ! driver.getJob().equals("driver"))
-//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not driver !");
-//
-//        if ( vehicle.getVehicleType().equals("Shipping_vehicle") && ! driver.getJob().equals("sailor"))
-//            throw new InvalidDriver("Selected person is " + driver.getJob() + " and is not sailor !");
 
     }
 
@@ -1040,7 +1055,7 @@ public class Main {
     //==========================================================================================
 
 
-    //TODO set buy vehicle
+
 
     static void buyVehicles(){
         Scanner sc = new Scanner(System.in);
