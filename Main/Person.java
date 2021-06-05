@@ -3,6 +3,10 @@ package Main;
 
 import Main.Exception.InvalidPerson;
 
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -102,5 +106,41 @@ public class Person {
         }
         return counter ;
     }
+
+
+    //=================================================================================================== Save people
+
+    static String address = "/home/erfan/Projects/Java/Files/CityGame/people.csv";
+    static boolean append = false;
+
+    void savePerson() throws IOException {
+
+        FileOutputStream people = new FileOutputStream(address , append);
+        PrintWriter pw = new PrintWriter(people );
+
+        pw.format("%s,%d,%d,%b\n" , this.job , this.salary , this.ID , this.hired);
+        append = true;
+
+        pw.close();
+        people.close();
+
+    }
+
+    static void restorePeople() throws IOException {
+
+        FileReader people = new FileReader(address );
+
+        Scanner sc = new Scanner(people);
+
+        while (sc.hasNextLine()){
+            String [] person = sc.nextLine().split(",");
+            Person newPerson = new Person(person[0] , Integer.parseInt(person[1])  ,  Integer.parseInt(person[2]) );
+            newPerson.hired = Boolean.parseBoolean(person[3]);
+
+        }
+
+        people.close();
+    }
+
 
 }
