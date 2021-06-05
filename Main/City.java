@@ -1,8 +1,10 @@
 package Main;
 
 import Main.Building.*;
+import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Vehicles.*;
 
+import java.io.*;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,27 +16,26 @@ public class City {
     private String cityName;
 
 
-    private ArrayList<Person> personList = new ArrayList<Person>();
+    transient private ArrayList<Person> personList = new ArrayList<Person>();
+    private ArrayList<Integer> peopleIDs = new ArrayList<>();
     private static ArrayList<City> citiesList = new ArrayList<City>();
 
     //=================================================================================
 
 
-    private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
-    private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
-    private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
-    private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
-    private ArrayList<TrainStation> cityTrainStationList = new ArrayList<TrainStation>();
+    transient private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
+    transient private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
+    transient private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
+    transient private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
+    transient private ArrayList<TrainStation> cityTrainStationList = new ArrayList<TrainStation>();
 
     //=================================================================================
 
-    private ArrayList<Boat> boatsList = getBoatsList();
-    private ArrayList<Bus> busesList = getBusesList() ;
-    private ArrayList<CargoPlane> cargoPlanesList = getCargoPlanesList();
-    private ArrayList<Passenger_airplane> passenger_airplanesList = getPassenger_airplanesList();
-    private ArrayList<Ship> shipsList = getShipsList() ;
-    private ArrayList<Train> trainsList = getTrainsList();
-
+    private ArrayList<String>  airportsNames = new ArrayList<>();
+    private ArrayList<String>  busTerminalsNames = new ArrayList<>();
+    private ArrayList<String>  shippingPortsNames = new ArrayList<>();
+    private ArrayList<String>   trainStationNames = new ArrayList<>();
+    private ArrayList<String>  hotelNames = new ArrayList<>();
 
     //=================================================================================
 
@@ -183,8 +184,8 @@ public class City {
                     boats.add((Boat) b);
             }
         }
-        this.boatsList = boats ;
-        return this.boatsList;
+
+        return boats;
     }
 
     ArrayList<Bus> getBusesList (){
@@ -195,8 +196,8 @@ public class City {
                     buses.add((Bus) b);
             }
         }
-        this.busesList = buses ;
-        return this.busesList ;
+
+        return buses;
     }
 
     ArrayList<CargoPlane> getCargoPlanesList (){
@@ -208,8 +209,8 @@ public class City {
                     cargoPlanes.add((CargoPlane) b);
             }
         }
-        this.cargoPlanesList = cargoPlanes ;
-        return this.cargoPlanesList ;
+
+        return cargoPlanes ;
     }
 
     ArrayList<Passenger_airplane> getPassenger_airplanesList (){
@@ -221,8 +222,8 @@ public class City {
                     passenger_airplanes.add((Passenger_airplane) b);
             }
         }
-        this.passenger_airplanesList = passenger_airplanes ;
-        return this.passenger_airplanesList ;
+
+        return passenger_airplanes ;
     }
 
     ArrayList<Ship> getShipsList (){
@@ -234,8 +235,8 @@ public class City {
                     ships.add((Ship) b);
             }
         }
-        this.shipsList = ships ;
-        return this.shipsList ;
+
+        return ships ;
     }
 
     ArrayList<Train> getTrainsList (){
@@ -247,8 +248,8 @@ public class City {
                     trains.add((Train) b);
             }
         }
-        this.trainsList = trains ;
-        return this.trainsList ;
+
+        return trains;
     }
 
 
@@ -261,6 +262,120 @@ public class City {
 
         System.out.println("\n-------------------------\n");
     }
+
+
+    //================================================================================== Saving part
+
+    void completePeopleIDs(){
+        for (Person a : this.personList)
+            peopleIDs.add(a.getID());
+    }
+
+    void completeAirportNames(){
+        for (Airport a : this.cityAirportList)
+            airportsNames.add(a.getTerminalName());
+    }
+
+    void completeBusTerminalNames(){
+        for (Bus_Terminal a : this.cityBusTerminalList)
+            busTerminalsNames.add(a.getTerminalName());
+    }
+
+    void completeShippingPortNames(){
+        for (ShippingPort a : this.cityShippingPortList)
+            shippingPortsNames.add(a.getTerminalName());
+    }
+
+    void completeTrainStationNames(){
+        for (TrainStation a : this.cityTrainStationList)
+            trainStationNames.add(a.getTerminalName());
+    }
+
+    void completeHotelNames(){
+        for (Hotel a : this.cityHotelList)
+            hotelNames.add(a.getHotelName());
+    }
+
+    static void restoreCityPeople(City city){
+        for (Integer id : city.peopleIDs)
+            city.personList.add( Person.find_Person_from_ID(id));
+    }
+
+     static <T extends Terminal> void restoreCityTerminals( ArrayList<String> terminalNames , ArrayList<T> cityTerminalList ){
+        for (String name : terminalNames)
+            cityTerminalList.add( (T) T.getTerminalByName(name) );
+     }
+
+     static void restoreCityHotels(City city){
+        for (String name : city.hotelNames)
+            city.cityHotelList.add(Hotel.get_Hotel_ByName(name));
+     }
+
+
+    static boolean firstObjectSave = true;
+    private static String address = "/home/erfan/Projects/Java/Files/CityGame/cities.txt";
+
+    public void saveCity() throws IOException {
+
+        completePeopleIDs();
+        completeAirportNames();
+        completeBusTerminalNames();
+        completeShippingPortNames();
+        completeTrainStationNames();
+        completeHotelNames();
+
+        //----------------------------
+
+
+        if (firstObjectSave){
+            FileOutputStream fout = new FileOutputStream(address , true);
+            ObjectOutputStream obOut = new ObjectOutputStream(fout);
+            obOut.writeObject(this);
+            firstObjectSave = false;
+            obOut.close();
+            fout.close();
+        }
+
+        else{
+            FileOutputStream fout = new FileOutputStream(address , true);
+            CustomObjectOutputClass obOut = new CustomObjectOutputClass(fout);
+            obOut.writeObject(this);
+            obOut.close();
+            fout.close();
+        }
+
+
+
+    }
+
+    public static void restoreCity() throws IOException, ClassNotFoundException {
+
+        FileInputStream fin = new FileInputStream(address);
+
+        try{
+
+            ObjectInputStream obIn = new ObjectInputStream(fin);
+
+            while (true){
+                City newCity = (City) obIn.readObject();
+
+                restoreCityPeople(newCity);
+                restoreCityTerminals(newCity.airportsNames , newCity.cityAirportList);
+                restoreCityTerminals(newCity.busTerminalsNames , newCity.cityBusTerminalList);
+                restoreCityTerminals(newCity.shippingPortsNames , newCity.cityShippingPortList);
+                restoreCityTerminals(newCity.trainStationNames , newCity.cityTrainStationList);
+                restoreCityHotels(newCity);
+
+                citiesList.add(newCity);
+            }
+        }
+        catch (EOFException ex){}
+
+
+        fin.close();
+
+    }
+
 
 
 }

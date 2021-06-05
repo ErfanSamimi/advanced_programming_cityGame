@@ -72,6 +72,14 @@ public class Hotel {
         return employees.size();
     }
 
+    public static Hotel get_Hotel_ByName(String name){
+        for (Hotel h : hotelsList){
+            if (h.hotelName.equals(name))
+                return h;
+        }
+        return null;
+    }
+
     public void addEmployee(Person empl){
         employees.add(empl);
     }
