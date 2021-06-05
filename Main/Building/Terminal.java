@@ -119,7 +119,7 @@ abstract public class Terminal implements Safarable {
         return driversList;
     }
 
-//==============================================================================================
+//============================================================================================== Save and restore Terminals
 
     private void completeJourneyIDs (ArrayList<Safar> safars , ArrayList<String> ids){
         for (Safar s : safars )

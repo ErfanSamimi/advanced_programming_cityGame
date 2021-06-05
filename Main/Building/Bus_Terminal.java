@@ -1,16 +1,17 @@
 package Main.Building;
 
 import Main.City;
+import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Person;
 import Main.Vehicles.Bus;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class Bus_Terminal extends Terminal{
-    private static ArrayList<Bus> busesList = new ArrayList<Bus>();
-    private static ArrayList<Bus_Terminal> bus_terminals_list = new ArrayList<Bus_Terminal>();
-    private ArrayList<Person> drivers = new ArrayList<Person>();
 
+
+    private static ArrayList<Bus_Terminal> bus_terminals_list = new ArrayList<Bus_Terminal>();
 
 
     //=======================================================================
@@ -42,6 +43,70 @@ public class Bus_Terminal extends Terminal{
         System.out.println("Number of drivers : " + number_of_hired_drivers());
 
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+    }
+
+
+    //=============================================================================================== Saving Airport
+
+
+
+
+    static boolean firstObjectSave = true;
+    private static String address = "/home/erfan/Projects/Java/Files/CityGame/busTerminals.txt";
+
+    public void saveAirport() throws IOException {
+
+        this.makeReadyForSaving();
+
+
+        //---------------
+
+
+        if (firstObjectSave){
+            FileOutputStream fout = new FileOutputStream(address );
+            ObjectOutputStream obOut = new ObjectOutputStream(fout);
+            obOut.writeObject(this);
+            firstObjectSave = false;
+            obOut.close();
+            fout.close();
+        }
+
+        else{
+            FileOutputStream fout = new FileOutputStream(address , true);
+            CustomObjectOutputClass obOut = new CustomObjectOutputClass(fout);
+            obOut.writeObject(this);
+            obOut.close();
+            fout.close();
+        }
+
+
+
+    }
+
+
+    public static void restoreCity() throws IOException, ClassNotFoundException {
+
+        FileInputStream fin = new FileInputStream(address);
+
+        try{
+
+            ObjectInputStream obIn = new ObjectInputStream(fin);
+
+            while (true){
+                Bus_Terminal newTerminal = (Bus_Terminal) obIn.readObject();
+
+
+                newTerminal.restoreTerminal();
+
+                bus_terminals_list.add( newTerminal );
+
+            }
+        }
+        catch (EOFException ex){}
+
+
+        fin.close();
+
     }
 
 }
