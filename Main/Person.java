@@ -24,6 +24,9 @@ public class Person {
     private boolean hired = false ;
     private static ArrayList<Person> peopleList = new ArrayList<Person>() ;
 
+    public Person(){
+
+    }
 
     public Person(String job , int salary , int ID ){
         this(null , null , null , job , null , 0000 , salary , ID) ;

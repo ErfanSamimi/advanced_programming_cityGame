@@ -56,7 +56,14 @@ public class SavingGame implements Runnable {
 
         //-------------------------
 
-
+        for (Bus_Terminal b : Bus_Terminal.getBus_terminals_list())
+            b.restoreTerminalOfJourneys();
+        for (Airport a : Airport.getAirportsList())
+            a.restoreTerminalOfJourneys();
+        for (ShippingPort s : ShippingPort.getShippingPortsList())
+            s.restoreTerminalOfJourneys();
+        for (TrainStation t : TrainStation.getTrainStationsList())
+            t.restoreTerminalOfJourneys();
 
     }
 

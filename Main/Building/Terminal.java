@@ -29,14 +29,13 @@ abstract public class Terminal implements Safarable , Serializable {
 
 
 
-    transient City city = getCity();
     static ArrayList<Terminal> totalTerminals = new ArrayList<>();
     transient  ArrayList<Person> employees = new ArrayList<Person>();
     transient  ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     transient  ArrayList<Person> driversList = new ArrayList<Person>();
 
-    transient  ArrayList<Safar> startingTerminalOfJourneys = startingPoints();
-    transient  ArrayList<Safar> destinationTerminalOfJourneys = destinationPoints();
+    transient  ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<>();
+    transient  ArrayList<Safar> destinationTerminalOfJourneys = new ArrayList<>();
 
 
 
@@ -45,7 +44,6 @@ abstract public class Terminal implements Safarable , Serializable {
     Terminal(int build_price , City city, String terminalName , String address , int area , int number_of_vehicles , int number_of_employees){
         this.build_price = build_price ;
         this.number_of_employees = number_of_employees ;
-        this.city = city ;
         this.cityName = city.getCityName();
         this.terminalName = terminalName ;
         this.address = address ;
@@ -63,24 +61,6 @@ abstract public class Terminal implements Safarable , Serializable {
     public City getCity(){
 
         return  City.getCity_by_name(this.cityName);
-    }
-
-    ArrayList<Safar> startingPoints(){
-        ArrayList<Safar> safars = new ArrayList<>();
-
-        for (String id : this.startingPointIDs)
-            safars.add(Safar.getSafarByID(id));
-
-        return safars;
-    }
-
-    ArrayList<Safar> destinationPoints(){
-        ArrayList<Safar> safars = new ArrayList<>();
-
-        for (String id : this.destinationPointIDs)
-            safars.add(Safar.getSafarByID(id));
-
-        return safars;
     }
 
     public void addEmployees(Person empl){
@@ -149,6 +129,25 @@ abstract public class Terminal implements Safarable , Serializable {
 
 //============================================================================================== Save and restore Terminals
 
+    public void restoreTerminalOfJourneys(){
+        ArrayList<Safar> safars = new ArrayList<>();
+
+        for (String id : this.startingPointIDs)
+            safars.add(Safar.getSafarByID(id));
+
+        this.startingTerminalOfJourneys = safars;
+
+        //-----------------------------------
+
+        ArrayList<Safar> safars2 = new ArrayList<>();
+
+        for (String id : this.destinationPointIDs)
+            safars.add(Safar.getSafarByID(id));
+
+        this.destinationTerminalOfJourneys = safars2;
+    }
+
+
     private void completeJourneyIDs (ArrayList<Safar> safars , ArrayList<String> ids){
         for (Safar s : safars )
             ids.add(s.getJourneyID());
@@ -211,24 +210,24 @@ abstract public class Terminal implements Safarable , Serializable {
         startingTerminal.vehiclesList.remove(vehicle);
         destinationTerminal.vehiclesList.add(vehicle);
 
-//        startingTerminal.startingTerminalOfJourneys.add(newSafar);
-//        destinationTerminal.destinationTerminalOfJourneys.add(newSafar);
+        startingTerminal.startingTerminalOfJourneys.add(newSafar);
+        destinationTerminal.destinationTerminalOfJourneys.add(newSafar);
 
 
-        startingTerminal.city.getPersonList().remove(driver);
-        destinationTerminal.city.getPersonList().add(driver);
+        startingTerminal.getCity().getPersonList().remove(driver);
+        destinationTerminal.getCity().getPersonList().add(driver);
         destinationTerminal.add_Driver(driver);
 
 
         for ( Person a : passengerList){
 
-                startingTerminal.city.getPersonList().remove(a);
-                destinationTerminal.city.getPersonList().add(a);
+                startingTerminal.getCity().getPersonList().remove(a);
+                destinationTerminal.getCity().getPersonList().add(a);
 
         }
 
         System.out.println(journeyPrice(passengerList , price));
-        startingTerminal.city.addBudget( journeyPrice( passengerList , price) );
+        startingTerminal.getCity().addBudget( journeyPrice( passengerList , price) );
 
 
 
@@ -244,6 +243,7 @@ abstract public class Terminal implements Safarable , Serializable {
     public void journeyHistory(boolean startingTerminal , boolean destinationTerminal){
         if(startingTerminal){
             ArrayList<Safar> safar = sortJourneys(startingTerminalOfJourneys);
+            System.out.println("-*-*-*-*-*-* " + safar.size());
             for (Safar sa : safar)
                 sa.printINFO();
         }

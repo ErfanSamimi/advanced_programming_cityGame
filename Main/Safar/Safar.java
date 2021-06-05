@@ -145,7 +145,7 @@ public class Safar implements Comparable<Safar> , Serializable {
             fout.close();
         }
 
-
+        this.passengersIDs.removeAll(passengersIDs);
 
     }
 
@@ -161,6 +161,11 @@ public class Safar implements Comparable<Safar> , Serializable {
 
             while (true){
                 Safar newSafar = (Safar)obIn.readObject();
+
+                newSafar.passengerList = new ArrayList<>();
+                newSafar.driver = new Person();
+                newSafar.vehicle = new Vehicle();
+
 
                 newSafar.startingTerminal = Terminal.getTerminalByName( newSafar.startingTerminal.getTerminalName());
                 newSafar.destinationTerminal = Terminal.getTerminalByName( newSafar.destinationTerminal.getTerminalName());

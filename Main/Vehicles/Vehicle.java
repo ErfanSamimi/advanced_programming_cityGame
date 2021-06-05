@@ -16,6 +16,8 @@ public class Vehicle {
 
     //==================================================
 
+    public Vehicle(){};
+
     Vehicle(int price , int capacity , String ID , String name_builder_company){
         Scanner sc = new Scanner(System.in);
         this.price = price ;
