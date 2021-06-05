@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class SavingGame {
+public class SavingGame implements Runnable {
 
     static void restoreGame() throws IOException, ClassNotFoundException {
 
@@ -146,6 +146,26 @@ public class SavingGame {
         for (Person p : Person.getPeopleList())
             p.savePerson();
         Person.append = false;
+
+    }
+
+    void runSaveGame() throws InterruptedException, IOException {
+        while (true){
+            Thread.sleep(2000);
+            saveGame();
+        }
+    }
+
+
+    @Override
+    public void run(){
+
+        try {
+            runSaveGame();
+        }
+        catch (InterruptedException | IOException ex){
+            ex.printStackTrace();
+        }
 
     }
 
