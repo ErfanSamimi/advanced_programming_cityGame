@@ -1,7 +1,9 @@
 package Main.Building;
 
+import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Person;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class Hotel {
@@ -15,7 +17,8 @@ public class Hotel {
 
     private ArrayList<Room> roomList = new ArrayList<Room>() ;
     private static ArrayList<Hotel> hotelsList = new ArrayList<Hotel>();
-    private ArrayList<Person> employees = new ArrayList<Person>();
+    transient private ArrayList<Person> employees = new ArrayList<Person>();
+    private ArrayList<Integer> employeeIDs = new ArrayList<>();
 
     enum Services {
         Breakfast , Lunch , Dinner , Pool ;
@@ -97,9 +100,78 @@ public class Hotel {
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 
+
+
+    //=============================================================================================== Saving Hotel
+
+
+
+
+    static boolean firstObjectSave = true;
+    private static String fileAddress = "/home/erfan/Projects/Java/Files/CityGame/hotels.txt";
+
+    public void saveAirport() throws IOException {
+
+        for (Person a : this.employees)
+            this.employeeIDs.add(a.getID());
+
+
+
+        //---------------
+
+
+        if (firstObjectSave){
+            FileOutputStream fout = new FileOutputStream(fileAddress );
+            ObjectOutputStream obOut = new ObjectOutputStream(fout);
+            obOut.writeObject(this);
+            firstObjectSave = false;
+            obOut.close();
+            fout.close();
+        }
+
+        else{
+            FileOutputStream fout = new FileOutputStream(fileAddress , true);
+            CustomObjectOutputClass obOut = new CustomObjectOutputClass(fout);
+            obOut.writeObject(this);
+            obOut.close();
+            fout.close();
+        }
+
+
+
+    }
+
+
+    public static void restoreCity() throws IOException, ClassNotFoundException {
+
+        FileInputStream fin = new FileInputStream(fileAddress);
+
+        try{
+
+            ObjectInputStream obIn = new ObjectInputStream(fin);
+
+            while (true){
+
+                Hotel newHotel = (Hotel) obIn.readObject();
+
+
+                for (int id : newHotel.employeeIDs)
+                    newHotel.employees.add( Person.find_Person_from_ID(id));
+
+                hotelsList.add(newHotel);
+
+            }
+        }
+        catch (EOFException ex){}
+
+
+        fin.close();
+
+    }
+
 }
 
-class Room{
+class Room implements Serializable {
     private int  roomNumber ;
     private int number_of_beds ;
     private int roomArea ;

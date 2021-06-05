@@ -7,11 +7,12 @@ import Main.Safar.Safar;
 import Main.Safar.Safarable;
 import Main.Vehicles.Vehicle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-abstract public class Terminal implements Safarable {
+abstract public class Terminal implements Safarable , Serializable {
     int build_price ;
     String cityName;
     String terminalName ;
