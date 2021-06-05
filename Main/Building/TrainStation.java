@@ -58,7 +58,7 @@ public class TrainStation extends Terminal{
 
 
 
-    static boolean firstObjectSave = true;
+    public static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/trainStations.txt";
 
     public void saveTrainStation() throws IOException {

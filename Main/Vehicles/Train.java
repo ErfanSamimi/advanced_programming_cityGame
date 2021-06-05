@@ -35,7 +35,7 @@ public class Train extends Land_transport_vehicle{
 
 
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/trains.csv"  ;
-    static boolean append = false;
+    public static boolean append = false;
 
 
 

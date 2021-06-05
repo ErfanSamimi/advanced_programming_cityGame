@@ -75,4 +75,79 @@ public class SavingGame {
     }
 
 
+    static void saveGame() throws IOException, InterruptedException {
+
+        for (City c : City.getCitiesList())
+            c.saveCity();
+        City.firstObjectSave = true;
+
+        //-----------------------------
+
+        for (Safar s : Safar.getSafars())
+            s.saveSafar();
+        Safar.firstObjectSave = true;
+
+        //-----------------------------
+
+        for (Airport a : Airport.getAirportsList())
+            a.saveAirport();
+        Airport.firstObjectSave = true;
+
+
+        for (Bus_Terminal b : Bus_Terminal.getBus_terminals_list())
+            b.saveBusTerminal();
+        Bus_Terminal.firstObjectSave = true;
+
+
+        for (ShippingPort s : ShippingPort.getShippingPortsList())
+            s.saveShippingPort();
+        ShippingPort.firstObjectSave = true;
+
+
+        for (TrainStation t : TrainStation.getTrainStationsList())
+            t.saveTrainStation();
+        TrainStation.firstObjectSave = true;
+
+
+        for (Hotel h : Hotel.getHotelsList())
+            h.saveHotel();
+        Hotel.firstObjectSave = true;
+
+
+        //-----------------------------
+
+        for (Boat b : Boat.getBoatsList())
+            b.saveBoat();
+        Boat.append = false;
+
+        for (Bus b : Bus.getBusesList())
+            b.saveBus();
+        Bus.append = false;
+
+        for (CargoPlane c : CargoPlane.getCargoPlanesList())
+            c.saveCargoPlane();
+        CargoPlane.append = false;
+
+        for (Passenger_airplane p : Passenger_airplane.getPassenger_airplanesList())
+            p.savePassenger_airplane();
+        Passenger_airplane.append = false;
+
+        for (Ship s : Ship.getShipsList())
+            s.saveShip();
+        Ship.append = false;
+
+        for (Train t : Train.getTrainsList())
+            t.saveTrain();
+        Train.append = false;
+
+
+        //-----------------------------
+
+        for (Person p : Person.getPeopleList())
+            p.savePerson();
+        Person.append = false;
+
+    }
+
+
 }

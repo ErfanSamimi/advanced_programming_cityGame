@@ -78,7 +78,7 @@ public class ShippingPort extends  Terminal {
 
 
 
-    static boolean firstObjectSave = true;
+    public static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/shippingPorts.txt";
 
     public void saveShippingPort() throws IOException {

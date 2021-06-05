@@ -29,7 +29,7 @@ public class Ship extends Shipping_vehicle {
 
 
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/ships.csv"  ;
-    static boolean append = false;
+    public static boolean append = false;
 
 
     public void saveShip() throws IOException {

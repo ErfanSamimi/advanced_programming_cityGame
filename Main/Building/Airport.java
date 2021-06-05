@@ -71,7 +71,7 @@ public class Airport extends Terminal {
             airport.flightAttendants.add( Person.find_Person_from_ID(id));
     }
 
-    static boolean firstObjectSave = true;
+    public static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/airports.txt";
 
     public void saveAirport() throws IOException {

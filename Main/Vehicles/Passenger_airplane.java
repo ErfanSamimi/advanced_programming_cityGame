@@ -34,7 +34,7 @@ public class Passenger_airplane extends Air_transport_vehicle {
 
 
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/passenger_airplanes.csv" ;
-    static boolean append = false;
+    public static boolean append = false;
 
 
 

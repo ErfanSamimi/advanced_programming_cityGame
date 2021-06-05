@@ -107,7 +107,7 @@ public class Hotel {
 
 
 
-    static boolean firstObjectSave = true;
+    public static boolean firstObjectSave = true;
     private static String fileAddress = "/home/erfan/Projects/Java/Files/CityGame/hotels.txt";
 
     public void saveHotel() throws IOException {

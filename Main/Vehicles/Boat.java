@@ -32,7 +32,7 @@ public class Boat extends Shipping_vehicle{
     //==================================================================================== Saving boats
 
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/boats.csv";
-    static boolean append = false;
+    public static boolean append = false;
 
     public void saveBoat() throws IOException {
 

@@ -27,7 +27,7 @@ public class Bus extends Land_transport_vehicle{
     // ========================================================================================== Saving bus
 
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/buses.csv" ;
-    static boolean append = false;
+    public static boolean append = false;
 
     public void saveBus() throws IOException {
 

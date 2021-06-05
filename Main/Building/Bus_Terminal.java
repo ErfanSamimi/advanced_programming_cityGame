@@ -51,7 +51,7 @@ public class Bus_Terminal extends Terminal{
 
 
 
-    static boolean firstObjectSave = true;
+    public static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/busTerminals.txt";
 
     public void saveBusTerminal() throws IOException {

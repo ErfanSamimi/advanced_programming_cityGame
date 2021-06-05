@@ -98,6 +98,10 @@ public class Safar implements Comparable<Safar> , Serializable {
         return null;
     }
 
+    public static ArrayList<Safar> getSafars(){
+        return safars;
+    }
+
 
     //================================================================================== Saving Safar
 
@@ -112,7 +116,7 @@ public class Safar implements Comparable<Safar> , Serializable {
         safar.driver = Person.find_Person_from_ID( safar.driverID );
     }
 
-    static boolean firstObjectSave = true;
+    public static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/safars.txt";
 
     //----------------------------------------------------------------

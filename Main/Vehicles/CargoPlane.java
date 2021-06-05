@@ -25,7 +25,7 @@ public class CargoPlane extends Air_transport_vehicle {
 
 
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/cargoPlanes.csv" ;
-    static boolean append = false;
+    public static boolean append = false;
 
     public void saveCargoPlane() throws IOException {
 
