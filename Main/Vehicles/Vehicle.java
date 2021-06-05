@@ -1,12 +1,9 @@
 package Main.Vehicles;
 
-import Main.Building.Airport;
 import Main.Exception.Vehicle_does_not_exists_Exception;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Vehicle {
     private int price ;
@@ -70,7 +67,9 @@ public class Vehicle {
         return this.ID;
     }
 
-
+    public String getName_builder_company() {
+        return name_builder_company;
+    }
 
 
 }
