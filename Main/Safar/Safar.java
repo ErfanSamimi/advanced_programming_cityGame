@@ -90,6 +90,14 @@ public class Safar implements Comparable<Safar> , Serializable {
         return this.journeyID;
     }
 
+    public static Safar getSafarByID(String id){
+        for (Safar s : safars){
+            if (s.journeyID.equals(id))
+                return s;
+        }
+        return null;
+    }
+
 
     //================================================================================== Saving Safar
 
@@ -109,7 +117,7 @@ public class Safar implements Comparable<Safar> , Serializable {
 
     //----------------------------------------------------------------
 
-    public void saveCity() throws IOException {
+    public void saveSafar() throws IOException {
 
         completePassengerIDs();
 
@@ -139,7 +147,7 @@ public class Safar implements Comparable<Safar> , Serializable {
 
 
 
-    public static void restoreCity() throws IOException, ClassNotFoundException {
+    public static void restoreSafars() throws IOException, ClassNotFoundException {
 
         FileInputStream fin = new FileInputStream(address);
 
