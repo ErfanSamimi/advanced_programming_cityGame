@@ -1,6 +1,7 @@
 package Main.Building;
 
 import Main.City;
+import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Person;
 import Main.Vehicles.Boat;
 import Main.Vehicles.Ship;
@@ -8,11 +9,12 @@ import Main.Vehicles.Shipping_vehicle;
 import Main.Vehicles.Vehicle;
 
 import javax.swing.*;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ShippingPort extends  Terminal {
+
     private static ArrayList<ShippingPort> shippingPortsList = new ArrayList<ShippingPort>();
-    private ArrayList<Person> sailors = new ArrayList<Person>();
     private int number_of_waterfront ;
 
     //==========================================
@@ -67,4 +69,71 @@ public class ShippingPort extends  Terminal {
          System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 
      }
+
+
+
+
+    //=============================================================================================== Saving Airport
+
+
+
+
+    static boolean firstObjectSave = true;
+    private static String address = "/home/erfan/Projects/Java/Files/CityGame/shippingPorts.txt";
+
+    public void saveAirport() throws IOException {
+
+        this.makeReadyForSaving();
+
+
+        //---------------
+
+
+        if (firstObjectSave){
+            FileOutputStream fout = new FileOutputStream(address );
+            ObjectOutputStream obOut = new ObjectOutputStream(fout);
+            obOut.writeObject(this);
+            firstObjectSave = false;
+            obOut.close();
+            fout.close();
+        }
+
+        else{
+            FileOutputStream fout = new FileOutputStream(address , true);
+            CustomObjectOutputClass obOut = new CustomObjectOutputClass(fout);
+            obOut.writeObject(this);
+            obOut.close();
+            fout.close();
+        }
+
+
+
+    }
+
+
+    public static void restoreCity() throws IOException, ClassNotFoundException {
+
+        FileInputStream fin = new FileInputStream(address);
+
+        try{
+
+            ObjectInputStream obIn = new ObjectInputStream(fin);
+
+            while (true){
+                ShippingPort newSippingPort = (ShippingPort) obIn.readObject();
+
+
+                newSippingPort.restoreTerminal();
+
+                shippingPortsList.add(newSippingPort);
+
+            }
+        }
+        catch (EOFException ex){}
+
+
+        fin.close();
+
+    }
+
 }
