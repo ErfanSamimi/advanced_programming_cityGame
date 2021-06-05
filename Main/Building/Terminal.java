@@ -20,8 +20,8 @@ abstract public class Terminal implements Safarable , Serializable {
     int area ;
     int number_of_vehicles ;
     int number_of_employees ;
-    private ArrayList<String> startingPointIDs = new ArrayList<>();
-    private ArrayList<String> destinationPointIDs = new ArrayList<>();
+    private ArrayList<String> startingPointIDs = new ArrayList<>();           //safar ids that this terminal is the starting point of journey
+    private ArrayList<String> destinationPointIDs = new ArrayList<>();          //safar ids that this terminal is the destination point of journey
 
     private ArrayList<Integer> drverIDs = new ArrayList<>();
     private ArrayList<Integer> employeeIDs = new ArrayList<>();
@@ -29,14 +29,14 @@ abstract public class Terminal implements Safarable , Serializable {
 
 
 
-    transient City city ;
+    transient City city = getCity();
     static ArrayList<Terminal> totalTerminals = new ArrayList<>();
     transient private  ArrayList<Person> employees = new ArrayList<Person>();
     transient private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     transient private ArrayList<Person> driversList = new ArrayList<Person>();
 
-    transient private ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<Safar>();
-    transient private ArrayList<Safar> destinationTerminalOfJourneys = new ArrayList<Safar>();
+    transient private ArrayList<Safar> startingTerminalOfJourneys = startingPoints();
+    transient private ArrayList<Safar> destinationTerminalOfJourneys = destinationPoints();
 
 
 
@@ -55,6 +55,32 @@ abstract public class Terminal implements Safarable , Serializable {
     }
 
     //==============================================================================================
+
+    public static ArrayList<Terminal> getTotalTerminals(){
+        return totalTerminals;
+    }
+
+    public City getCity(){
+        return City.getCity_by_name(this.cityName);
+    }
+
+    ArrayList<Safar> startingPoints(){
+        ArrayList<Safar> safars = new ArrayList<>();
+
+        for (String id : this.startingPointIDs)
+            safars.add(Safar.getSafarByID(id));
+
+        return safars;
+    }
+
+    ArrayList<Safar> destinationPoints(){
+        ArrayList<Safar> safars = new ArrayList<>();
+
+        for (String id : this.destinationPointIDs)
+            safars.add(Safar.getSafarByID(id));
+
+        return safars;
+    }
 
     public void addEmployees(Person empl){
         employees.add(empl);
@@ -178,8 +204,8 @@ abstract public class Terminal implements Safarable , Serializable {
         startingTerminal.vehiclesList.remove(vehicle);
         destinationTerminal.vehiclesList.add(vehicle);
 
-        startingTerminal.startingTerminalOfJourneys.add(newSafar);
-        destinationTerminal.destinationTerminalOfJourneys.add(newSafar);
+//        startingTerminal.startingTerminalOfJourneys.add(newSafar);
+//        destinationTerminal.destinationTerminalOfJourneys.add(newSafar);
 
 
         startingTerminal.city.getPersonList().remove(driver);
