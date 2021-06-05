@@ -81,7 +81,7 @@ public class ShippingPort extends  Terminal {
     static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/shippingPorts.txt";
 
-    public void saveAirport() throws IOException {
+    public void saveShippingPort() throws IOException {
 
         this.makeReadyForSaving();
 
@@ -111,7 +111,7 @@ public class ShippingPort extends  Terminal {
     }
 
 
-    public static void restoreCity() throws IOException, ClassNotFoundException {
+    public static void restoreShippingPorts() throws IOException, ClassNotFoundException {
 
         FileInputStream fin = new FileInputStream(address);
 

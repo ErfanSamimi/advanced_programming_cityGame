@@ -110,7 +110,7 @@ public class Hotel {
     static boolean firstObjectSave = true;
     private static String fileAddress = "/home/erfan/Projects/Java/Files/CityGame/hotels.txt";
 
-    public void saveAirport() throws IOException {
+    public void saveHotel() throws IOException {
 
         for (Person a : this.employees)
             this.employeeIDs.add(a.getID());
@@ -142,7 +142,7 @@ public class Hotel {
     }
 
 
-    public static void restoreCity() throws IOException, ClassNotFoundException {
+    public static void restoreHotel() throws IOException, ClassNotFoundException {
 
         FileInputStream fin = new FileInputStream(fileAddress);
 

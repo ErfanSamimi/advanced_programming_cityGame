@@ -104,7 +104,7 @@ public class Airport extends Terminal {
     }
 
 
-    public static void restoreCity() throws IOException, ClassNotFoundException {
+    public static void restoreAirports() throws IOException, ClassNotFoundException {
 
         FileInputStream fin = new FileInputStream(address);
 

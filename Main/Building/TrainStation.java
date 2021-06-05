@@ -61,7 +61,7 @@ public class TrainStation extends Terminal{
     static boolean firstObjectSave = true;
     private static String address = "/home/erfan/Projects/Java/Files/CityGame/trainStations.txt";
 
-    public void saveAirport() throws IOException {
+    public void saveTrainStation() throws IOException {
 
         this.makeReadyForSaving();
 
@@ -91,7 +91,7 @@ public class TrainStation extends Terminal{
     }
 
 
-    public static void restoreCity() throws IOException, ClassNotFoundException {
+    public static void restoreTrainStations() throws IOException, ClassNotFoundException {
 
         FileInputStream fin = new FileInputStream(address);
 
