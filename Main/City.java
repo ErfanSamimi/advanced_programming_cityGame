@@ -14,28 +14,26 @@ public class City {
 
     private int budget;
     private String cityName;
-
-
-    transient private ArrayList<Person> personList = new ArrayList<Person>();
     private ArrayList<Integer> peopleIDs = new ArrayList<>();
-    private static ArrayList<City> citiesList = new ArrayList<City>();
+    private ArrayList<String>  airportsNames = new ArrayList<>();
+    private ArrayList<String>  busTerminalsNames = new ArrayList<>();
+    private ArrayList<String>  shippingPortsNames = new ArrayList<>();
+    private ArrayList<String>   trainStationNames = new ArrayList<>();
+    private ArrayList<String>  hotelNames = new ArrayList<>();
+
 
     //=================================================================================
 
 
+    private static ArrayList<City> citiesList = new ArrayList<City>();
+
+    transient private ArrayList<Person> personList = new ArrayList<Person>();
     transient private ArrayList<Airport> cityAirportList = new ArrayList<Airport>();
     transient private ArrayList<Bus_Terminal> cityBusTerminalList = new ArrayList<Bus_Terminal>();
     transient private ArrayList<Hotel> cityHotelList = new ArrayList<Hotel>();
     transient private ArrayList<ShippingPort> cityShippingPortList = new ArrayList<ShippingPort>();
     transient private ArrayList<TrainStation> cityTrainStationList = new ArrayList<TrainStation>();
 
-    //=================================================================================
-
-    private ArrayList<String>  airportsNames = new ArrayList<>();
-    private ArrayList<String>  busTerminalsNames = new ArrayList<>();
-    private ArrayList<String>  shippingPortsNames = new ArrayList<>();
-    private ArrayList<String>   trainStationNames = new ArrayList<>();
-    private ArrayList<String>  hotelNames = new ArrayList<>();
 
     //=================================================================================
 
@@ -328,7 +326,7 @@ public class City {
 
 
         if (firstObjectSave){
-            FileOutputStream fout = new FileOutputStream(address , true);
+            FileOutputStream fout = new FileOutputStream(address );
             ObjectOutputStream obOut = new ObjectOutputStream(fout);
             obOut.writeObject(this);
             firstObjectSave = false;

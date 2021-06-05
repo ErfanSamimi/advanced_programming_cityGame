@@ -66,6 +66,9 @@ public class Vehicle {
             return "Shipping_vehicle";
     }
 
+    public String getID(){
+        return this.ID;
+    }
 
 
 
