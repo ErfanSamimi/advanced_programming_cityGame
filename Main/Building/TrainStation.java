@@ -1,15 +1,17 @@
 package Main.Building;
 
 import Main.City;
+import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Person;
 import Main.Vehicles.Train;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class TrainStation extends Terminal{
-    private static ArrayList<Train> trainList = new ArrayList<Train>() ;
+
     private static ArrayList<TrainStation> trainStationsList = new ArrayList<TrainStation>();
-    private ArrayList<Person> locomotiveDrivers = new ArrayList<Person>();
+
     private int inputRails ;
     private int outputRails ;
 
@@ -47,5 +49,73 @@ public class TrainStation extends Terminal{
 
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
+
+
+
+
+    //=============================================================================================== Saving Airport
+
+
+
+
+    static boolean firstObjectSave = true;
+    private static String address = "/home/erfan/Projects/Java/Files/CityGame/trainStations.txt";
+
+    public void saveAirport() throws IOException {
+
+        this.makeReadyForSaving();
+
+
+        //---------------
+
+
+        if (firstObjectSave){
+            FileOutputStream fout = new FileOutputStream(address );
+            ObjectOutputStream obOut = new ObjectOutputStream(fout);
+            obOut.writeObject(this);
+            firstObjectSave = false;
+            obOut.close();
+            fout.close();
+        }
+
+        else{
+            FileOutputStream fout = new FileOutputStream(address , true);
+            CustomObjectOutputClass obOut = new CustomObjectOutputClass(fout);
+            obOut.writeObject(this);
+            obOut.close();
+            fout.close();
+        }
+
+
+
+    }
+
+
+    public static void restoreCity() throws IOException, ClassNotFoundException {
+
+        FileInputStream fin = new FileInputStream(address);
+
+        try{
+
+            ObjectInputStream obIn = new ObjectInputStream(fin);
+
+            while (true){
+
+                TrainStation newStation = (TrainStation) obIn.readObject();
+
+
+                newStation.restoreTerminal();
+
+                trainStationsList.add(newStation);
+
+            }
+        }
+        catch (EOFException ex){}
+
+
+        fin.close();
+
+    }
+
 
 }
