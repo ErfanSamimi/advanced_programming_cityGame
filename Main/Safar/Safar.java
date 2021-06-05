@@ -86,6 +86,10 @@ public class Safar implements Comparable<Safar> , Serializable {
         System.out.println("-------------------------------------------------------------");
     }
 
+    public String getJourneyID(){
+        return this.journeyID;
+    }
+
 
     //================================================================================== Saving Safar
 

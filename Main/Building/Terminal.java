@@ -13,19 +13,29 @@ import java.util.Collections;
 
 abstract public class Terminal implements Safarable {
     int build_price ;
-    City city ;
+    String cityName;
     String terminalName ;
     String address ;
     int area ;
     int number_of_vehicles ;
     int number_of_employees ;
+    private ArrayList<String> startingPointIDs = new ArrayList<>();
+    private ArrayList<String> destinationPointIDs = new ArrayList<>();
+
+    private ArrayList<Integer> drverIDs = new ArrayList<>();
+    private ArrayList<Integer> employeeIDs = new ArrayList<>();
+    private ArrayList<String> vehicleIDs = new ArrayList<>();
+
+
+
+    transient City city ;
     static ArrayList<Terminal> totalTerminals = new ArrayList<>();
-    private  ArrayList<Person> employees = new ArrayList<Person>();
-//    private  ArrayList<Safar> safarList = new ArrayList<Safar>();
-    private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
-    private ArrayList<Person> driversList = new ArrayList<Person>();
-    private ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<Safar>();
-    private ArrayList<Safar> destinationTerminalOfJourneys = new ArrayList<Safar>();
+    transient private  ArrayList<Person> employees = new ArrayList<Person>();
+    transient private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
+    transient private ArrayList<Person> driversList = new ArrayList<Person>();
+
+    transient private ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<Safar>();
+    transient private ArrayList<Safar> destinationTerminalOfJourneys = new ArrayList<Safar>();
 
 
 
@@ -35,12 +45,14 @@ abstract public class Terminal implements Safarable {
         this.build_price = build_price ;
         this.number_of_employees = number_of_employees ;
         this.city = city ;
+        this.cityName = city.getCityName();
         this.terminalName = terminalName ;
         this.address = address ;
         this.area = area ;
         this.number_of_vehicles = number_of_vehicles ;
         totalTerminals.add(this);
     }
+
     //==============================================================================================
 
     public void addEmployees(Person empl){
@@ -107,9 +119,49 @@ abstract public class Terminal implements Safarable {
         return driversList;
     }
 
+//==============================================================================================
 
+    private void completeJourneyIDs (ArrayList<Safar> safars , ArrayList<String> ids){
+        for (Safar s : safars )
+            ids.add(s.getJourneyID());
+    }
 
+    private void completePeopleIDs (ArrayList<Person> people , ArrayList<Integer> ids){
+        for (Person a : people)
+            ids.add(a.getID());
+    }
 
+    private void completeVehicleIDs (){
+        for (Vehicle v : this.vehiclesList)
+            this.vehicleIDs.add(v.getID());
+    }
+
+    public void makeReadyForSaving() {
+
+        completeJourneyIDs(this.startingTerminalOfJourneys , this.startingPointIDs);
+        completeJourneyIDs( this.destinationTerminalOfJourneys , this.destinationPointIDs);
+        completePeopleIDs(this.driversList , drverIDs);
+        completePeopleIDs(this.employees , this.employeeIDs);
+        completeVehicleIDs();
+
+    }
+
+    public  void restoreTerminal(){
+
+        for (int id : this.employeeIDs)
+            this.employees.add( Person.find_Person_from_ID(id));
+
+        for (int id : this.drverIDs)
+            this.driversList.add( Person.find_Person_from_ID(id));
+
+        for (String id : this.vehicleIDs)
+            this.vehiclesList.add( Vehicle.getVehicleByID(id));
+
+        totalTerminals.add(this);
+
+    }
+
+//==============================================================================================
 
 
 

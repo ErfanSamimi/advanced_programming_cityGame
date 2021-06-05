@@ -121,6 +121,14 @@ public class City {
         return citiesList;
     }
 
+    public static City getCity_by_name(String name){
+        for (City c : citiesList){
+            if (c.cityName.equals(name))
+                return c;
+        }
+        return null;
+    }
+
     int getPopulation(){
         return this.personList.size();
     }
