@@ -142,7 +142,7 @@ abstract public class Terminal implements Safarable , Serializable {
         ArrayList<Safar> safars2 = new ArrayList<>();
 
         for (String id : this.destinationPointIDs)
-            safars.add(Safar.getSafarByID(id));
+            safars2.add(Safar.getSafarByID(id));
 
         this.destinationTerminalOfJourneys = safars2;
     }
@@ -243,7 +243,7 @@ abstract public class Terminal implements Safarable , Serializable {
     public void journeyHistory(boolean startingTerminal , boolean destinationTerminal){
         if(startingTerminal){
             ArrayList<Safar> safar = sortJourneys(startingTerminalOfJourneys);
-            System.out.println("-*-*-*-*-*-* " + safar.size());
+//            System.out.println("-*-*-*-*-*-* " + safar.size());
             for (Safar sa : safar)
                 sa.printINFO();
         }

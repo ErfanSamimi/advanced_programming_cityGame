@@ -13,7 +13,7 @@ public class SavingGame implements Runnable {
     static void restoreGame() throws IOException, ClassNotFoundException {
 
         Person.restorePeople();
-        System.out.println("people restored");
+//        System.out.println("people restored");
 
         //-------------------------
 
