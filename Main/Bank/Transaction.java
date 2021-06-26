@@ -5,11 +5,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Transaction {
 
-    int amount ;
+    double amount ;
     String time ;
     TransactionType type ;
 
-    public Transaction(int amount , TransactionType type ){
+    public Transaction(double amount , TransactionType type ){
         this.amount =  amount;
         this.type = type;
         
