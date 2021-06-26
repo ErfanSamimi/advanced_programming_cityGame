@@ -1,5 +1,9 @@
 package Main;
 
+import Main.Bank.Bank;
+import Main.Bank.BankAccount;
+import Main.Bank.Transaction;
+import Main.Bank.TransactionType;
 import Main.Building.*;
 import Main.Exception.*;
 import Main.Safar.Safar;
@@ -24,7 +28,7 @@ public class Main {
         if (str.equals("yes")){
             SavingGame.clearAllFiles();
             System.out.println("Starting new game");
-    }
+        }
 
         //-------------------------------------------
 
@@ -62,7 +66,7 @@ public class Main {
         System.out.println("\n\n\t\t\t\t\t=== Cities Menu  === \n");
         Scanner sc = new Scanner(System.in);
         System.out.println("\n===============================================");
-        System.out.println("\n 1-Build New City \n 2-Enter To A City  \n 3-Show Cities Information \n 4-Show Country info");
+        System.out.println("\n 1-Build New City \n 2-Enter To A City  \n 3-Show Cities Information \n 4-Show Country info \n 5- Modirat mali");
         System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
 
@@ -84,7 +88,28 @@ public class Main {
                 System.out.println("Total Budget : " + Country.totalBudget());
                 System.out.println("Total population : " + Country.totalPopulation());
                 citiesMenu();
-            } else
+            }
+
+            else if (choice == 5){
+
+
+//                String listener = sc.nextLine();
+
+//                while(  listener.isEmpty() ) {
+
+                    BankAccount.showLog = true;
+//                }
+
+//                if (! listener.isEmpty()){
+//                    System.out.println("+++ " + listener);
+//                    BankAccount.showLog = false ;
+//                    citiesMenu();
+//                }
+
+
+            }
+
+            else
                 citiesMenu();
         }
         catch (RuntimeException ex){
@@ -102,7 +127,8 @@ public class Main {
         System.out.println("City : " + selectedCity.getCityName());
         System.out.println("Money : " + selectedCity.getBudget());
 
-        System.out.println("\n\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel \n 5-Build Room For Hotels \n 6-Make new journey \n 7-Show Status \n 8-Show Cities Menu");
+        System.out.println("\n\n 1-Build Terminal \n 2-Buy Vehicle \n 3-Engage \n 4-Build Hotel" +
+                " \n 5-Build Room For Hotels \n 6-Make new journey \n 7-Show Status \n 8-Show Cities Menu \n 9-Banks ");
         System.out.println("\n===============================================");
         System.out.print("\nEnter your choice : ");
         int choice = -1;
@@ -141,7 +167,11 @@ public class Main {
 
             else if (choice == 8) {
                 citiesMenu();
-            } else
+            }
+
+            else if (choice ==9)
+                bankMenu();
+            else
                 mainMenu();
         }
         catch (RuntimeException ex){
@@ -733,6 +763,151 @@ public class Main {
 
 
         mainMenu();
+    }
+
+
+    //=======================================================================================
+
+    static void bankMenu(){
+        System.out.println("\n\n 1-Add new Bank \n 2-Enter to a bank ");
+        Scanner sc = new Scanner(System.in);
+
+        int choice = sc.nextInt();
+
+        if (choice == 1)
+            addBank();
+        else if (choice == 2)
+            enterToBank();
+    }
+
+    static void addBank(){
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter name of Bank : ");
+        String name = sc.nextLine();
+
+        Bank newBank = new Bank(name);
+        System.out.println("yeeeeeeeees");
+        selectedCity.addBank(newBank);
+
+    }
+
+    static void enterToBank(){
+
+        Scanner sc = new Scanner(System.in);
+
+        int counter = 1;
+        for (Bank b : selectedCity.getBanks()) {
+            System.out.println(counter + " - " + b.getName());
+            counter ++;
+        }
+
+
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        Bank selectedBank = selectedCity.getBanks().get(choice-1);
+
+        System.out.println("\n 1- make new account \n 2- Enter to a account \n 3- Show bank Information ");
+        System.out.print("\nEnter number of your choice : ");
+        int choice2 = sc.nextInt();
+
+        if (choice2 == 1)
+            newAccount(selectedBank);
+
+        else if (choice2 == 2){
+            counter =1;
+            for (BankAccount a : selectedBank.getAccounts()){
+                System.out.println(counter + " - " + a.getUserName());
+                counter ++;
+            }
+
+            System.out.print("Enter number of your choice : ");
+            int choice3 = sc.nextInt();
+
+
+            BankAccount account = selectedBank.getAccounts().get(choice3-1);
+
+            System.out.print("Enter password of selected account : ");
+            String password = sc.nextLine();
+
+            if (password.equals(account.getPassword()))
+                accountMenu(account);
+
+            else
+                System.out.println("Password is incorrect ! ");
+
+        }
+
+        else if (choice == 3 ){
+            System.out.printf("name : %s  |  total money : %f  | number of active accounts : %d " , selectedBank.getName() , selectedBank.getTotalMoney() , selectedBank.getActiveAccounts());
+        }
+
+    }
+
+
+    static void newAccount(Bank bank){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter username : ");
+        String username = sc.nextLine();
+        System.out.print("Enter password : ");
+        String password = sc.nextLine();
+
+
+
+        int counter =0;
+        for (Person a : selectedCity.getPersonList()) {
+            if (counter % 10 == 0)
+                System.out.println();
+            System.out.print(a.getID() + " - ");
+            counter ++ ;
+        }
+
+        System.out.print("\n Enter id of owner of this account : ");
+        int id = sc.nextInt();
+
+        Person pr = Person.find_Person_from_ID(id);
+
+        System.out.print("Enter starting account balance : ");
+        double balance = sc.nextDouble();
+
+
+        BankAccount account = new BankAccount(balance , pr , username , password , bank ,selectedCity);
+        bank.addAccount(account);
+    }
+
+    static void accountMenu( BankAccount account ){
+
+        System.out.println("\n 1-Deposit \n 2-Withdrawal \n 3-Show Transactions ");
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nEnter number of your choice : ");
+        int choice = sc.nextInt();
+
+        if (choice == 1 ){
+            System.out.print("Enter amount of money : ");
+            double amount = sc.nextDouble();
+
+            Transaction transaction = new Transaction(amount , TransactionType.DEPOSIT);
+            account.performTransaction(transaction);
+        }
+
+        else if (choice == 2 ){
+            System.out.print("Enter amount of money : ");
+            double amount = sc.nextDouble();
+
+            Transaction transaction = new Transaction(amount , TransactionType.WITHDRAW);
+            account.performTransaction(transaction);
+        }
+
+        else if (choice == 3){
+            for (Transaction a : account.getAccountTransactions())
+                a.showInfo();
+        }
+
     }
 
 

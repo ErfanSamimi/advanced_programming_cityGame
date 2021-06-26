@@ -389,7 +389,7 @@ public class City implements Serializable{
 
                 City newCity = (City) obIn.readObject();
 
-
+                newCity.banks = new ArrayList<>();
                 newCity.personList = new ArrayList<>();
                 newCity.cityAirportList = new ArrayList<>();
                 newCity.cityBusTerminalList = new ArrayList<>();

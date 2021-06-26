@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Bank {
 
     ArrayList<BankAccount> accounts = new ArrayList<>();
-    String name ;
-    double totalMoney = getTotalMoney();
-    int activeAccounts = getActiveAccounts();
+    private String name ;
+    private double totalMoney = getTotalMoney();
+    private int activeAccounts = getActiveAccounts();
 
 
     public Bank(String name){
@@ -17,7 +17,7 @@ public class Bank {
 
 
 
-    int getActiveAccounts(){
+    public int  getActiveAccounts(){
         int counter =0;
 
         for (BankAccount a : this.accounts){
@@ -29,12 +29,26 @@ public class Bank {
         return counter;
     }
 
-    double getTotalMoney(){
+    public double getTotalMoney(){
 
         double money = 0;
         for(BankAccount a : this.accounts)
             money += a.accountBalance;
 
         return money;
+    }
+
+    //========================================
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void addAccount( BankAccount account ){
+        this.accounts.add(account);
+    }
+
+    public ArrayList<BankAccount> getAccounts(){
+        return this.accounts;
     }
 }

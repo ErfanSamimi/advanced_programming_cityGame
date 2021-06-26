@@ -19,6 +19,9 @@ public class Transaction {
     }
 
 
+    public void showInfo(){
+        System.out.println(this.type.toString() + " - " + this.amount + " -  " + this.time);
+    }
 }
 
 
