@@ -1,5 +1,6 @@
 package Main;
 
+import Main.Bank.Bank;
 import Main.Building.*;
 import Main.CustomClasses.CustomObjectOutputClass;
 import Main.Vehicles.*;
@@ -24,7 +25,7 @@ public class City implements Serializable{
 
     //=================================================================================
 
-
+    transient private ArrayList<Bank> banks = new ArrayList<>();
     private static ArrayList<City> citiesList = new ArrayList<City>();
 
     transient private ArrayList<Person> personList = new ArrayList<>();
@@ -117,6 +118,10 @@ public class City implements Serializable{
 
 //=================================================================================
 
+    public void addBank(Bank bank){
+        this.banks.add(bank);
+    }
+
     static ArrayList<City> getCitiesList (){
         return citiesList;
     }
@@ -177,6 +182,10 @@ public class City implements Serializable{
 
     ArrayList<Hotel> getCityHotelList(){
         return cityHotelList;
+    }
+
+    ArrayList<Bank> getBanks(){
+        return this.banks;
     }
 
 
