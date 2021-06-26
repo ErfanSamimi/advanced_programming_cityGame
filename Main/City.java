@@ -38,7 +38,7 @@ public class City implements Serializable{
 
     //=================================================================================
 
-    City(String cityName , int budget){
+    public City(String cityName, int budget){
         this.budget = budget;
         this.cityName = cityName ;
 
@@ -122,7 +122,7 @@ public class City implements Serializable{
         this.banks.add(bank);
     }
 
-    static ArrayList<City> getCitiesList (){
+    public static ArrayList<City> getCitiesList (){
         return citiesList;
     }
 

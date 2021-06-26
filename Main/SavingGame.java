@@ -67,7 +67,7 @@ public class SavingGame implements Runnable {
 
     }
 
-    static void clearAllFiles()   {
+    public static void clearAllFiles()   {
         try {
             clear_a_file("/home/erfan/Projects/Java/Files/CityGame/people.csv");
             clear_a_file("/home/erfan/Projects/Java/Files/CityGame/trainStations.txt");

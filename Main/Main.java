@@ -6,13 +6,12 @@ import Main.Bank.Transaction;
 import Main.Bank.TransactionType;
 import Main.Building.*;
 import Main.Exception.*;
+import Main.Graphics.CountryMenu;
 import Main.Graphics.NewGameJDialog;
-import Main.Safar.Safar;
 import Main.Vehicles.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -23,14 +22,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        NewGameJDialog.start();
-        System.out.print("New Game ? ");
-        String str = new Scanner(System.in).nextLine();
+        NewGameJDialog t = new NewGameJDialog();
+        t.setVisible(true);
 
-        if (str.equals("yes")){
-            SavingGame.clearAllFiles();
-            System.out.println("Starting new game");
-        }
+//        Test t = new Test();
+
+
+//        System.out.print("New Game ? ");
+//        String str = new Scanner(System.in).nextLine();
+//
+//        if (str.equals("yes")){
+//            SavingGame.clearAllFiles();
+//            System.out.println("Starting new game");
+//        }
+
+        System.out.println("Exiting NewGameJDialog");
 
         //-------------------------------------------
 
@@ -48,6 +54,9 @@ public class Main {
         Thread save = new Thread(new SavingGame() , "save" );
         save.start();
 
+        new CountryMenu();
+
+        System.out.println("Exiting CountryMenu");
 
         while (true) {
             try {
