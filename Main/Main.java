@@ -6,6 +6,7 @@ import Main.Bank.Transaction;
 import Main.Bank.TransactionType;
 import Main.Building.*;
 import Main.Exception.*;
+import Main.Graphics.NewGameJDialog;
 import Main.Safar.Safar;
 import Main.Vehicles.*;
 
@@ -22,6 +23,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        NewGameJDialog.start();
         System.out.print("New Game ? ");
         String str = new Scanner(System.in).nextLine();
 
