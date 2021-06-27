@@ -140,6 +140,8 @@ public class BuyVehicleMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
+
+        new BuyCargoPlane();
     }
 
     private void passengerAirplaneButtonActionPerformed(java.awt.event.ActionEvent evt) {
