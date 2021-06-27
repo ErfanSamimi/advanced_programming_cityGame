@@ -134,7 +134,7 @@ public class City implements Serializable{
         return null;
     }
 
-    int getPopulation(){
+    public int getPopulation(){
         return this.personList.size();
     }
 
@@ -142,7 +142,7 @@ public class City implements Serializable{
         return this.personList;
     }
 
-    int getBudget(){
+    public int getBudget(){
         return this.budget;
     }
 

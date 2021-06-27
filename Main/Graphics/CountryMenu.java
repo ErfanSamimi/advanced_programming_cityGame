@@ -87,7 +87,7 @@ public class CountryMenu extends javax.swing.JFrame {
                                                 .addComponent(countryInfo))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(154, 154, 154)
-                                                .addComponent(citiesInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(citiesInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(64, 64, 64)
                                                 .addComponent(financialMng)))
                                 .addContainerGap(91, Short.MAX_VALUE))
@@ -119,6 +119,7 @@ public class CountryMenu extends javax.swing.JFrame {
 
     private void enterToCityActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        new EnterToCity();
     }
 
     private void countryInfoActionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +128,7 @@ public class CountryMenu extends javax.swing.JFrame {
 
     private void citiesInfoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        new CitiesInfo();
     }
 
     private void financialMngActionPerformed(java.awt.event.ActionEvent evt) {

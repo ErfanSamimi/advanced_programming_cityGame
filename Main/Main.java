@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class Main {
 
 
-    static City selectedCity;
+    public static City selectedCity;
 
 
     public static void main(String[] args) {
