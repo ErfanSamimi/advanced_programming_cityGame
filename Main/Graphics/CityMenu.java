@@ -198,6 +198,7 @@ public class CityMenu extends javax.swing.JFrame implements Runnable{
 
     private void vehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        new BuyVehicleMenu();
     }
 
     private void engageButtonActionPerformed(java.awt.event.ActionEvent evt) {
