@@ -6,12 +6,12 @@ package Main.Graphics;
  * and open the template in the editor.
  */
 
+import Main.Building.Bus_Terminal;
 import Main.Building.ShippingPort;
 import Main.Building.Terminal;
-import Main.Exception.ID_exception;
 import Main.Main;
-import Main.City;
 import Main.Vehicles.Boat;
+import Main.Vehicles.Bus;
 
 import javax.swing.*;
 
@@ -19,7 +19,7 @@ import javax.swing.*;
  *
  * @author erfan
  */
-public class BuyBoat extends javax.swing.JFrame {
+public class BuyBus extends javax.swing.JFrame {
 
 
     Terminal terminal ;
@@ -27,16 +27,15 @@ public class BuyBoat extends javax.swing.JFrame {
     DefaultListModel<String> dlm = new  DefaultListModel<>();
 
     void setDlm(){
-        for (ShippingPort a : Main.selectedCity.getCityShippingPortList()) {
+        for (Bus_Terminal a : Main.selectedCity.getCityBusTerminalList()) {
             dlm.addElement(a.getTerminalName());
         }
     }
 
-
     /**
      * Creates new form BuyBoat
      */
-    public BuyBoat() {
+    public BuyBus() {
         initComponents();
         setVisible(true);
     }
@@ -54,16 +53,16 @@ public class BuyBoat extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        shippingPortList = new javax.swing.JList<>(dlm);
+        busTerminalList = new javax.swing.JList<>(dlm);
         selectTerminalButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         maxVehiclesLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         availableVehiclesLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        distance = new javax.swing.JSpinner();
+        kpl = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
-        depth = new javax.swing.JSpinner();
+        maxSpeed = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
         capacity = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
@@ -84,7 +83,7 @@ public class BuyBoat extends javax.swing.JFrame {
 //            public int getSize() { return strings.length; }
 //            public String getElementAt(int i) { return strings[i]; }
 //        });
-        jScrollPane1.setViewportView(shippingPortList);
+        jScrollPane1.setViewportView(busTerminalList);
 
         selectTerminalButton.setText("Select Terminal");
         selectTerminalButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,13 +100,13 @@ public class BuyBoat extends javax.swing.JFrame {
 
         availableVehiclesLabel.setText("None");
 
-        jLabel7.setText("Max Distance :");
+        jLabel7.setText("Kilometer / Liter :");
 
-        distance.setValue(200);
+        kpl.setValue(200);
 
-        jLabel8.setText("Min Water Depth :");
+        jLabel8.setText("Max Speed :");
 
-        depth.setValue(3);
+        maxSpeed.setValue(3);
 
         jLabel9.setText("Vehicle Capacity :");
 
@@ -115,16 +114,16 @@ public class BuyBoat extends javax.swing.JFrame {
 
         jLabel10.setText("Vehicle ID :");
 
-        buyButton.setText("Buy Boat");
+        buyButton.setText("Buy Bus");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyButtonActionPerformed(evt);
             }
         });
 
-        jLabel11.setText("Boat Price :");
+        jLabel11.setText("Bus Price :");
 
-        priceLabel.setText("300");
+        priceLabel.setText("200");
 
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -150,17 +149,16 @@ public class BuyBoat extends javax.swing.JFrame {
                                                         .addComponent(availableVehiclesLabel))
                                                 .addGap(93, 93, 93)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel7)
-                                                        .addComponent(jLabel10)
-                                                        .addComponent(jLabel9)
-                                                        .addComponent(jLabel8))
-                                                .addGap(28, 28, 28)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel10)
+                                                                        .addComponent(jLabel9)
+                                                                        .addComponent(jLabel8))
+                                                                .addGap(28, 28, 28)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(capacity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(depth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(maxSpeed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                         .addGroup(layout.createSequentialGroup()
                                                                                 .addGap(85, 85, 85)
@@ -171,8 +169,10 @@ public class BuyBoat extends javax.swing.JFrame {
                                                                                 .addGap(18, 18, 18)
                                                                                 .addComponent(priceLabel)
                                                                                 .addGap(17, 17, 17))))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                .addComponent(distance, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(kpl, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(254, 254, 254))))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,11 +201,11 @@ public class BuyBoat extends javax.swing.JFrame {
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                                         .addComponent(jLabel7)
-                                                                        .addComponent(distance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(kpl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addGap(56, 56, 56)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                                         .addComponent(jLabel8)
-                                                                        .addComponent(depth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                        .addComponent(maxSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(selectTerminalButton)
@@ -248,29 +248,30 @@ public class BuyBoat extends javax.swing.JFrame {
     private void selectTerminalButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
-        terminal = Terminal.getTerminalByName( shippingPortList.getSelectedValue() );
+        terminal = Terminal.getTerminalByName( busTerminalList.getSelectedValue() );
         maxVehiclesLabel.setText(String.valueOf( terminal.max_number_of_vehicle() ));
         availableVehiclesLabel.setText(String.valueOf(terminal.getNumber_of_bought_vehicles()));
-
     }
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
-        if (Main.selectedCity.getBudget() >=300 && dlm.size()!=0 && terminal.max_number_of_vehicle() > terminal.getNumber_of_bought_vehicles()  ){
 
-            Boat newBoat;
+        if (Main.selectedCity.getBudget() >=200 && dlm.size()!=0 && terminal.max_number_of_vehicle() > terminal.getNumber_of_bought_vehicles()  ){
+
+            Bus newBus ;
 
             try {
-                newBoat = new Boat((int)distance.getValue() , "None" , (int)depth.getValue() , (int)capacity.getValue() , id.getText() , "company");
+                newBus = new Bus("None" , (int)kpl.getValue() , 200 , "None" , (int)maxSpeed.getValue() ,(int)capacity.getValue()
+                , "company" , id.getText());
             }
             catch (RuntimeException ex){
                 errorLabel.setText(ex.toString());
                 return;
             }
 
-            terminal.addVehicle(newBoat);
-            Main.selectedCity.withdrawalBudget(300);
+            terminal.addVehicle(newBus);
+            Main.selectedCity.withdrawalBudget(200);
 
             dispose();
 
@@ -294,20 +295,21 @@ public class BuyBoat extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(BuyBoat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BuyBus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(BuyBoat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BuyBus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(BuyBoat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BuyBus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(BuyBoat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(BuyBus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
+//        //</editor-fold>
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new BuyBoat().setVisible(true);
+//                new BuyBus().setVisible(true);
 //            }
 //        });
 //    }
@@ -316,8 +318,6 @@ public class BuyBoat extends javax.swing.JFrame {
     private javax.swing.JLabel availableVehiclesLabel;
     private javax.swing.JButton buyButton;
     private javax.swing.JSpinner capacity;
-    private javax.swing.JSpinner depth;
-    private javax.swing.JSpinner distance;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
@@ -330,10 +330,12 @@ public class BuyBoat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner kpl;
+    private javax.swing.JSpinner maxSpeed;
     private javax.swing.JLabel maxVehiclesLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JButton selectTerminalButton;
-    private javax.swing.JList<String> shippingPortList;
+    private javax.swing.JList<String> busTerminalList;
     // End of variables declaration
 }
 
