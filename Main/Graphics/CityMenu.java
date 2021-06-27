@@ -191,6 +191,7 @@ public class CityMenu extends javax.swing.JFrame {
 
     private void terminalButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        new TerminalMenu();
     }
 
     private void vehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {
