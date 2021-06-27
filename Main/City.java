@@ -86,7 +86,7 @@ public class City implements Serializable{
 
     //=================================================================================
 
-    void addAirport (Airport a){
+    public void addAirport (Airport a){
         this.cityAirportList.add(a);
     }
 

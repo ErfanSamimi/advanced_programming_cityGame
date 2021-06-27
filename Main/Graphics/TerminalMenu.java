@@ -112,6 +112,7 @@ public class TerminalMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
+        new BuildAirport();
     }
 
     private void butTerminalButtonActionPerformed(java.awt.event.ActionEvent evt) {

@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author erfan
  */
-public class CityMenu extends javax.swing.JFrame {
+public class CityMenu extends javax.swing.JFrame implements Runnable{
 
     /**
      * Creates new form CityMenu
@@ -23,6 +23,8 @@ public class CityMenu extends javax.swing.JFrame {
     public CityMenu() {
         initComponents();
         setVisible(true);
+        Thread t1 = new Thread(this , "update Budget");
+        t1.start();
     }
 
     /**
@@ -271,4 +273,27 @@ public class CityMenu extends javax.swing.JFrame {
     private javax.swing.JButton terminalButton;
     private javax.swing.JButton vehicleButton;
     // End of variables declaration
+
+
+
+    void updateBudget(){
+        while (true) {
+
+            budgetAmountLabel.setText(String.valueOf(Main.selectedCity.getBudget()));
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+
+    @Override
+    public void run(){
+        updateBudget();
+    }
 }
