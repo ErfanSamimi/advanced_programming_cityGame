@@ -110,6 +110,7 @@ public class EnterToCity extends javax.swing.JFrame {
         // TODO add your handling code here:
         Main.selectedCity = City.getCity_by_name(citiesList.getSelectedValue());
         System.out.println("**** " + Main.selectedCity.getCityName());
+        new CityMenu();
         dispose();
     }
 
