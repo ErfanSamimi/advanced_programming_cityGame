@@ -90,7 +90,7 @@ public class City implements Serializable{
         this.cityAirportList.add(a);
     }
 
-    void addBusTerminal (Bus_Terminal b){
+    public void addBusTerminal (Bus_Terminal b){
         this.cityBusTerminalList.add(b);
     }
 
