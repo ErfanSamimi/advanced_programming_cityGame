@@ -46,7 +46,7 @@ public class TerminalMenu extends javax.swing.JFrame {
         butTerminalButton.setText("Bus Terminal");
         butTerminalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butTerminalButtonActionPerformed(evt);
+                busTerminalButtonActionPerformed(evt);
             }
         });
 
@@ -100,12 +100,14 @@ public class TerminalMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
+        new BuildTrainStation();
     }
 
     private void shippingPortButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         dispose();
+        new BuildShippingPort();
     }
 
     private void airportButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +117,7 @@ public class TerminalMenu extends javax.swing.JFrame {
         new BuildAirport();
     }
 
-    private void butTerminalButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void busTerminalButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         dispose();

@@ -98,11 +98,11 @@ public class City implements Serializable{
         this.cityHotelList.add(h);
     }
 
-    void addShippingPort (ShippingPort sh){
+    public void addShippingPort (ShippingPort sh){
         this.cityShippingPortList.add(sh);
     }
 
-    void addTrainStation (TrainStation t){
+    public void addTrainStation (TrainStation t){
         this.cityTrainStationList.add(t);
     }
 
