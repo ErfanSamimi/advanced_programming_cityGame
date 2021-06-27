@@ -164,27 +164,27 @@ public class City implements Serializable{
 
     //=================================================================================
 
-    ArrayList<Airport> getCityAirportList(){
+    public ArrayList<Airport> getCityAirportList(){
         return this.cityAirportList;
     }
 
-    ArrayList<ShippingPort> getCityShippingPortList (){
+    public ArrayList<ShippingPort> getCityShippingPortList (){
         return this.cityShippingPortList;
     }
 
-    ArrayList<Bus_Terminal> getCityBusTerminalList(){
+    public ArrayList<Bus_Terminal> getCityBusTerminalList(){
         return cityBusTerminalList;
     }
 
-    ArrayList<TrainStation> getCityTrainStationList(){
+    public ArrayList<TrainStation> getCityTrainStationList(){
         return cityTrainStationList;
     }
 
-    ArrayList<Hotel> getCityHotelList(){
+    public ArrayList<Hotel> getCityHotelList(){
         return cityHotelList;
     }
 
-    ArrayList<Bank> getBanks(){
+    public ArrayList<Bank> getBanks(){
         return this.banks;
     }
 

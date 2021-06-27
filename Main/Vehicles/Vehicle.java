@@ -1,5 +1,6 @@
 package Main.Vehicles;
 
+import Main.Exception.ID_exception;
 import Main.Exception.Vehicle_does_not_exists_Exception;
 
 import java.util.ArrayList;
@@ -23,10 +24,15 @@ public class Vehicle {
         this.price = price ;
         this.capacity = capacity ;
         this.name_builder_company = name_builder_company ;
-        while (ID_list.contains(ID)){
-            System.out.print("This ID exists ! Please Set new ID for this vehicle : ");
-            ID = sc.nextLine();
-        }
+
+//        while (ID_list.contains(ID)){
+//            System.out.print("This ID exists ! Please Set new ID for this vehicle : ");
+//            ID = sc.nextLine();
+//        }
+
+
+        if (ID_list.contains(ID))
+            throw new ID_exception("This ID Exists");
 
         this.ID = ID;
         ID_list.add(ID);
