@@ -88,16 +88,14 @@ public class Hotel implements Serializable{
 //    }
 
 
-    public void showInfo(){
-        System.out.println("Hotel name : " + hotelName);
-        System.out.println("Address : " + address);
-        System.out.println("Number of stars : " + stars);
-        System.out.println("Maximum number of hotel rooms : " + number_of_rooms);
-        System.out.println("Number of built rooms : " + builtRooms);
-//        System.out.println("Maximum number of employees : " + number_of_employees);
-//        System.out.println("Number of hired employees : " + employees.size());
+    public String showInfo(){
 
-        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+        String str = "\nHotel name : " + hotelName + "\nAddress : " + address + "\nNumber of stars : " + stars + "\nMaximum number of hotel rooms : " + number_of_rooms +
+                "\nNumber of built rooms : " + builtRooms ;
+
+
+        return str ;
     }
 
 

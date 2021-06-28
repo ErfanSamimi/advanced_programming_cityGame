@@ -205,6 +205,8 @@ public class ShowStatusMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
+
+        new HotelStatusPage();
     }
 
     private void journeysButtonActionPerformed(java.awt.event.ActionEvent evt) {
