@@ -202,7 +202,7 @@ public class City implements Serializable{
 
     //=================================================================================
 
-    ArrayList<Boat> getBoatsList (){
+    public ArrayList<Boat> getBoatsList(){
         ArrayList <Boat> boats = new ArrayList<>();
         for ( ShippingPort a : this.cityShippingPortList){
             for ( Vehicle b : a.getVehiclesList()){
@@ -214,7 +214,7 @@ public class City implements Serializable{
         return boats;
     }
 
-    ArrayList<Bus> getBusesList (){
+    public ArrayList<Bus> getBusesList(){
         ArrayList <Bus> buses = new ArrayList<>();
         for ( Bus_Terminal a : this.cityBusTerminalList){
             for ( Vehicle b : a.getVehiclesList()){
@@ -226,7 +226,7 @@ public class City implements Serializable{
         return buses;
     }
 
-    ArrayList<CargoPlane> getCargoPlanesList (){
+    public ArrayList<CargoPlane> getCargoPlanesList(){
 
         ArrayList <CargoPlane> cargoPlanes = new ArrayList<>();
         for ( Airport a : this.cityAirportList){
@@ -239,7 +239,7 @@ public class City implements Serializable{
         return cargoPlanes ;
     }
 
-    ArrayList<Passenger_airplane> getPassenger_airplanesList (){
+    public ArrayList<Passenger_airplane> getPassenger_airplanesList(){
 
         ArrayList <Passenger_airplane> passenger_airplanes = new ArrayList<>();
         for ( Airport a : this.cityAirportList){
@@ -252,7 +252,7 @@ public class City implements Serializable{
         return passenger_airplanes ;
     }
 
-    ArrayList<Ship> getShipsList (){
+    public ArrayList<Ship> getShipsList(){
 
         ArrayList <Ship> ships = new ArrayList<>();
         for ( ShippingPort a : this.cityShippingPortList){
@@ -265,7 +265,7 @@ public class City implements Serializable{
         return ships ;
     }
 
-    ArrayList<Train> getTrainsList (){
+    public ArrayList<Train> getTrainsList(){
 
         ArrayList <Train> trains = new ArrayList<>();
         for ( TrainStation a : this.cityTrainStationList){
