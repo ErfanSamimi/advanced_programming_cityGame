@@ -94,7 +94,7 @@ public class City implements Serializable{
         this.cityBusTerminalList.add(b);
     }
 
-    void addHotel (Hotel h){
+    public void addHotel (Hotel h){
         this.cityHotelList.add(h);
     }
 

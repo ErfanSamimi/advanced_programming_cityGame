@@ -13,12 +13,12 @@ public class Hotel implements Serializable{
     private int stars ;
     private int number_of_rooms ;
     private int builtRooms = 0 ;
-    private int number_of_employees ;
+//    private int number_of_employees ;
 
     private ArrayList<Room> roomList = new ArrayList<Room>() ;
     private static ArrayList<Hotel> hotelsList = new ArrayList<Hotel>();
-    transient private ArrayList<Person> employees = new ArrayList<Person>();
-    private ArrayList<Integer> employeeIDs = new ArrayList<>();
+//    transient private ArrayList<Person> employees = new ArrayList<Person>();
+//    private ArrayList<Integer> employeeIDs = new ArrayList<>();
 
     enum Services {
         Breakfast , Lunch , Dinner , Pool ;
@@ -26,10 +26,10 @@ public class Hotel implements Serializable{
 
     //======================================================================
 
-    public Hotel(String hotelName, String address, int stars, int number_of_rooms, int number_of_employees){
+    public Hotel(String hotelName, String address, int stars, int number_of_rooms){
         this.hotelName = hotelName ;
-        this.buildCost =(number_of_rooms*150) + (number_of_employees*30 );
-        this.number_of_employees = number_of_employees ;
+        this.buildCost =(number_of_rooms*150);
+//        this.number_of_employees = number_of_employees ;
         this.address = address ;
         this.stars = stars ;
         this.number_of_rooms = number_of_rooms;
@@ -67,13 +67,13 @@ public class Hotel implements Serializable{
         return this.hotelName;
     }
 
-    public int getNumber_of_Employees(){
-        return number_of_employees;
-    }
+//    public int getNumber_of_Employees(){
+//        return number_of_employees;
+//    }
 
-    public int getNumber_of_hired_Employees(){
-        return employees.size();
-    }
+//    public int getNumber_of_hired_Employees(){
+//        return employees.size();
+//    }
 
     public static Hotel get_Hotel_ByName(String name){
         for (Hotel h : hotelsList){
@@ -83,9 +83,9 @@ public class Hotel implements Serializable{
         return null;
     }
 
-    public void addEmployee(Person empl){
-        employees.add(empl);
-    }
+//    public void addEmployee(Person empl){
+//        employees.add(empl);
+//    }
 
 
     public void showInfo(){
@@ -94,8 +94,8 @@ public class Hotel implements Serializable{
         System.out.println("Number of stars : " + stars);
         System.out.println("Maximum number of hotel rooms : " + number_of_rooms);
         System.out.println("Number of built rooms : " + builtRooms);
-        System.out.println("Maximum number of employees : " + number_of_employees);
-        System.out.println("Number of hired employees : " + employees.size());
+//        System.out.println("Maximum number of employees : " + number_of_employees);
+//        System.out.println("Number of hired employees : " + employees.size());
 
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
@@ -112,8 +112,8 @@ public class Hotel implements Serializable{
 
     public void saveHotel() throws IOException {
 
-        for (Person a : this.employees)
-            this.employeeIDs.add(a.getID());
+//        for (Person a : this.employees)
+//            this.employeeIDs.add(a.getID());
 
 
 
@@ -154,10 +154,10 @@ public class Hotel implements Serializable{
 
                 Hotel newHotel = (Hotel) obIn.readObject();
 
-                newHotel.employees = new ArrayList<>();
+//                newHotel.employees = new ArrayList<>();
 
-                for (int id : newHotel.employeeIDs)
-                    newHotel.employees.add( Person.find_Person_from_ID(id));
+//                for (int id : newHotel.employeeIDs)
+//                    newHotel.employees.add( Person.find_Person_from_ID(id));
 
                 hotelsList.add(newHotel);
 

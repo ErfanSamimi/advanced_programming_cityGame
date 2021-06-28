@@ -208,6 +208,8 @@ public class CityMenu extends javax.swing.JFrame implements Runnable{
 
     private void hotelButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new BuildHotel();
     }
 
     private void roomButtonActionPerformed(java.awt.event.ActionEvent evt) {

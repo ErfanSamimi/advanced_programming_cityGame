@@ -2146,7 +2146,7 @@ public class Main {
         System.out.print("Enter ID of your choice : ");
         int ID = sc.nextInt();
 
-        System.out.println(" 1-Airport \n 2-Bus Terminal \n 3-Hotel \n 4-Shipping Port \n 5-Train Station");
+        System.out.println(" 1-Airport \n 2-Bus Terminal \n 4-Shipping Port \n 5-Train Station");
         System.out.print("\n Engage employee for : ");
         int employeeFor = sc.nextInt();
 
@@ -2219,39 +2219,39 @@ public class Main {
         }
 
 
-        else if (employeeFor == 3 ){
-
-            System.out.println("\n\n=== Engage Employee For Hotel ===\n");
-
-            int counter = 1;
-            System.out.println("Number : \t Hotel name : \t Maximum number of employee : \t Number of hired employees :  ");
-            for (Hotel a : selectedCity.getCityHotelList()){
-                System.out.println(counter + "\t\t\t   " + a.getHotelName() + "\t\t\t\t\t" + a.getNumber_of_Employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_Employees());
-                counter ++ ;
-            }
-            System.out.print("\nEnter number of hotel you want hire employee for that : ");
-            int numberHotel = sc.nextInt();
-
-            if(selectedCity.getCityHotelList().get(numberHotel-1).getNumber_of_hired_Employees() < selectedCity.getCityHotelList().get(numberHotel-1).getNumber_of_Employees() ){
-                Person selected = Person.find_Person_from_ID(ID);
-                if (selected.getJob().equals("employee")) {
-                    Hotel hotel = selectedCity.getCityHotelList().get(numberHotel - 1);
-                    Person.engage(ID);
-                    hotel.addEmployee(selected);
-                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
-                    showMoney();
-                    mainMenu();
-                }
-                else {
-                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
-                }
-
-            }
-            else {
-                System.out.println("You cant engage an employee for this hotel ! ");
-                mainMenu();
-            }
-        }
+//        else if (employeeFor == 3 ){
+//
+//            System.out.println("\n\n=== Engage Employee For Hotel ===\n");
+//
+//            int counter = 1;
+//            System.out.println("Number : \t Hotel name : \t Maximum number of employee : \t Number of hired employees :  ");
+//            for (Hotel a : selectedCity.getCityHotelList()){
+//                System.out.println(counter + "\t\t\t   " + a.getHotelName() + "\t\t\t\t\t" + a.getNumber_of_Employees() + "\t\t\t\t\t\t\t\t" + a.getNumber_of_hired_Employees());
+//                counter ++ ;
+//            }
+//            System.out.print("\nEnter number of hotel you want hire employee for that : ");
+//            int numberHotel = sc.nextInt();
+//
+//            if(selectedCity.getCityHotelList().get(numberHotel-1).getNumber_of_hired_Employees() < selectedCity.getCityHotelList().get(numberHotel-1).getNumber_of_Employees() ){
+//                Person selected = Person.find_Person_from_ID(ID);
+//                if (selected.getJob().equals("employee")) {
+//                    Hotel hotel = selectedCity.getCityHotelList().get(numberHotel - 1);
+//                    Person.engage(ID);
+//                    hotel.addEmployee(selected);
+//                    selectedCity.withdrawalBudget( Person.find_Person_from_ID(ID).getSalary() );
+//                    showMoney();
+//                    mainMenu();
+//                }
+//                else {
+//                    throw new InvalidPerson("Selected person is a " + selected.getJob() + " not a employee");
+//                }
+//
+//            }
+//            else {
+//                System.out.println("You cant engage an employee for this hotel ! ");
+//                mainMenu();
+//            }
+//        }
 
 
         else if (employeeFor == 4 ) {
@@ -2350,11 +2350,11 @@ public class Main {
 //        System.out.println("++++  " + rooms);
         System.out.println();
 
-        System.out.print("Enter number of employees (each employee = 30 $) :  ");
-        int employees = sc.nextInt() ;
+//        System.out.print("Enter number of employees (each employee = 30 $) :  ");
+//        int employees = sc.nextInt() ;
         System.out.println();
 
-        int finalPrice = (rooms * 150) + (employees * 30)  ;
+        int finalPrice = (rooms * 150)  ;
 
         if(finalPrice <= selectedCity.getBudget() ){
             System.out.println("Build this Hotel costs : " + finalPrice + " $\nand now you have " + selectedCity.getBudget() + "$");
@@ -2366,7 +2366,7 @@ public class Main {
 
 
             if (choice2.equals("y")) {
-                Hotel newHotel = new Hotel(hotelName , address , stars , rooms ,employees );
+                Hotel newHotel = new Hotel(hotelName , address , stars , rooms  );
                 selectedCity.addHotel(newHotel);
                 selectedCity.withdrawalBudget(finalPrice);
                 System.out.println("-----");
