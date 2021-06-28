@@ -42,7 +42,7 @@ public class Airport extends Terminal {
         flightAttendants.add(flight_attendant);
     }
 
-    public String  showInfo1(){
+    public String  showInfo(){
 
 
         String str = "International : " + international_Airport + "\nRunways : " + number_of_runways + "\nCity name : " + getCity().getCityName() +

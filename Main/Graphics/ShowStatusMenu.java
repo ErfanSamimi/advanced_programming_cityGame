@@ -1,10 +1,16 @@
-package Main.Exception;
+package Main.Graphics;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+import Main.Building.Airport;
+import Main.Building.Bus_Terminal;
+import Main.Building.ShippingPort;
+import Main.Building.TrainStation;
+import Main.Main;
 
 import javax.swing.*;
 
@@ -157,29 +163,39 @@ public class ShowStatusMenu extends javax.swing.JFrame {
         dispose();
     }
 
+
     private void airportsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         dispose();
+
+        new Terminal_Info<Airport>(Main.selectedCity.getCityAirportList());
     }
 
     private void busTerminalsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         dispose();
+
+        new Terminal_Info<Bus_Terminal>(Main.selectedCity.getCityBusTerminalList());
     }
 
     private void shippingPortsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         dispose();
+
+        new Terminal_Info<ShippingPort>(Main.selectedCity.getCityShippingPortList());
     }
 
     private void trainStationButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         dispose();
+
+        new Terminal_Info<TrainStation>(Main.selectedCity.getCityTrainStationList());
     }
+
 
     private void hotelsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:

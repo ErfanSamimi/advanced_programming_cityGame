@@ -127,7 +127,7 @@ abstract public class Terminal implements Safarable , Serializable {
         return driversList;
     }
 
-    public String  showInfo1(){
+    public String  showInfo(){
         return "";
     };
 

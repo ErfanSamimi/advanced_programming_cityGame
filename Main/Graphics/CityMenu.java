@@ -7,7 +7,6 @@ package Main.Graphics;
  * and open the template in the editor.
  */
 
-import Main.Exception.ShowStatusMenu;
 import Main.Main;
 
 import javax.swing.*;

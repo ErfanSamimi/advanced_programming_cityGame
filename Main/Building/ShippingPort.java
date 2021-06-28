@@ -52,21 +52,17 @@ public class ShippingPort extends  Terminal {
         return ships;
     }
 
-     public void showInfo(){
-         System.out.println("Number of waterfronts :  " + number_of_waterfront);
-         System.out.println("City name : " + getCity().getCityName());
-         System.out.println("Airport name : " + terminalName);
-         System.out.println("Address : " + super.address );
-         System.out.println("Area : " + area);
-         System.out.println("Maximum number of vehicles : " + number_of_vehicles);
-         System.out.println("Number of bought vehicles : " + getNumber_of_bought_vehicles());
-         System.out.println("Number of ships : " + shipList().size());
-         System.out.println("Number of boats : " + boatList().size());
-         System.out.println("Maximum number of  employees : " + number_of_employees);
-         System.out.println("Number of hired employees : " + number_of_hired_employees());
-         System.out.println("Number of sailors : " + number_of_hired_drivers());
+     public String showInfo(){
 
-         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+         String str = "\nNumber of waterfronts :  " + number_of_waterfront + "\nCity name : " + getCity().getCityName() + "\nAirport name : " + terminalName +
+                 "\nAddress : " + super.address + "\nArea : " + area + "\nMaximum number of vehicles : " + number_of_vehicles + "\nNumber of bought vehicles : " + getNumber_of_bought_vehicles() +
+                 "\nNumber of ships : " + shipList().size() + "\nNumber of boats : " + boatList().size() + "\nMaximum number of  employees : " + number_of_employees + "\nNumber of hired employees : " + number_of_hired_employees() +
+                 "\nNumber of sailors : " + number_of_hired_drivers() ;
+
+
+         return str ;
+
+
 
      }
 

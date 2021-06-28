@@ -30,19 +30,16 @@ public class Bus_Terminal extends Terminal{
 
 
 
-    public void showInfo(){
+    public String showInfo(){
 
-        System.out.println("City name : " + getCity().getCityName());
-        System.out.println("Airport name : " + terminalName);
-        System.out.println("Address : " + super.address );
-        System.out.println("Area : " + area);
-        System.out.println("Maximum number of vehicles : " + number_of_vehicles);
-        System.out.println("Number of available vehicles : " + getNumber_of_bought_vehicles());
-        System.out.println("Max number of  employees : " + number_of_employees);
-        System.out.println("Number of hired employees : " + number_of_hired_employees());
-        System.out.println("Number of drivers : " + number_of_hired_drivers());
 
-        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+        String str = "\nCity name : " + getCity().getCityName() + "\nAirport name : " + terminalName + "\nAddress : " + super.address + "\nArea : " + area +
+                "\nMaximum number of vehicles : " + number_of_vehicles + "\nNumber of available vehicles : " + getNumber_of_bought_vehicles() +
+                "\nMax number of  employees : " + number_of_employees + "\nNumber of hired employees : " + number_of_hired_employees() +
+                "\nNumber of drivers : " + number_of_hired_drivers() ;
+
+        return str ;
+
     }
 
 
