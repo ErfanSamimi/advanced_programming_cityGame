@@ -214,6 +214,8 @@ public class CityMenu extends javax.swing.JFrame implements Runnable{
 
     private void roomButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new BuildRoom();
     }
 
     private void journeyButtonActionPerformed(java.awt.event.ActionEvent evt) {
