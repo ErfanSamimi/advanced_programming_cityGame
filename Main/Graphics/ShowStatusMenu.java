@@ -155,6 +155,8 @@ public class ShowStatusMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
+
+        new PopulationStatusPage() ;
     }
 
     private void vehiclesButtonActionPerformed(java.awt.event.ActionEvent evt) {
