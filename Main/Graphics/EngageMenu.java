@@ -6,6 +6,9 @@ package Main.Graphics;
  * and open the template in the editor.
  */
 
+import Main.Building.*;
+import Main.Main;
+
 import javax.swing.*;
 
 /**
@@ -41,9 +44,9 @@ public class EngageMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         pilotButton.setText("Pilot");
-        pilotButton.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                pilotButtonComponentResized(evt);
+        pilotButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilotButtonActionPerformed(evt);
             }
         });
 
@@ -71,7 +74,7 @@ public class EngageMenu extends javax.swing.JFrame {
         attendanteButton.setText("Flight Attendant");
         attendanteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attendanteButtonActionPerformed(evt);
+                attendantsButtonActionPerformed(evt);
             }
         });
 
@@ -120,28 +123,52 @@ public class EngageMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void pilotButtonComponentResized(java.awt.event.ComponentEvent evt) {
+    private void pilotButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        dispose();
+
+        new EngagePerson<Airport>("pilot" , Main.selectedCity.getCityAirportList());
     }
 
     private void driverButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        dispose();
+
+        new EngagePerson<Bus_Terminal>("driver" , Main.selectedCity.getCityBusTerminalList());
     }
 
     private void sailorButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        dispose();
+
+        new EngagePerson<ShippingPort>("sailor" , Main.selectedCity.getCityShippingPortList());
     }
 
     private void locoDriverButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        dispose();
+
+        new EngagePerson<TrainStation>("locomotive driver" , Main.selectedCity.getCityTrainStationList());
     }
 
-    private void attendanteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void attendantsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        dispose();
+
+        new EngagePerson<Airport>("flight attendant" , Main.selectedCity.getCityAirportList());
     }
 
     private void employeeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        dispose();
+
+        new EngagePerson<Terminal>("employee" , Main.selectedCity.getAllTerminals());
     }
 
     /**

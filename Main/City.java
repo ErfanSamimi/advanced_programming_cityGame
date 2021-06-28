@@ -188,6 +188,17 @@ public class City implements Serializable{
         return this.banks;
     }
 
+    public ArrayList<Terminal> getAllTerminals(){
+
+        ArrayList<Terminal> terminals = new ArrayList<>();
+        terminals.addAll(getCityAirportList());
+        terminals.addAll(getCityShippingPortList());
+        terminals.addAll(getCityBusTerminalList());
+        terminals.addAll(getCityTrainStationList());
+
+        return terminals;
+    }
+
 
     //=================================================================================
 
