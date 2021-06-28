@@ -549,8 +549,8 @@ public class Main {
         if (choice == 1){
             System.out.println("\n\n++++++ Show Information Of All Airports ++++++\n");
 
-            for (Airport a : selectedCity.getCityAirportList())
-                a.showInfo();
+//            for (Airport a : selectedCity.getCityAirportList())
+//                a.showInfo();
 
             System.out.println("\n\n ****** Finished ");
             mainMenu();
@@ -569,7 +569,7 @@ public class Main {
             int numberAirport = sc.nextInt();
             System.out.println("\n\n");
 
-            selectedCity.getCityAirportList().get(numberAirport-1).showInfo();
+//            selectedCity.getCityAirportList().get(numberAirport-1).showInfo();
 
             mainMenu();
 

@@ -7,6 +7,7 @@ package Main.Graphics;
  * and open the template in the editor.
  */
 
+import Main.Exception.ShowStatusMenu;
 import Main.Main;
 
 import javax.swing.*;
@@ -228,6 +229,8 @@ public class CityMenu extends javax.swing.JFrame implements Runnable{
 
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new ShowStatusMenu();
     }
 
     /**

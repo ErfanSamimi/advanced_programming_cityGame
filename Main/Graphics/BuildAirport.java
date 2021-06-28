@@ -238,7 +238,7 @@ public class BuildAirport extends javax.swing.JFrame {
             Airport newAirport = new Airport(international , (int)runways.getValue() , Main.selectedCity , airportName.getText() , address.getText()
                     , (int)area.getValue() , (int)numberOfAirplanes.getValue(), (int)numberOfEmployees.getValue() );
 
-            newAirport.showInfo();
+//            newAirport.showInfo();
 
             Main.selectedCity.addAirport(newAirport);
             Main.selectedCity.withdrawalBudget(price);

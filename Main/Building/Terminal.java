@@ -127,6 +127,10 @@ abstract public class Terminal implements Safarable , Serializable {
         return driversList;
     }
 
+    public String  showInfo1(){
+        return "";
+    };
+
 //============================================================================================== Save and restore Terminals
 
     public void restoreTerminalOfJourneys(){

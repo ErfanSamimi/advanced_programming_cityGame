@@ -42,21 +42,18 @@ public class Airport extends Terminal {
         flightAttendants.add(flight_attendant);
     }
 
-    public void showInfo(){
-        System.out.println("International : " + international_Airport);
-        System.out.println("Runways : " + number_of_runways);
-        System.out.println("City name : " + getCity().getCityName());
-        System.out.println("Airport name : " + terminalName);
-        System.out.println("Address : " + super.address );
-        System.out.println("Area : " + area);
-        System.out.println("Maximum number of vehicles : " + number_of_vehicles);
-        System.out.println("Number of available vehicles : "  + getNumber_of_bought_vehicles() );
-        System.out.println("Maximum number of  employees : " + number_of_employees);
-        System.out.println("Number of hired employees : " + super.number_of_hired_employees());
-        System.out.println("Number of pilots : " + number_of_hired_drivers());
-        System.out.println("Number of flight attendants : " + flightAttendants.size());
+    public String  showInfo1(){
 
-        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+        String str = "International : " + international_Airport + "\nRunways : " + number_of_runways + "\nCity name : " + getCity().getCityName() +
+                "\nAirport name : " + terminalName + "\nAddress : " + super.address + "\nArea : " + area +"\nMaximum number of vehicles : " + number_of_vehicles +
+                "\nNumber of available vehicles : "  + getNumber_of_bought_vehicles() + "\nMaximum number of  employees : " + number_of_employees +
+                "\nNumber of hired employees : " + super.number_of_hired_employees() + "\nNumber of pilots : " + number_of_hired_drivers() +
+                "\nNumber of flight attendants : " + flightAttendants.size() ;
+
+        return str;
+
+//        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 
 
