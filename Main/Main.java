@@ -246,20 +246,20 @@ public class Main {
         System.out.print("Enter name of destination Terminal : ");
         String destination = sc.nextLine();
 
-        Terminal startingTerminal = Terminal.getTerminalByName(starting);
-        Terminal destinationTerminal = Terminal.getTerminalByName(destination);
+//        Terminal startingTerminal = Terminal.getTerminalByName(starting);
+//        Terminal destinationTerminal = Terminal.getTerminalByName(destination);
 
 
-        checkTerminalsValidity( startingTerminal , destinationTerminal);
+//        checkTerminalsValidity( startingTerminal , destinationTerminal);
 
         //get vehicle info
 
         System.out.print("Enter ID of vehicle : ");
         String vehicleID = sc.nextLine();
 
-        Vehicle vehicle = Vehicle.getVehicleByID(vehicleID);
+//        Vehicle vehicle = Vehicle.getVehicleByID(vehicleID);
 
-        checkVehicleValidity(vehicle , startingTerminal , passengerList.size());
+//        checkVehicleValidity(vehicle , startingTerminal , passengerList.size());
 
 
         // get driver
@@ -267,8 +267,8 @@ public class Main {
         System.out.print("Enter id of driver : ");
         int id = sc.nextInt();
 
-        Person driver = Person.find_Person_from_ID(id);
-        checkDriverValidity(driver , vehicle , startingTerminal);
+//        Person driver = Person.find_Person_from_ID(id);
+//        checkDriverValidity(driver , vehicle , startingTerminal);
 
 
         // get journey info
@@ -282,13 +282,13 @@ public class Main {
         System.out.print("Enter month number of this journey : ");
         int month = sc.nextInt();
 
-        checkDateValidity(day ,month);
+//        checkDateValidity(day ,month);
 
         System.out.print("Enter ticket price : ");
         int price = sc.nextInt();
 
 
-        startingTerminal.newJourney(startingTerminal , destinationTerminal , passengerList , driver , vehicle , journeyID ,day , month , price);
+//        startingTerminal.newJourney(startingTerminal , destinationTerminal , passengerList , driver , vehicle , journeyID ,day , month , price);
 
         mainMenu();
 
@@ -296,24 +296,24 @@ public class Main {
     }
 
     static void checkDateValidity( int day , int month){
-        if (day >31 || day < 1)
-            throw new Invalid_date("Invalid day ! ");
-
-        if(month > 12  || month < 1)
-            throw new Invalid_date("Invalid month ! ");
+//        if (day >31 || day < 1)
+//            throw new Invalid_date("Invalid day ! ");
+//
+//        if(month > 12  || month < 1)
+//            throw new Invalid_date("Invalid month ! ");
     }
 
     static void checkPassengersValidity(ArrayList<Person> passengers){
-        for ( Person a : passengers){
-            if ( passengers.indexOf(a) != passengers.lastIndexOf(a) )
-                throw new InvalidPassengers("More than one person with " + a.getID() + " ID in list");
-
-            if ( ! selectedCity.getPersonList().contains(a))
-                throw new InvalidPassengers("Person " + a.getID() + " not in " + selectedCity.getCityName());
-
-            if (a.getHired())
-                throw new InvalidPassengers("Person " + a.getID() + " is working in " + selectedCity.getCityName() + " and can not go to journey");
-        }
+//        for ( Person a : passengers){
+//            if ( passengers.indexOf(a) != passengers.lastIndexOf(a) )
+//                throw new InvalidPassengers("More than one person with " + a.getID() + " ID in list");
+//
+//            if ( ! selectedCity.getPersonList().contains(a))
+//                throw new InvalidPassengers("Person " + a.getID() + " not in " + selectedCity.getCityName());
+//
+//            if (a.getHired())
+//                throw new InvalidPassengers("Person " + a.getID() + " is working in " + selectedCity.getCityName() + " and can not go to journey");
+//        }
 
 
     }
@@ -323,31 +323,31 @@ public class Main {
 
 
 
-        if ( starting == destination )
-            throw  new Same_starting_and_destination_terminal_Exception();
-
-        if ( starting.getTerminalType() != destination.getTerminalType() )
-            throw new Starting_and_destination_terminal_type_Exception();
-
-        if (starting.getVehiclesList().size() == 0)
-            throw new No_Vehicle_In_Terminal_Exception();
-
-        if (destination.getVehiclesList().size() >= destination.max_number_of_vehicle())
-            throw new Terminal_Vehicle_Capacity_Exception();
-
-
-        boolean isExist = false ;
-        for (Terminal a : selectedCity.getTerminalList()){
-
-            if ( a.getTerminalName() == starting.getTerminalName())
-                isExist = true;
-        }
-
-        if ( ! isExist)
-            throw new Invalid_TerminalName( starting.getTerminalName() + " Terminal does not exist in " + selectedCity.getCityName());
-
-
-
+//        if ( starting == destination )
+//            throw  new Same_starting_and_destination_terminal_Exception();
+//
+//        if ( starting.getTerminalType() != destination.getTerminalType() )
+//            throw new Starting_and_destination_terminal_type_Exception();
+//
+//        if (starting.getVehiclesList().size() == 0)
+//            throw new No_Vehicle_In_Terminal_Exception();
+//
+//        if (destination.getVehiclesList().size() >= destination.max_number_of_vehicle())
+//            throw new Terminal_Vehicle_Capacity_Exception();
+//
+//
+//        boolean isExist = false ;
+//        for (Terminal a : selectedCity.getTerminalList()){
+//
+//            if ( a.getTerminalName() == starting.getTerminalName())
+//                isExist = true;
+//        }
+//
+//        if ( ! isExist)
+//            throw new Invalid_TerminalName( starting.getTerminalName() + " Terminal does not exist in " + selectedCity.getCityName());
+//
+//
+//
 
     }
 
@@ -357,31 +357,31 @@ public class Main {
 
 
 
-        if ( selectedVehicle instanceof CargoPlane )
-            throw new Vehicle_type_Exception("Can not use a Cargo airplane for transform passengers");
-
-        if (selectedVehicle.getVehicleType() == "Air_transport_vehicle"  &&  startingTerminal.getTerminalType() != "Airport")
-            throw new Vehicle_type_Exception("You can travel with Airplane between Airports ");
-
-        if (selectedVehicle.getVehicleType() == "Train"  &&  startingTerminal.getTerminalType() != "TrainStation")
-            throw new Vehicle_type_Exception("You can travel with Train between Train Stations");
-
-        if (selectedVehicle.getVehicleType() == "Bus"  &&  startingTerminal.getTerminalType() != "BusTerminal")
-            throw new Vehicle_type_Exception("You can travel with Bus between Bus Terminals ");
-
-        if (selectedVehicle.getVehicleType() == "Shipping_vehicle"  &&  startingTerminal.getTerminalType() != "ShippingPort")
-            throw new Vehicle_type_Exception("You can travel with a Shipping vehicle  between Shipping ports ");
-
-
-        if ( ! startingTerminal.getVehiclesList().contains(selectedVehicle) )
-            throw new Vehicle_does_not_exists_Exception("No vehicle exits with this id in " + startingTerminal.getTerminalType() + " terminal ");
-
-        if ( numberOfPassengers < selectedVehicle.getCapacity()/2D )
-            throw new Enough_passenger_exception("At least half of passenger capacity must be reserved");
-
-        if (numberOfPassengers > selectedVehicle.getCapacity()){
-            throw new Enough_passenger_exception("Number of passengers is more than selected vehicle passenger capacity");
-        }
+//        if ( selectedVehicle instanceof CargoPlane )
+//            throw new Vehicle_type_Exception("Can not use a Cargo airplane for transform passengers");
+//
+//        if (selectedVehicle.getVehicleType() == "Air_transport_vehicle"  &&  startingTerminal.getTerminalType() != "Airport")
+//            throw new Vehicle_type_Exception("You can travel with Airplane between Airports ");
+//
+//        if (selectedVehicle.getVehicleType() == "Train"  &&  startingTerminal.getTerminalType() != "TrainStation")
+//            throw new Vehicle_type_Exception("You can travel with Train between Train Stations");
+//
+//        if (selectedVehicle.getVehicleType() == "Bus"  &&  startingTerminal.getTerminalType() != "BusTerminal")
+//            throw new Vehicle_type_Exception("You can travel with Bus between Bus Terminals ");
+//
+//        if (selectedVehicle.getVehicleType() == "Shipping_vehicle"  &&  startingTerminal.getTerminalType() != "ShippingPort")
+//            throw new Vehicle_type_Exception("You can travel with a Shipping vehicle  between Shipping ports ");
+//
+//
+//        if ( ! startingTerminal.getVehiclesList().contains(selectedVehicle) )
+//            throw new Vehicle_does_not_exists_Exception("No vehicle exits with this id in " + startingTerminal.getTerminalType() + " terminal ");
+//
+//        if ( numberOfPassengers < selectedVehicle.getCapacity()/2D )
+//            throw new Enough_passenger_exception("At least half of passenger capacity must be reserved");
+//
+//        if (numberOfPassengers > selectedVehicle.getCapacity()){
+//            throw new Enough_passenger_exception("Number of passengers is more than selected vehicle passenger capacity");
+//        }
 
 
 
@@ -390,8 +390,8 @@ public class Main {
 
     static void checkDriverValidity(Person driver , Vehicle vehicle , Terminal starting){
 
-        if ( ! starting.getDriversList().contains(driver) )
-            throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + " Terminal");
+//        if ( ! starting.getDriversList().contains(driver) )
+//            throw new InvalidDriver("Driver does not in " + starting.getTerminalName() + " Terminal");
 
     }
 
