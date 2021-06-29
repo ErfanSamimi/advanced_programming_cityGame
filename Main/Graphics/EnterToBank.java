@@ -157,6 +157,8 @@ public class EnterToBank extends javax.swing.JFrame {
 
     private void bankInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new ShowBankInfo(bank);
     }
 
     /**
