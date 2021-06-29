@@ -1,11 +1,19 @@
 package Main;
 
+import Main.Bank.Bank;
+
 import java.util.ArrayList;
 
 public class Country {
 
     static ArrayList<City> citiesList = City.getCitiesList();
 
+
+    public static int getNumberOfCity(){
+
+        return City.getCitiesList().size();
+
+    }
 
     public static int totalPopulation (){
 
@@ -26,6 +34,25 @@ public class Country {
         }
 
         return budget;
+    }
+
+    public static double getTotalMoneyInBanks(){
+
+        double money =0;
+
+        for (City city : City.getCitiesList()){
+
+            for(Bank a : city.getBanks() ){
+
+                money += a.getTotalMoney();
+
+            }
+
+        }
+
+        return money;
+
+
     }
 
     

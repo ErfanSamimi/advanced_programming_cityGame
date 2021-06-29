@@ -31,8 +31,6 @@ public class CitiesInfo extends javax.swing.JFrame {
      * Creates new form CitiesInfo
      */
     public CitiesInfo() {
-        City a = new City("Esf" , 10000);
-        City a1 = new City("Teh" , 50000);
         initComponents();
         setVisible(true);
     }

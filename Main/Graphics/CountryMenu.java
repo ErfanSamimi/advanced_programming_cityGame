@@ -124,6 +124,7 @@ public class CountryMenu extends javax.swing.JFrame {
 
     private void countryInfoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        new CountryInfo();
     }
 
     private void citiesInfoActionPerformed(java.awt.event.ActionEvent evt) {
