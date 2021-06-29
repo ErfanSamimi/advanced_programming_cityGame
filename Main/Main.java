@@ -840,6 +840,7 @@ public class Main {
 
             BankAccount account = selectedBank.getAccounts().get(choice3-1);
 
+            sc.nextLine();
             System.out.print("Enter password of selected account : ");
             String password = sc.nextLine();
 
