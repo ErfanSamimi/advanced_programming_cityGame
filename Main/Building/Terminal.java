@@ -23,19 +23,19 @@ abstract public class Terminal implements Safarable , Serializable {
      ArrayList<String> startingPointIDs = new ArrayList<>();           //safar ids that this terminal is the starting point of journey
      ArrayList<String> destinationPointIDs = new ArrayList<>();          //safar ids that this terminal is the destination point of journey
 
-     ArrayList<Integer> driverIDs = new ArrayList<>();
-     ArrayList<Integer> employeeIDs = new ArrayList<>();
-     ArrayList<String> vehicleIDs = new ArrayList<>();
 
+     ArrayList<Integer> employeeIDs = new ArrayList<Integer>();
+     ArrayList<String> vehicleIDs = new ArrayList<String>();
+    ArrayList<Integer> driverIDs = new ArrayList<Integer>();
+//================================================
 
-
-    static ArrayList<Terminal> totalTerminals = new ArrayList<>();
+    static ArrayList<Terminal> totalTerminals = new ArrayList<Terminal>();
     transient  ArrayList<Person> employees = new ArrayList<Person>();
     transient  ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     transient  ArrayList<Person> driversList = new ArrayList<Person>();
 
-    transient  ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<>();
-    transient  ArrayList<Safar> destinationTerminalOfJourneys = new ArrayList<>();
+    transient  ArrayList<Safar> startingTerminalOfJourneys = new ArrayList<Safar>();
+    transient  ArrayList<Safar> destinationTerminalOfJourneys = new ArrayList<Safar>();
 
 
 
@@ -179,11 +179,11 @@ abstract public class Terminal implements Safarable , Serializable {
 
     public  void restoreTerminal(){
 
-        this.employees = new ArrayList<>();
-        this.vehiclesList = new ArrayList<>();
-        this.driversList = new ArrayList<>();
-        this.startingTerminalOfJourneys = new ArrayList<>();
-        this.destinationTerminalOfJourneys = new ArrayList<>();
+        this.employees = new ArrayList<Person>();
+        this.vehiclesList = new ArrayList<Vehicle>();
+        this.driversList = new ArrayList<Person>();
+        this.startingTerminalOfJourneys = new ArrayList<Safar>();
+        this.destinationTerminalOfJourneys = new ArrayList<Safar>();
 
         for (int id : this.employeeIDs)
             this.employees.add( Person.find_Person_from_ID(id));

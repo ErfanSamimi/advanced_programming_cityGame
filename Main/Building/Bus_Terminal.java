@@ -76,11 +76,17 @@ public class Bus_Terminal extends Terminal{
             fout.close();
         }
 
-        this.startingPointIDs.removeAll(startingPointIDs);
-        this.destinationPointIDs.removeAll(destinationPointIDs);
-        this.driverIDs.removeAll(driverIDs);
-        this.employeeIDs.removeAll(employeeIDs);
-        this.vehicleIDs.removeAll(vehicleIDs);
+//        this.startingPointIDs.removeAll(startingPointIDs);
+//        this.destinationPointIDs.removeAll(destinationPointIDs);
+//        this.driverIDs.removeAll(driverIDs);
+//        this.employeeIDs.removeAll(employeeIDs);
+//        this.vehicleIDs.removeAll(vehicleIDs);
+
+        this.startingPointIDs = new ArrayList<>();
+        this.destinationPointIDs = new ArrayList<>();
+        this.driverIDs = new ArrayList<>();
+        this.employeeIDs = new ArrayList<>();
+        this.vehicleIDs = new ArrayList<>();
 
 
     }
@@ -95,6 +101,7 @@ public class Bus_Terminal extends Terminal{
             ObjectInputStream obIn = new ObjectInputStream(fin);
 
             while (true){
+
                 Bus_Terminal newTerminal = (Bus_Terminal) obIn.readObject();
 
 
@@ -105,7 +112,7 @@ public class Bus_Terminal extends Terminal{
 
             }
         }
-        catch (EOFException ex){}
+        catch (EOFException | NullPointerException  ex){}
 
 
         fin.close();

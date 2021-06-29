@@ -799,7 +799,7 @@ public class Main {
         String name = sc.nextLine();
 
         Bank newBank = new Bank(name);
-        System.out.println("yeeeeeeeees");
+
         selectedCity.addBank(newBank);
 
     }

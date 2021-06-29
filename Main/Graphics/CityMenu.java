@@ -226,6 +226,8 @@ public class CityMenu extends javax.swing.JFrame implements Runnable{
 
     private void bankButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new BankMenu();
     }
 
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {
