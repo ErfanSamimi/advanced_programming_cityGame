@@ -33,6 +33,10 @@ public class BankAccount implements Runnable {
 
     }
 
+    public double getAccountBalance(){
+        return this.accountBalance;
+    }
+
 
     public void performTransaction(Transaction t){
 
@@ -45,6 +49,8 @@ public class BankAccount implements Runnable {
         }
         else
             this.accountBalance += t.amount;
+
+        this.accountTransactions.add(t);
 
         if (showLog){
             System.out.print(this.bank.getName() + "  " + this.city.getCityName() + "   " );
@@ -65,7 +71,6 @@ public class BankAccount implements Runnable {
             if (this.accountBalance !=0 ){
 
                 Transaction transaction = new Transaction(this.accountBalance*(15/100D) , TransactionType.PROFIT);
-                this.accountTransactions.add(transaction);
                 this.performTransaction(transaction);
 
 

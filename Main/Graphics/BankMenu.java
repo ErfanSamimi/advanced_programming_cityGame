@@ -85,6 +85,8 @@ public class BankMenu extends javax.swing.JFrame {
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new EnterToBank();
     }
 
     /**
