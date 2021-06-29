@@ -134,6 +134,8 @@ public class CountryMenu extends javax.swing.JFrame {
 
     private void financialMngActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        new financialMng();
     }
 
 

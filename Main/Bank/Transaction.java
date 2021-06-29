@@ -20,7 +20,7 @@ public class Transaction {
 
 
     public String showInfo(){
-        String str =  "Type : "+this.type.toString() + " | amount : " + this.amount + " | time : " + this.time ;
+        String str =  " | Type : "+this.type.toString() + " | amount : " + this.amount + " | time : " + this.time ;
         return str ;
     }
 }

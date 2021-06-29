@@ -2,6 +2,7 @@ package Main.Bank;
 
 import Main.City;
 import Main.Exception.InvalidTransaction;
+import Main.Graphics.financialMng;
 import Main.Person;
 
 import java.util.ArrayList;
@@ -53,9 +54,11 @@ public class BankAccount implements Runnable {
         this.accountTransactions.add(t);
 
         if (showLog){
-            System.out.print(this.bank.getName() + "  " + this.city.getCityName() + "   " );
-            t.showInfo();
-            System.out.println("   " + this.accountBalance);
+//            System.out.print(this.bank.getName() + "  " + this.city.getCityName() + "   " );
+//            t.showInfo();
+//            System.out.println("   " + this.accountBalance);
+
+            financialMng.addLog("Bank :" + this.bank.getName() + " | City :" + this.city.getCityName() + " | " + t.showInfo() +  " | " + this.accountBalance);
         }
 
     }
