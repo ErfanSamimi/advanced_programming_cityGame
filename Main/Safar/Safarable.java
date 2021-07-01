@@ -12,6 +12,6 @@ public interface Safarable {
     ArrayList<Safar> sortJourneys(ArrayList<Safar> sa);
     int journeyPrice ( ArrayList<Person> passengerList , int ticketPrice);
 
-    void journeyHistory( boolean startingTerminal , boolean destinationTerminal);
+    String journeyHistory( boolean startingTerminal , boolean destinationTerminal);
 
 }

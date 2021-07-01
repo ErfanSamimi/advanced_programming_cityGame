@@ -76,14 +76,14 @@ public class Safar implements Comparable<Safar> , Serializable {
         return 0;
     }
 
-    public void printINFO(){
-        System.out.println("\nStarting terminal name : " + startingTerminal.getTerminalName());
-        System.out.println("Destination terminal name : " + destinationTerminal.getTerminalName());
-        System.out.println("Number of Passengers : " + this.passengerList.size());
-        System.out.println("Journey id : " + journeyID);
-        System.out.println("Date : " + journeyDay + " / " + journeyMonth);
-        System.out.println("Ticket Price : " + this.price);
-        System.out.println("-------------------------------------------------------------");
+    public String printINFO(){
+
+
+        String str = "\nStarting terminal name : " + startingTerminal.getTerminalName() + "\nDestination terminal name : " + destinationTerminal.getTerminalName()
+                + "\nNumber of Passengers : " + this.passengerList.size() + "\nJourney id : " + journeyID + "\nDate : " + journeyDay + " / " + journeyMonth +
+                "\nTicket Price : " + this.price + "\n---------------------";
+
+        return str ;
     }
 
     public String getJourneyID(){

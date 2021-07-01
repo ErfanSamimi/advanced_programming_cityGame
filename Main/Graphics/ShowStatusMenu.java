@@ -213,6 +213,8 @@ public class ShowStatusMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
+
+        new JourneyHistory();
     }
 
     /**

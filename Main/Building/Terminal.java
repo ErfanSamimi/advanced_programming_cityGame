@@ -244,19 +244,41 @@ abstract public class Terminal implements Safarable , Serializable {
     }
 
     @Override
-    public void journeyHistory(boolean startingTerminal , boolean destinationTerminal){
+    public String journeyHistory(boolean startingTerminal , boolean destinationTerminal){
+
+        String str = "";
+
         if(startingTerminal){
+
             ArrayList<Safar> safar = sortJourneys(startingTerminalOfJourneys);
-//            System.out.println("-*-*-*-*-*-* " + safar.size());
-            for (Safar sa : safar)
-                sa.printINFO();
+////            System.out.println("-*-*-*-*-*-* " + safar.size());
+//            for (Safar sa : safar)
+//                sa.printINFO();
+
+
+            for (Safar a : safar)
+                str += a.printINFO();
+
+
+
         }
+
         System.out.println("********************************************************************************");
+
         if( destinationTerminal){
             ArrayList<Safar> safar = sortJourneys(destinationTerminalOfJourneys);
-            for (Safar sa : safar)
-                sa.printINFO();
+
+//            for (Safar sa : safar)
+//                sa.printINFO();
+
+            for (Safar a : safar)
+                str += a.printINFO();
+
+
+
         }
+
+        return str ;
     }
 
     @Override
